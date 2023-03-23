@@ -3,7 +3,7 @@ import LayoutStore from "components/container/layout/store";
 import { ButtonSub } from "components/ui/button";
 import { CardProduct } from "components/ui/card";
 import Filter from "components/ui/filter";
-import { GetStaticProps, NextPage } from "next";
+import { GetServerSideProps, GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { getProducts } from "services/productService";
@@ -94,8 +94,8 @@ export default Store;
 //     },
 //   };
 // };
-export const getStaticProps: GetStaticProps = async () => {
-  const res = await axios.get(process.env.DOMAIN_BACKEND + "/api/store");
+export const getServerSideProps: GetServerSideProps = async () => {
+  const res = await axios.get("http://localhost:3000/api/store");
   const product = await getProducts();
   const { data } = res;
   return {
@@ -103,6 +103,5 @@ export const getStaticProps: GetStaticProps = async () => {
       data,
       product,
     },
-    revalidate: 3600, // revalidate every hour
   };
 };

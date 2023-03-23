@@ -60,7 +60,7 @@ export default SinglePost;
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug }: any = params;
-  const { data } = await axios.get(process.env.DOMAIN_BACKEND + "/api/default");
+  const { data } = await axios.get("http://localhost:3000/api/default");
   const { nav } = data;
   const post = await getPostBySlug(slug);
   const postCategory = await getPostByCategory(post.category);

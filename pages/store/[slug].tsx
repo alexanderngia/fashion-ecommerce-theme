@@ -3,7 +3,12 @@ import LayoutProduct from "components/container/layout/product";
 import { ButtonMain } from "components/ui/button";
 import Divider from "components/ui/divider";
 import InputNumber from "components/ui/form/input";
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import {
+  GetServerSideProps,
+  GetStaticPaths,
+  GetStaticProps,
+  NextPage,
+} from "next";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -138,7 +143,7 @@ export default SingleProduct;
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug }: any = params;
-  const { data } = await axios.get(process.env.DOMAIN_BACKEND + "/api/store");
+  const { data } = await axios.get("http://localhost:3000/api/store");
   const { nav } = data;
   const product = await getProductBySlug(slug);
   const productCategory = await getProductByCategory(product.categoryItem);

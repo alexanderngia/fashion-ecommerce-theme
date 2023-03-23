@@ -2,7 +2,7 @@ import { headerLayouts } from "@/components/container/header";
 import axios from "axios";
 import LayoutDefault from "components/container/layout/default";
 import { CardPost } from "components/ui/card";
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import Link from "next/link";
 import { getPosts } from "services/postService";
 import { IText } from "types/layout";
@@ -61,9 +61,9 @@ const Blog: NextPage<BlogProps> = ({ posts, nav }) => {
 
 export default Blog;
 
-export const getStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const posts = await getPosts();
-  const { data } = await axios.get(process.env.DOMAIN_BACKEND + "/api/default");
+  const { data } = await axios.get("http://localhost:3000/api/default");
   const { nav } = data;
   return {
     props: {

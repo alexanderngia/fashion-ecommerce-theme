@@ -8,7 +8,7 @@ import { Slider } from "@/components/ui/slider";
 import axios from "axios";
 import LayoutHome from "components/container/layout/home";
 import Banner from "components/ui/banner";
-import type { GetStaticProps, NextPage } from "next";
+import type { GetServerSideProps, GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import styles from "styles/index.module.scss";
@@ -37,6 +37,7 @@ interface HomeData {
   quote: QuoteData;
   carousel: CarouselData[];
 }
+
 const Home: NextPage<HomeProps> = ({ data }) => {
   const layout = "home";
   const HeaderLayout = headerLayouts[layout] || headerLayouts.default;
@@ -81,14 +82,11 @@ const Home: NextPage<HomeProps> = ({ data }) => {
 };
 
 export default Home;
-
-export const getStaticProps: GetStaticProps = async () => {
-  const res = await axios.get(process.env.DOMAIN_BACKEND + "/api/home");
-  const { data } = res;
+export const getServerSideProps: GetServerSideProps = async () => {
+  const { data } = await axios.get("http://localhost:3000/api/home");
   return {
     props: {
       data,
     },
-    revalidate: 3600, // revalidate every hour
   };
 };
