@@ -1,0 +1,235 @@
+@import "styles/variables";
+@import "styles/mixin";
+@import "styles/responsive";
+.root {
+  @include nonBreak();
+  @include flex();
+  height: 23rem;
+  @include desktop {
+    height: 45rem;
+  }
+  li {
+    position: relative;
+    z-index: 0;
+    &:first-of-type {
+      width: 12%;
+      height: 10rem;
+    }
+    &:nth-of-type(2) {
+      width: 16%;
+      height: 12rem;
+    }
+    &:nth-of-type(3) {
+      width: 24%;
+      height: 19rem;
+    }
+    &:nth-of-type(4) {
+      width: 16%;
+      height: 14rem;
+    }
+    &:nth-of-type(5) {
+      width: 12%;
+      height: 10rem;
+    }
+    &:last-of-type {
+      width: 20%;
+      height: 15rem;
+    }
+    @include desktop {
+      &:first-of-type {
+        width: 12%;
+        height: 18rem;
+      }
+      &:nth-of-type(2) {
+        width: 16%;
+        height: 25rem;
+      }
+      &:nth-of-type(3) {
+        width: 24%;
+        height: 40rem;
+      }
+      &:nth-of-type(4) {
+        width: 16%;
+        height: 27rem;
+      }
+      &:nth-of-type(5) {
+        width: 12%;
+        height: 17rem;
+      }
+      &:last-of-type {
+        width: 20%;
+        height: 32rem;
+      }
+    }
+  }
+  &-product {
+    @include flex();
+
+    width: 100%;
+
+    .container {
+      width: 100%;
+      ul {
+        li {
+          @include flex();
+        }
+      }
+    }
+    .carouselCard {
+      width: 100%;
+    }
+    .decord-arrow {
+      width: 100px;
+      @include flex();
+      justify-content: space-between;
+      position: relative;
+      bottom: 50px;
+      left: 0px;
+      @include desktop {
+        width: 190px;
+        bottom: 30px;
+        left: 68px;
+      }
+      p {
+        font-weight: 400;
+      }
+      .right-arrow-white {
+        display: block;
+        @include rightArrow;
+        border-top: 2px solid rgba(18, 18, 18, 0.75) !important;
+        width: 30% !important;
+        bottom: 4px;
+        &::before {
+          border-right: 2px solid rgba(18, 18, 18, 0.75) !important;
+          border-bottom: 2px solid rgba(18, 18, 18, 0.75) !important;
+        }
+        &::after {
+          right: -14px;
+          top: -17px;
+          content: "";
+          position: absolute;
+          width: 30px;
+          height: 30px;
+          border-radius: 50px;
+          border: 1px solid rgba(18, 18, 18, 0.75) !important;
+          @include desktop {
+            right: -18px;
+            top: -22px;
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+    }
+  }
+  // &-product {
+  //   @include nonBreak();
+  //   height: 50rem;
+  //   .slider {
+  //     position: relative;
+  //     width: 100%;
+  //     height: 500px;
+  //     overflow: hidden;
+  //   }
+
+  //   .slides {
+  //     display: flex;
+  //     flex-wrap: nowrap;
+  //     transition: left 0.5s ease-in-out;
+  //     &.wrap {
+  //       flex-wrap: wrap;
+  //       &.transition {
+  //         transition: none;
+  //       }
+  //     }
+  //   }
+
+  //   .slide {
+  //     flex: 0 0 calc(100% / 3);
+  //     height: 100%;
+  //     background-size: cover;
+  //     background-position: center;
+  //     position: relative;
+  //     display: flex;
+  //     align-items: center;
+  //     justify-content: center;
+
+  //     .caption {
+  //       font-size: 2rem;
+  //       color: #fff;
+  //       text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  //     }
+  //   }
+
+  //   .controls {
+  //     position: absolute;
+  //     bottom: 20px;
+  //     left: 50%;
+  //     transform: translateX(-50%);
+  //     display: flex;
+  //     justify-content: center;
+  //     button {
+  //       background-color: #fff;
+  //       color: #000;
+  //       border: none;
+  //       padding: 10px 20px;
+  //       margin: 0 10px;
+  //       cursor: pointer;
+  //       font-size: 1rem;
+  //     }
+  //   }
+
+  // }
+}
+// .slider {
+//   position: relative;
+//   width: 100%;
+//   height: 1000px;
+//   overflow: hidden;
+//   .slides {
+
+//     height: 50%;
+//     display: flex;
+//     flex-wrap: nowrap;
+//     transition: left 0.5s ease-in-out;
+//     &.wrap {
+//       flex-wrap: wrap;
+//       &.transition {
+//         transition: none;
+//       }
+//     }
+//     .slide {
+//       flex: 0 0 calc(100% / 3);
+//       height: 100%;
+//       background-size: cover;
+//       background-position: center;
+//       position: relative;
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+//       .caption {
+//         font-size: 2rem;
+//         color: #fff;
+//         text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+//       }
+//     }
+//   }
+// }
+
+// .controls {
+//   position: absolute;
+//   bottom: 20px;
+//   left: 50%;
+//   transform: translateX(-50%);
+//   display: flex;
+//   justify-content: center;
+//   button {
+//     background-color: #fff;
+//     color: #000;
+//     border: none;
+//     padding: 10px 20px;
+//     margin: 0 10px;
+//     cursor: pointer;
+//     font-size: 1rem;
+//   }
+// }

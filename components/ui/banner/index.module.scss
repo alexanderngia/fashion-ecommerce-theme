@@ -1,0 +1,32 @@
+@import "styles/mixin";
+@import "styles/variables";
+@import "styles/responsive";
+.root {
+  overflow: hidden;
+  width: 100%;
+  .container {
+    width: 305vw;
+    height: 70px;
+    @include flex();
+    justify-content: space-evenly;
+    background-color: $white;
+    @include desktop {
+      width: 200vw;
+    }
+  }
+  p {
+    animation: scroll 6s linear infinite;
+    @include Heading;
+    text-align: center;
+    color: $black-banner;
+    font-weight: 700;
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-55vw);
+      }
+    }
+  }
+}

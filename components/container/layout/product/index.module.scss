@@ -1,0 +1,13 @@
+@import "styles/mixin";
+@import "styles/variables";
+
+.root {
+  width: 100%;
+  height: fit-content;
+  @include flex();
+  flex-direction: column;
+  background-color: $white;
+  .header {
+    border-bottom: 1px solid $black-divider;
+  }
+}

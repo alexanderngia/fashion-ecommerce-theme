@@ -1,0 +1,85 @@
+@import "variables";
+@import "responsive";
+
+@mixin nonBreak() {
+  width: 100%;
+  max-width: 1550px;
+}
+@mixin flex() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@mixin flexCol() {
+  @include flex();
+  flex-direction: column;
+}
+@mixin padding-2-5() {
+  padding: 2% 5%;
+}
+@mixin padding-x() {
+  padding: 5%;
+}
+@mixin Heading() {
+  font-family: $font-head;
+  color: $black-head;
+  line-height: 1.4;
+}
+
+@mixin Text() {
+  font-family: $font-p;
+  color: $black-p;
+  line-height: 1.4;
+}
+@mixin boxShadow() {
+  box-shadow: 0px 16px 40px rgba($black-divider, 0.7);
+}
+@mixin shadowColor() {
+  box-shadow: 0px 0px 5px rgb(#000000, 0.2);
+}
+
+@mixin rightArrow {
+  position: relative;
+  width: 60%;
+  border-top: 1px solid $white;
+  margin-top: 6px;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border: solid $white;
+    border-width: 0 1px 1px 0;
+    top: -4px;
+    right: 0;
+    transform: rotate(-45deg);
+    @include desktop {
+      border-width: 0 2px 2px 0;
+    }
+  }
+  @include desktop {
+    margin-top: 10px;
+    border-top: 2px solid $white;
+  }
+}
+@mixin leftArrow {
+  position: relative;
+  width: 60%;
+  border-top: 2px solid $white;
+  margin-top: 6px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border: solid $white;
+    border-width: 0 2px 2px 0;
+    top: -4px;
+    left: 0;
+    transform: rotate(45deg);
+  }
+  @include desktop {
+    margin-top: 10px;
+  }
+}

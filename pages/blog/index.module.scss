@@ -1,0 +1,37 @@
+@import "styles/mixin";
+@import "styles/variables";
+@import "styles/responsive";
+
+.heading {
+  @include Heading();
+  font-style: italic;
+  text-transform: capitalize;
+  text-align: center;
+  @include desktop {
+    font-size: 4rem;
+  }
+}
+.category {
+  padding: 3% 0;
+  width: 55%;
+  @include flex();
+  justify-content: space-between;
+  @include desktop {
+    width: 30%;
+  }
+  p {
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+}
+.container {
+  width: 100%;
+  @include flex();
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  .item {
+    width: 25%;
+    height: 450px;
+  }
+}

@@ -1,0 +1,38 @@
+@import "styles/mixin";
+@import "styles/variables";
+@import "styles/responsive";
+.root {
+  @include padding-2-5();
+  padding: 5%;
+  @include nonBreak();
+  @include flexCol();
+  margin-bottom: 8rem;
+  .title {
+    @include padding-2-5();
+
+    position: relative;
+    width: 100%;
+    @include flexCol();
+    align-items: flex-end;
+    margin-bottom: 8rem;
+    h2 {
+      z-index: 1;
+    }
+    span {
+      z-index: 0;
+      position: absolute;
+      font-size: 6rem;
+      font-weight: 700;
+      letter-spacing: 1.5rem;
+      color: rgba(#a7a7a7, 0.1);
+      @include desktop {
+        font-size: 7.5rem;
+      }
+    }
+  }
+  .card {
+    span {
+      height: 2rem;
+    }
+  }
+}

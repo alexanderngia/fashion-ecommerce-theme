@@ -1,0 +1,112 @@
+@import "styles/mixin";
+@import "styles/variables";
+@import "styles/responsive";
+.root {
+  @include flex();
+  flex-direction: column;
+  padding: 2% 5%;
+  background-color: $white;
+  color: $black-banner;
+  width: 100%;
+  margin-top: 7rem;
+  a {
+    color: $black-banner;
+  }
+
+  .cta {
+    @include flex();
+    width: 100%;
+    justify-content: flex-end;
+    .box {
+      width: 50%;
+      padding: 2% 0;
+      h2 {
+        letter-spacing: 0.2rem;
+      }
+    
+    }
+  }
+
+  .container {
+    width: 100%;
+    @include flex();
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 2% 0;
+    flex-direction: column-reverse;
+    height: 35rem;
+
+    @include desktop {
+      flex-direction: row;
+      height: auto;
+    }
+
+    .logo {
+      height: 100%;
+      @include flex();
+      align-items: flex-start;
+      flex-direction: column;
+      padding: 2% 10%;
+      height: 60%;
+      @include desktop {
+        padding: 0;
+        height: auto;
+      }
+      .img {
+        margin-bottom: 20px;
+      }
+      .info {
+        p {
+          color: $black-banner;
+          margin-top: 5px;
+          span {
+            font-weight: 700;
+          }
+        }
+        margin-bottom: 20px;
+      }
+      .social {
+        a {
+          transition: all 0.3s ease-in;
+          &:hover {
+            svg {
+              transform: scale(1.2);
+            }
+          }
+          svg {
+            color: $black-banner;
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+
+    .navigation {
+      @include flex();
+      justify-content: space-evenly;
+      align-items: flex-start;
+      width: 100%;
+      @include desktop {
+        justify-content: flex-start;
+        padding: 0;
+        width: 50%;
+      }
+      .column {
+        width: 35%;
+        @include flex();
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 3rem;
+
+        a {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}
+.copyright {
+  color: $black-banner;
+  text-align: center;
+  padding: 2% 0% 0% 0%;
+}

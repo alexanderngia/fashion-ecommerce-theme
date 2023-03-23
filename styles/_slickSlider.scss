@@ -1,0 +1,27 @@
+@import "styles/variables";
+@import "styles/mixin";
+@import "styles/responsive";
+.slick-slider {
+  position: relative;
+  @include flex();
+
+  height: 35rem;
+  @include desktop() {
+    height: 40rem;
+  }
+}
+.slick-list {
+  width: 100%;
+  overflow: hidden;
+  height: 80%;
+}
+.slick-track {
+  @include flex();
+  justify-content: flex-start;
+  align-items: flex-start;
+  column-gap: 1%;
+}
+
+.slick-arrow {
+  display: none !important;
+}

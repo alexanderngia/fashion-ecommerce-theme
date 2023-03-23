@@ -1,0 +1,25 @@
+@import "styles/variables";
+@import "styles/mixin";
+@import "styles/responsive";
+.root {
+  padding: 5% 0 10% 0;
+  width: 100%;
+  @include flex();
+  @include nonBreak();
+  flex-direction: column;
+  text-align: center;
+  padding: 14% 2%;
+
+  h2 {
+    color: $black-head;
+  }
+  p {
+    padding: 2% 15%;
+    @include desktop {
+      padding: 2% 33%;
+    }
+  }
+  @include desktop {
+    padding: 9% 2%;
+  }
+}

@@ -1,0 +1,33 @@
+@import "styles/variables";
+@import "styles/responsive";
+@import "styles/mixin";
+
+.root {
+  @include Text();
+  background-color: $black;
+  font-weight: 500;
+  color: $white;
+  padding: 13px;
+  appearance: none;
+  cursor: pointer;
+  transition: 0.2s all ease-in-out;
+  margin-right: 15px;
+  border: 1px solid transparent;
+  font-size: 1.3rem;
+
+  &:hover {
+    border: 1px solid $black;
+    background-color: $white;
+    color: $black-head;
+  }
+  &.subBtn {
+    background-color: transparent;
+    border: 1px solid $black-head;
+    color: $black-head;
+    transition: all 0.2s ease-in;
+    &:hover {
+      background-color: $black;
+      color: $white;
+    }
+  }
+}

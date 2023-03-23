@@ -1,0 +1,51 @@
+@import "styles/mixin";
+@import "styles/variables";
+@import "styles/responsive";
+
+// BLOG
+.blog {
+  @include nonBreak();
+
+  height: 30rem;
+  position: relative;
+  z-index: 0;
+  @include flex();
+  justify-content: space-between;
+  @include desktop {
+    height: 60rem;
+  }
+
+  .head {
+    width: 60%;
+    padding: 0 5%;
+    @include desktop {
+      width: 50%;
+    }
+    @include desktop-l {
+      width: 40%;
+    }
+    h3 {
+      position: relative;
+      font-size: 2rem;
+      color: $white;
+      z-index: 2;
+      margin-bottom: 1rem;
+      @include desktop {
+        font-size: 3rem;
+      }
+    }
+    a {
+      position: relative;
+      z-index: 2;
+      font-size: 1rem;
+      color: $white;
+    }
+    .right-arrow {
+      margin-top: 10px;
+      @include rightArrow();
+      width: 50%;
+      position: relative;
+      z-index: 2;
+    }
+  }
+}

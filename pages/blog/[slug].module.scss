@@ -1,0 +1,60 @@
+@import "styles/mixin";
+@import "styles/variables";
+.root {
+  @include flex();
+  flex-direction: column;
+  width: 100%;
+  .cate {
+    @include flex();
+    width: 100px;
+    p {
+      color: $black-sub;
+      font-family: $font-head;
+      font-size: 0.8rem;
+      font-weight: 700;
+      font-style: italic;
+    }
+  }
+  .author {
+    color: $black-sub;
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-style: italic;
+    font-family: $font-head;
+    padding: 18px 0;
+  }
+  h1 {
+    text-align: center;
+    width: 70%;
+    padding: 3% 0;
+    text-transform: capitalize;
+  }
+
+  .body {
+    width: 50%;
+    p {
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+
+      img {
+        width: 100%;
+        margin-top: 20px;
+      }
+    }
+  }
+  .similar {
+    @include padding-2-5();
+    width: 100%;
+    h2 {
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+    .container {
+      overflow-x: hidden;
+      width: 100%;
+      .similarCard {
+        width: 100%;
+      }
+    }
+  }
+}

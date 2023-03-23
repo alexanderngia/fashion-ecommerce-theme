@@ -1,0 +1,137 @@
+@import "styles/variables";
+@import "styles/mixin";
+@import "styles/responsive";
+.root {
+  padding: 5% 0 10% 0;
+  width: 100%;
+  @include flex();
+  @include nonBreak();
+  flex-direction: column;
+  .heading {
+    text-align: center;
+    padding: 5% 0 10% 0;
+
+    h2 {
+      color: $black-head;
+    }
+    p {
+      padding: 2% 15%;
+      @include desktop {
+        padding: 2% 27%;
+      }
+    }
+  }
+  .card {
+    @include flex();
+    position: relative;
+    width: 100%;
+    height: 30rem;
+    justify-content: space-evenly;
+    @include tablet {
+      height: 210vh;
+    }
+    @include desktop {
+      height: 155vh;
+      flex-direction: row;
+      height: 40rem;
+      align-items: flex-start;
+    }
+    @include desktop-l {
+      height: 50rem;
+    }
+
+    .column {
+      width: 22%;
+      height: 55%;
+
+      @include desktop {
+        width: 20%;
+        height: 65%;
+      }
+      &:nth-of-type(2) {
+        @include flex;
+        align-items: flex-end;
+        width: 30%;
+        height: 100%;
+        .cont {
+          width: 85%;
+          height: 70%;
+        }
+      }
+      &:nth-of-type(3) {
+        position: absolute;
+        @include flex();
+        z-index: 3;
+        top: 0px;
+        left: 32%;
+        width: 15%;
+        height: 28%;
+        @include tablet {
+          top: -40px;
+          left: -40px;
+        }
+
+        @include desktop {
+          width: 13%;
+          height: 33%;
+          top: 60px;
+          left: 31%;
+        }
+
+        img {
+          border-radius: 270px 270px 0 0px;
+        }
+        .title {
+          display: none;
+        }
+      }
+      .cont {
+        width: 100%;
+        height: 100%;
+        position: relative;
+
+        .title {
+          position: absolute;
+          bottom: 15px;
+          left: 10px;
+          z-index: 3;
+          width: 85%;
+          @include tablet {
+            bottom: 30px;
+            left: 30px;
+          }
+          @include desktop {
+            bottom: 20px;
+            left: 20px;
+          }
+
+          h3 {
+            font-family: $font-head;
+            font-size: 1rem;
+            color: $white;
+            letter-spacing: 0.1rem;
+            @include desktop {
+              margin-bottom: 1rem;
+              font-size: 1.5rem;
+            }
+          }
+          .right-arrow-white {
+            @include rightArrow();
+          }
+        }
+        &:hover {
+          .title {
+            h3 {
+              transition: all 0.3s linear;
+              font-weight: 700;
+            }
+            .right-arrow-white {
+              transition: width 0.3s ease-out;
+              width: 70%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

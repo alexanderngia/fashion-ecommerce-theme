@@ -1,0 +1,13 @@
+@import "styles/mixin";
+@import "styles/variables";
+@import "styles/responsive";
+.root {
+  width: 100%;
+  @include flex();
+  height: 50px;
+
+  .divider {
+    width: 100%;
+    border-bottom: 1px solid $black-divider;
+  }
+}

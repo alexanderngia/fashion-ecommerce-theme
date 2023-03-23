@@ -1,0 +1,155 @@
+@import "styles/mixin";
+@import "styles/variables";
+@import "styles/responsive";
+.root {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  font-size: 1.5rem;
+  border: 1px solid $black-divider;
+}
+.ctrl__counter {
+  position: relative;
+  width: 30%;
+  height: 100%;
+  color: #333c48;
+  text-align: center;
+  overflow: hidden;
+  .is-input {
+    .ctrl__counter-num {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 100ms ease-in;
+    }
+    .ctrl__counter-input {
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 100ms ease-in;
+    }
+  }
+  &-input {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    z-index: 2;
+    box-shadow: none;
+    outline: none;
+    border: none;
+    color: #333c48;
+    font-size: 30px;
+    line-height: 100px;
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 100ms ease-in;
+  }
+  &-num {
+    font-family: $font-p;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 12px 0;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 1000ms ease-in;
+    .is-increment-hide {
+      opacity: 0;
+      transform: translateY(-50px);
+      -webkit-animation: increment-prev 100ms ease-in;
+      animation: increment-prev 100ms ease-in;
+    }
+    .is-increment-visible {
+      opacity: 1;
+      transform: translateY(0);
+      -webkit-animation: increment-next 100ms ease-out;
+      animation: increment-next 100ms ease-out;
+    }
+    .is-decrement-hide {
+      opacity: 0;
+      transform: translateY(50px);
+      -webkit-animation: decrement-prev 100ms ease-in;
+      animation: decrement-prev 100ms ease-in;
+    }
+    .is-decrement-visible {
+      opacity: 1;
+      transform: translateY(0);
+      -webkit-animation: decrement-next 100ms ease-out;
+      animation: decrement-next 100ms ease-out;
+    }
+  }
+}
+.ctrl__button {
+  width: 35%;
+  height: 100%;
+  padding: 10px;
+  text-align: center;
+  color: $black;
+  cursor: pointer;
+  transition: all 100ms ease-in;
+  &:hover {
+    background-color: $black;
+    color: $white;
+    transition: all 100ms ease-in;
+  }
+  &:active {
+    color: $white;
+
+    background-color: $black;
+    transition: all 100ms ease-in;
+  }
+}
+
+@-webkit-keyframes decrement-prev {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes decrement-prev {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@-webkit-keyframes decrement-next {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}
+@keyframes decrement-next {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}
+@-webkit-keyframes increment-prev {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes increment-prev {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@-webkit-keyframes increment-next {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+}
+@keyframes increment-next {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+}

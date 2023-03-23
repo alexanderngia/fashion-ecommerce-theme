@@ -1,0 +1,15 @@
+@import "styles/mixin";
+@import "styles/variables";
+
+.root {
+  width: 100%;
+  height: fit-content;
+  @include flex();
+  background-color: $white;
+  .main {
+    @include flex();
+    flex-direction: column;
+    width: 100%;
+    max-width: 1500px;
+  }
+}
