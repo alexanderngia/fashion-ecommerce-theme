@@ -25,3 +25,6 @@
 .slick-arrow {
   display: none !important;
 }
+.slick-slide > div {
+  @include flex();
+}

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styles from "./index.module.scss";
-import logo from "public/images/logoWhiteTransText.png";
 import { NextPage } from "next";
 import Img from "@/components/ui/img";
 import { SliderData } from "types/slider";
@@ -34,7 +33,7 @@ export const Slider: NextPage<SliderProps> = ({ list }) => {
                     <div className={styles["logo"]}>
                       <Img
                         priority
-                        src={logo}
+                        src="/images/logoWhiteTransText.png"
                         width={270}
                         height={162.46}
                         alt="logo carousel"

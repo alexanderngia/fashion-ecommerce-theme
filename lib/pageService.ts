@@ -17,9 +17,9 @@ export const getStoreData = async () => {
   }
 };
 export const getBlogData = async () => {
-      const { data } = await axios.get("http://localhost:3000/api/home");
-    return data;
-  }
+  const { data } = await axios.get("http://localhost:3000/api/home");
+  return data;
+};
 export const getDefaultData = async () => {
   try {
     const { data } = await axios.get("http://localhost:3000/api/default");
