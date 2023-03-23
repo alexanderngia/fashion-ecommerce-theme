@@ -55,14 +55,12 @@ const Header: React.FC<HeaderProps> = ({ layout, data }) => {
             </div>
             <div className={styles["logo-store"]}>
               <Link href="/">
-                <a>
-                  <Img
-                    alt="logo store"
-                    width={130}
-                    height={25}
-                    src="/images/transBlack.png"
-                  />
-                </a>
+                <Img
+                  alt="logo store"
+                  width={130}
+                  height={25}
+                  src="/images/transBlack.png"
+                />
               </Link>
             </div>
             <div className={styles["icon-store"]}>
@@ -94,14 +92,14 @@ const Header: React.FC<HeaderProps> = ({ layout, data }) => {
             </div>
             <div className={styles["logo-store"]}>
               <Link href="/">
-                <a>
+            
                   <Img
                     alt="logo store"
                     width={130}
                     height={25}
                     src="/images/transBlack.png"
                   />
-                </a>
+           
               </Link>
             </div>
             <div className={styles["icon-store"]}>

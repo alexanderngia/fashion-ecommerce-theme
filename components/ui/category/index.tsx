@@ -25,16 +25,14 @@ const Category: NextPage<CategoryProps> = ({ data }) => {
         {data &&
           data.card.map(({ title, img, link }: ListCard) => {
             return (
-              <Link href={link} key={img}>
-                <a className={styles["column"]}>
-                  <div className={styles["cont"]}>
-                    <Img layout="fill" src={img} alt={img} />
-                    <div className={styles["title"]}>
-                      <h3>{title}</h3>
-                      <div className={styles["right-arrow-white"]}></div>
-                    </div>
+              <Link href={link} key={img} className={styles["column"]}>
+                <div className={styles["cont"]}>
+                  <Img fill src={img} alt={img} />
+                  <div className={styles["title"]}>
+                    <h3>{title}</h3>
+                    <div className={styles["right-arrow-white"]}></div>
                   </div>
-                </a>
+                </div>
               </Link>
             );
           })}

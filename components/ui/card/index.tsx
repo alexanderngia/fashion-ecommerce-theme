@@ -4,8 +4,9 @@ import styles from "./index.module.scss";
 import { NextPage } from "next";
 import Image from "next/image";
 import classnames from "classnames";
+import Img from "../img";
 interface CardProps {
-  title?: string;
+  title: string;
   image: string;
   author?: string;
   className?: string;
@@ -27,7 +28,7 @@ export const CardPost: NextPage<CardProps> = ({
     <Link href={href}>
       <div className={`${styles["root"]} ${className}`}>
         <div className={styles["img"]}>
-          <Image alt={title} src={image} layout="fill" />
+          <Img alt={title} src={image} fill />
         </div>
 
         <article>
@@ -56,13 +57,7 @@ export const CardProduct: NextPage<Product> = ({
     <Link href={href}>
       <div className={`${styles["cardProduct"]} ${className}`} {...props}>
         <div className={styles["thumb"]}>
-          <Image
-            alt={title}
-            src={image}
-            layout="responsive"
-            width={300}
-            height={365}
-          />
+          <Img alt={title} src={image} width={300} height={365} />
         </div>
 
         <div className={classnames(styles["info"], customClass)}>

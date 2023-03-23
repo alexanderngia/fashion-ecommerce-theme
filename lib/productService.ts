@@ -2,7 +2,7 @@ import axios from "axios";
 import { Product } from "types/product";
 
 export const getProducts = async () => {
-  const { data } = await axios.get("http://localhost:3000/api/product");
+  const { data } = await axios.get(`${process.env.HOST}/api/product`);
   try {
     return data;
   } catch (error) {
@@ -18,7 +18,7 @@ export const getProductPath = async () => {
 export const getProductById = async (id: string | number) => {
   try {
     const { data } = await axios.get(
-      "http://localhost:3000/api/product?id=" + `${id}`
+      `${process.env.HOST}/api/product?id=${id}`
     );
     console.log(data, "data");
 

@@ -23,7 +23,7 @@ export const CarouselImg: NextPage<CarouselProps> = ({ data }) => {
         data.map(({ img }) => {
           return (
             <li key={img}>
-              <Img layout="fill" src={img} alt={img} />
+              <Img fill src={img} alt={img} />
             </li>
           );
         })}
@@ -76,8 +76,8 @@ export const CarouselProduct: NextPage<CarouselProductProps> = ({
       <div className={classnames(styles["container"], customCont)}>
         <Slider {...settings}>
           {data &&
-            React.Children.toArray(
-              data?.map(({ nameItem, urlItem, imgItem, priceItem }) => {
+            data?.map(
+              ({ nameItem, urlItem, imgItem, priceItem }, index: number) => {
                 return (
                   <CardProduct
                     customClass={customClass}
@@ -85,14 +85,14 @@ export const CarouselProduct: NextPage<CarouselProductProps> = ({
                       styles["carouselCard"],
                       customCardProduct
                     )}
-                    key={imgItem + nameItem}
+                    key={imgItem + nameItem + index}
                     href={urlItem}
                     title={nameItem}
                     image={imgItem}
                     price={priceItem}
                   />
                 );
-              })
+              }
             )}
         </Slider>
         <div className={styles["decord-arrow"]}>

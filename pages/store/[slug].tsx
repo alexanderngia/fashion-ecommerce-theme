@@ -1,19 +1,23 @@
-import LayoutProduct from 'components/container/layout/product';
-import { ButtonMain } from 'components/ui/button';
-import Divider from 'components/ui/divider';
-import InputNumber from 'components/ui/form/input';
-import { getStoreData } from 'lib/pageService';
-import { getProductByCategory, getProductBySlug, getProductPath } from 'lib/productService';
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import Link from 'next/link';
-import { IText } from 'types/layout';
-import { Product } from 'types/product';
+import LayoutProduct from "components/container/layout/product";
+import { ButtonMain } from "components/ui/button";
+import Divider from "components/ui/divider";
+import InputNumber from "components/ui/form/input";
+import { getStoreData } from "lib/pageService";
+import {
+  getProductByCategory,
+  getProductBySlug,
+  getProductPath,
+} from "lib/productService";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import Link from "next/link";
+import { IText } from "types/layout";
+import { Product } from "types/product";
 
-import { headerLayouts } from '@/components/container/header';
-import Img from '@/components/ui/img';
-import { ReturnUpBack } from '@styled-icons/ionicons-outline/ReturnUpBack';
+import { headerLayouts } from "@/components/container/header";
+import Img from "@/components/ui/img";
+import { ReturnUpBack } from "@styled-icons/ionicons-outline/ReturnUpBack";
 
-import styles from './[slug].module.scss';
+import styles from "./[slug].module.scss";
 
 interface SingleProductProps {
   nav: IText[];
@@ -69,10 +73,8 @@ const SingleProduct: NextPage<SingleProductProps> = ({
                   <Img
                     alt={product.nameItem}
                     src={product.imgItem}
-                    layout="responsive"
                     width={90}
                     height={105}
-                    priority
                   />
                 </div>
               </div>

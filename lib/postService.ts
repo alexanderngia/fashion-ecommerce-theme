@@ -3,7 +3,7 @@ import { Post } from "types/post";
 
 export const getPosts = async () => {
   try {
-    const { data } = await axios.get("http://localhost:3000/api/post");
+    const { data } = await axios.get(`${process.env.HOST}/api/post`);
     return data;
   } catch (error) {
     console.log(error);
@@ -17,9 +17,7 @@ export const getPostPath = async () => {
 
 export const getPostById = async (id: string | number) => {
   try {
-    const { data } = await axios.get(
-      "http://localhost:3000/api/post?id=" + `${id}`
-    );
+    const { data } = await axios.get(`${process.env.HOST}/api/post?id=${id}`);
 
     return data;
   } catch (error) {

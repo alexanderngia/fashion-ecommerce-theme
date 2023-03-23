@@ -60,17 +60,15 @@ const Home: NextPage<HomeProps> = ({ data }) => {
 
         <div className={styles["blog"]}>
           <Img
-            layout="fill"
+            fill
             src={data.blog.backgroundImg}
             alt={data.blog.backgroundImg}
           />
           <div className={styles["head"]}>
             <h3>{data.blog.title}</h3>
             <Link href={data.blog.link} passHref>
-              <a>
-                {data.blog.subTitle} <br />
-                <div className={styles["right-arrow"]}></div>
-              </a>
+              {data.blog.subTitle} <br />
+              <div className={styles["right-arrow"]}></div>
             </Link>
           </div>
         </div>
