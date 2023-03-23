@@ -2,12 +2,13 @@ import { headerLayouts } from "@/components/container/header";
 import axios from "axios";
 import LayoutDefault from "components/container/layout/default";
 import { CardPost } from "components/ui/card";
-import type { GetServerSideProps, NextPage } from "next";
+import type { GetServerSideProps, GetStaticProps, NextPage } from "next";
 import Link from "next/link";
-import { getPosts } from "services/postService";
+import { getPosts } from "lib/postService";
 import { IText } from "types/layout";
 import { Post } from "types/post";
 import styles from "./index.module.scss";
+import { getStoreData } from "lib/pageService";
 
 export interface BlogProps {
   posts: Post;
@@ -61,9 +62,9 @@ const Blog: NextPage<BlogProps> = ({ posts, nav }) => {
 
 export default Blog;
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await getStoreData();
   const posts = await getPosts();
-  const { data } = await axios.get("http://localhost:3000/api/default");
   const { nav } = data;
   return {
     props: {

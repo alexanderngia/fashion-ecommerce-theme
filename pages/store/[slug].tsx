@@ -1,29 +1,19 @@
-import axios from "axios";
-import LayoutProduct from "components/container/layout/product";
-import { ButtonMain } from "components/ui/button";
-import Divider from "components/ui/divider";
-import InputNumber from "components/ui/form/input";
-import {
-  GetServerSideProps,
-  GetStaticPaths,
-  GetStaticProps,
-  NextPage,
-} from "next";
-import Image from "next/image";
-import Link from "next/link";
-import {
-  getProductByCategory,
-  getProductBySlug,
-  getProductPath,
-} from "services/productService";
-import { IText } from "types/layout";
-import { Product } from "types/product";
+import LayoutProduct from 'components/container/layout/product';
+import { ButtonMain } from 'components/ui/button';
+import Divider from 'components/ui/divider';
+import InputNumber from 'components/ui/form/input';
+import { getStoreData } from 'lib/pageService';
+import { getProductByCategory, getProductBySlug, getProductPath } from 'lib/productService';
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import Link from 'next/link';
+import { IText } from 'types/layout';
+import { Product } from 'types/product';
 
-import { headerLayouts } from "@/components/container/header";
-import { ReturnUpBack } from "@styled-icons/ionicons-outline/ReturnUpBack";
+import { headerLayouts } from '@/components/container/header';
+import Img from '@/components/ui/img';
+import { ReturnUpBack } from '@styled-icons/ionicons-outline/ReturnUpBack';
 
-import styles from "./[slug].module.scss";
-import Img from "@/components/ui/img";
+import styles from './[slug].module.scss';
 
 interface SingleProductProps {
   nav: IText[];
@@ -143,7 +133,7 @@ export default SingleProduct;
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug }: any = params;
-  const { data } = await axios.get("http://localhost:3000/api/store");
+  const data = await getStoreData();
   const { nav } = data;
   const product = await getProductBySlug(slug);
   const productCategory = await getProductByCategory(product.categoryItem);
@@ -160,5 +150,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getProductPath();
 
-  return { paths, fallback: true };
+  return { paths, fallback: false };
 };

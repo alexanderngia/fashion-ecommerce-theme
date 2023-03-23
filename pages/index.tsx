@@ -5,10 +5,10 @@ import Category from "@/components/ui/category";
 import Img from "@/components/ui/img";
 import Quote from "@/components/ui/quote";
 import { Slider } from "@/components/ui/slider";
-import axios from "axios";
+import { getHomeData } from "lib/pageService";
 import LayoutHome from "components/container/layout/home";
 import Banner from "components/ui/banner";
-import type { GetServerSideProps, GetStaticProps, NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import styles from "styles/index.module.scss";
@@ -82,8 +82,8 @@ const Home: NextPage<HomeProps> = ({ data }) => {
 };
 
 export default Home;
-export const getServerSideProps: GetServerSideProps = async () => {
-  const { data } = await axios.get("http://localhost:3000/api/home");
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await getHomeData();
   return {
     props: {
       data,

@@ -1,12 +1,11 @@
-import axios from "axios";
 import LayoutStore from "components/container/layout/store";
 import { ButtonSub } from "components/ui/button";
 import { CardProduct } from "components/ui/card";
 import Filter from "components/ui/filter";
-import { GetServerSideProps, GetStaticProps, NextPage } from "next";
+import { getProducts } from "lib/productService";
+import { GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { getProducts } from "services/productService";
 import { IText } from "types/layout";
 import { Product } from "types/product";
 
@@ -14,6 +13,7 @@ import { headerLayouts } from "@/components/container/header";
 import { SearchOutline } from "@styled-icons/evaicons-outline/SearchOutline";
 import { AngleDown } from "@styled-icons/fa-solid/AngleDown";
 
+import { getStoreData } from "lib/pageService";
 import styles from "./index.module.scss";
 
 interface StoreProps {
@@ -84,20 +84,9 @@ const Store: NextPage<StoreProps> = ({ data, product }) => {
 };
 export default Store;
 
-// export const getStaticProps = async () => {
-//   const data = await GetProducts();
-//   console.log(data, "store index");
-//   const { product }: any = data;
-//   return {
-//     props: {
-//       product,
-//     },
-//   };
-// };
-export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await axios.get("http://localhost:3000/api/store");
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await getStoreData();
   const product = await getProducts();
-  const { data } = res;
   return {
     props: {
       data,
