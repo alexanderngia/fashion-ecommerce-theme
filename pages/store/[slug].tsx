@@ -18,6 +18,7 @@ import { headerLayouts } from "@/components/container/header";
 import { ReturnUpBack } from "@styled-icons/ionicons-outline/ReturnUpBack";
 
 import styles from "./[slug].module.scss";
+import Img from "@/components/ui/img";
 
 interface SingleProductProps {
   nav: IText[];
@@ -70,12 +71,12 @@ const SingleProduct: NextPage<SingleProductProps> = ({
               </div>
               <div className={styles["box"]}>
                 <div className={styles["img"]}>
-                  <Image
+                  <Img
                     alt={product.nameItem}
                     src={product.imgItem}
                     layout="responsive"
-                    width={300}
-                    height={370}
+                    width={90}
+                    height={105}
                     priority
                   />
                 </div>
