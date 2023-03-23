@@ -11,7 +11,6 @@ import styles from "./index.module.scss";
 
 export interface BlogProps {
   posts: Post;
-  // translations: I18n;
   nav: IText[];
 }
 

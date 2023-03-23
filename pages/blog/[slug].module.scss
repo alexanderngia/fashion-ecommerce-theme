@@ -32,13 +32,15 @@
 
   .body {
     width: 50%;
-    p {
-      margin-bottom: 20px;
-      font-size: 1.2rem;
+    span {
+      p {
+        margin-bottom: 20px;
+        font-size: 1.2rem;
 
-      img {
-        width: 100%;
-        margin-top: 20px;
+        img {
+          width: 100%;
+          margin-top: 20px;
+        }
       }
     }
   }

@@ -8,7 +8,7 @@ export interface Product {
   idItem?: string;
   imgItem: string;
   urlItem: string;
-  nameItem?: string;
+  nameItem: string;
   bodyItem?: string;
   bodyHtmlItem: string;
   qualityItem?: number;

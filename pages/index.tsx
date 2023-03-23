@@ -1,24 +1,22 @@
-import type { GetStaticProps, NextPage } from "next";
-import React from "react";
-import Head from "next/head";
-import styles from "styles/index.module.scss";
-import { Slider } from "@/components/ui/slider";
-import Banner from "components/ui/banner";
-import Link from "next/link";
-import useTrans from "hook/useTrans";
-import LayoutHome from "components/container/layout/home";
-import axios from "axios";
-import { CategoryData } from "types/category";
+import { headerLayouts } from "@/components/container/header";
+import BestSeller from "@/components/ui/bestSeller";
+import { CarouselImg } from "@/components/ui/carousel";
 import Category from "@/components/ui/category";
 import Img from "@/components/ui/img";
-import { QuoteData } from "types/quote";
 import Quote from "@/components/ui/quote";
-import { SliderData } from "types/slider";
-import { CarouselImg } from "@/components/ui/carousel";
+import { Slider } from "@/components/ui/slider";
+import axios from "axios";
+import LayoutHome from "components/container/layout/home";
+import Banner from "components/ui/banner";
+import type { GetStaticProps, NextPage } from "next";
+import Head from "next/head";
+import Link from "next/link";
+import styles from "styles/index.module.scss";
 import { CarouselData, CarouselProductData } from "types/carousel";
-import BestSeller from "@/components/ui/bestSeller";
+import { CategoryData } from "types/category";
 import { IText } from "types/layout";
-import { headerLayouts } from "@/components/container/header";
+import { QuoteData } from "types/quote";
+import { SliderData } from "types/slider";
 interface HomeProps {
   data: HomeData;
 }
@@ -39,11 +37,8 @@ interface HomeData {
   quote: QuoteData;
   carousel: CarouselData[];
 }
-
 const Home: NextPage<HomeProps> = ({ data }) => {
-  const trans = useTrans();
   const layout = "home";
-
   const HeaderLayout = headerLayouts[layout] || headerLayouts.default;
   return (
     <div className={styles.container}>
