@@ -77,7 +77,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getPostPath();
 
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 };
 
 // export const getStaticProps: GetStaticProps<BlogPostProps, QParams> = async ({

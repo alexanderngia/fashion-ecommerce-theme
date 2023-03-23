@@ -160,5 +160,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getProductPath();
 
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 };
