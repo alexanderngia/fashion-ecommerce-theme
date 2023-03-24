@@ -28,7 +28,7 @@ export const CardPost: NextPage<CardProps> = ({
     <Link href={href}>
       <div className={`${styles["root"]} ${className}`}>
         <div className={styles["img"]}>
-          <Img alt={title} src={image} fill />
+          <Img alt={title} src={image} />
         </div>
 
         <article>
@@ -57,7 +57,7 @@ export const CardProduct: NextPage<Product> = ({
     <Link href={href}>
       <div className={`${styles["cardProduct"]} ${className}`} {...props}>
         <div className={styles["thumb"]}>
-          <Img alt={title} src={image} width={300} height={365} />
+          <Img alt={title} src={image} />
         </div>
 
         <div className={classnames(styles["info"], customClass)}>

@@ -23,7 +23,7 @@ export const CarouselImg: NextPage<CarouselProps> = ({ data }) => {
         data.map(({ img }) => {
           return (
             <li key={img}>
-              <Img fill src={img} alt={img} />
+              <Img src={img} alt={img} />
             </li>
           );
         })}
@@ -36,29 +36,29 @@ export const CarouselProduct: NextPage<CarouselProductProps> = ({
   customCont,
   customCardProduct,
 }) => {
-  const settings = {
+  var settings = {
     dots: false,
     infinite: true,
-    speed: 1000,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 1,
-    className: "center",
+    initialSlide: 0,
     autoplay: true,
+    speed: 2000,
     autoplaySpeed: 2000,
+    cssEase: "linear",
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
+          className: "center",
+          centerMode: true,
         },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
           initialSlide: 2,
         },
       },
@@ -66,7 +66,6 @@ export const CarouselProduct: NextPage<CarouselProductProps> = ({
         breakpoint: 480,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1,
         },
       },
     ],

@@ -43,7 +43,7 @@ const Header: React.FC<HeaderProps> = ({ layout, data }) => {
       return (
         <header>
           <div className={styles["header-store"]}>
-            <div className={styles["menu-store"]}>
+            <div className={styles["menu"]}>
               {data &&
                 data.map(({ title, url }) => {
                   return (
@@ -53,17 +53,12 @@ const Header: React.FC<HeaderProps> = ({ layout, data }) => {
                   );
                 })}
             </div>
-            <div className={styles["logo-store"]}>
+            <div className={styles["logo"]}>
               <Link href="/">
-                <Img
-                  alt="logo store"
-                  width={130}
-                  height={25}
-                  src="/images/transBlack.png"
-                />
+                <Img alt="logo store" src="/images/transBlack.png" />
               </Link>
             </div>
-            <div className={styles["icon-store"]}>
+            <div className={styles["icon"]}>
               {/* <Translate /> */}
 
               <Link href="/cart">
@@ -80,7 +75,7 @@ const Header: React.FC<HeaderProps> = ({ layout, data }) => {
       return (
         <header>
           <div className={styles["header-store"]}>
-            <div className={styles["menu-store"]}>
+            <div className={styles["menu"]}>
               {data &&
                 data.map(({ title, url }) => {
                   return (
@@ -90,19 +85,12 @@ const Header: React.FC<HeaderProps> = ({ layout, data }) => {
                   );
                 })}
             </div>
-            <div className={styles["logo-store"]}>
+            <div className={styles["logo"]}>
               <Link href="/">
-            
-                  <Img
-                    alt="logo store"
-                    width={130}
-                    height={25}
-                    src="/images/transBlack.png"
-                  />
-           
+                <Img alt="logo store" src="/images/transBlack.png" />
               </Link>
             </div>
-            <div className={styles["icon-store"]}>
+            <div className={styles["icon"]}>
               {/* <Translate /> */}
 
               <Link href="/cart">

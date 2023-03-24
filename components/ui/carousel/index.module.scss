@@ -13,52 +13,52 @@
     z-index: 0;
     &:first-of-type {
       width: 12%;
-      height: 10rem;
+      height: 40%;
     }
     &:nth-of-type(2) {
       width: 16%;
-      height: 12rem;
+      height: 52%;
     }
     &:nth-of-type(3) {
       width: 24%;
-      height: 19rem;
+      height: 82%;
     }
     &:nth-of-type(4) {
       width: 16%;
-      height: 14rem;
+      height: 53%;
     }
     &:nth-of-type(5) {
       width: 12%;
-      height: 10rem;
+      height: 37%;
     }
     &:last-of-type {
       width: 20%;
-      height: 15rem;
+      height: 65%;
     }
     @include desktop {
       &:first-of-type {
         width: 12%;
-        height: 18rem;
+        height: 33%;
       }
       &:nth-of-type(2) {
-        width: 16%;
-        height: 25rem;
+        width: 22%;
+        height: 54%;
       }
       &:nth-of-type(3) {
-        width: 24%;
-        height: 40rem;
+        width: 28%;
+        height: 80%;
       }
       &:nth-of-type(4) {
-        width: 16%;
-        height: 27rem;
+        width: 19%;
+        height: 50%;
       }
       &:nth-of-type(5) {
-        width: 12%;
-        height: 17rem;
+        width: 14%;
+        height: 35%;
       }
       &:last-of-type {
-        width: 20%;
-        height: 32rem;
+        width: 22%;
+        height: 55%;
       }
     }
   }
@@ -74,10 +74,20 @@
           @include flex();
         }
       }
+      .carouselCard {
+        width: 140px !important;
+        height: 260px;
+        @include tablet {
+          width: 170px !important;
+          height: 300px;
+        }
+        @include desktop {
+          width: 250px !important;
+          height: 480px;
+        }
+      }
     }
-    .carouselCard {
-      width: 100%;
-    }
+
     .decord-arrow {
       width: 100px;
       @include flex();

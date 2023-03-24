@@ -57,9 +57,7 @@ const SingleProduct: NextPage<SingleProductProps> = ({
                   Product from {product.categoryItem}
                 </p>
                 <h1>{product.nameItem}</h1>
-                <span
-                  dangerouslySetInnerHTML={{ __html: product.bodyHtmlItem }}
-                />
+
                 <p className={styles["price"]}>
                   {product.priceItem?.toLocaleString()} vnd
                 </p>
@@ -70,17 +68,12 @@ const SingleProduct: NextPage<SingleProductProps> = ({
               </div>
               <div className={styles["box"]}>
                 <div className={styles["img"]}>
-                  <Img
-                    alt={product.nameItem}
-                    src={product.imgItem}
-                    width={90}
-                    height={105}
-                  />
+                  <Img alt={product.nameItem} src={product.imgItem} />
                 </div>
               </div>
             </div>
             <div className={styles["col"]}>
-              <h3>Product description</h3>
+              <h2>Product description</h2>
               <span
                 dangerouslySetInnerHTML={{ __html: product.bodyHtmlItem }}
               />

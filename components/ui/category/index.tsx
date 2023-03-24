@@ -27,7 +27,7 @@ const Category: NextPage<CategoryProps> = ({ data }) => {
             return (
               <Link href={link} key={img} className={styles["column"]}>
                 <div className={styles["cont"]}>
-                  <Img fill src={img} alt={img} />
+                  <Img src={img} alt={img} />
                   <div className={styles["title"]}>
                     <h3>{title}</h3>
                     <div className={styles["right-arrow-white"]}></div>

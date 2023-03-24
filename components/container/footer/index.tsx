@@ -9,7 +9,6 @@ import {
 import { Tiktok } from "@styled-icons/boxicons-logos/Tiktok";
 import Divider from "components/ui/divider";
 import { ButtonSub } from "components/ui/button";
-import logoFooter from "public/images/transBlack.png";
 
 interface FooterProps {
   script?: HTMLScriptElement;
@@ -36,7 +35,11 @@ const Footer: NextPage<FooterProps> = ({ script, className, classSocial }) => {
         <div className={styles["container"]}>
           <div className={styles["logo"]}>
             <div className={styles["img"]}>
-              <Img width={100} height={20} src={logoFooter} alt="logo footer" />
+              <Img
+    
+                src="/images/transBlack.png"
+                alt="logo footer"
+              />
             </div>
             <div className={styles["info"]}>
               <p>

@@ -17,8 +17,11 @@ import { CategoryData } from "types/category";
 import { IText } from "types/layout";
 import { QuoteData } from "types/quote";
 import { SliderData } from "types/slider";
+import { getProducts } from "lib/productService";
+import { Product } from "types/product";
 interface HomeProps {
   data: HomeData;
+  products: Product[];
 }
 
 interface HomeData {
@@ -26,7 +29,6 @@ interface HomeData {
   map: any;
   slider: SliderData;
   cat: CategoryData;
-  carouselProduct: CarouselProductData[];
   blog: {
     title: string;
     backgroundImg: string;
@@ -38,7 +40,7 @@ interface HomeData {
   carousel: CarouselData[];
 }
 
-const Home: NextPage<HomeProps> = ({ data }) => {
+const Home: NextPage<HomeProps> = ({ data, products }) => {
   const layout = "home";
   const HeaderLayout = headerLayouts[layout] || headerLayouts.default;
   return (
@@ -56,16 +58,16 @@ const Home: NextPage<HomeProps> = ({ data }) => {
         <Slider list={data.slider} />
         <Banner />
         <Category data={data.cat} />
-        <BestSeller data={data.carouselProduct} />
+        <BestSeller data={products} />
 
         <div className={styles["blog"]}>
-          <Img
-            fill
-            src={data.blog.backgroundImg}
-            alt={data.blog.backgroundImg}
-          />
+          <Img src={data.blog.backgroundImg} alt={data.blog.backgroundImg} />
           <div className={styles["head"]}>
-            <h3>{data.blog.title}</h3>
+            <h3>
+              <span
+                dangerouslySetInnerHTML={{ __html: data.blog.title }}
+              ></span>
+            </h3>
             <Link href={data.blog.link} passHref>
               {data.blog.subTitle} <br />
               <div className={styles["right-arrow"]}></div>
@@ -82,9 +84,11 @@ const Home: NextPage<HomeProps> = ({ data }) => {
 export default Home;
 export const getStaticProps: GetStaticProps = async () => {
   const data = await getHomeData();
+  const products = await getProducts();
   return {
     props: {
       data,
+      products,
     },
   };
 };

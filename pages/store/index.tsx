@@ -65,6 +65,7 @@ const Store: NextPage<StoreProps> = ({ data, product }) => {
               ({ nameItem, urlItem, imgItem, priceItem }, index: number) => {
                 return (
                   <CardProduct
+                    className={styles["card"]}
                     key={nameItem + urlItem + index}
                     href={`/store/${urlItem}`}
                     title={nameItem}

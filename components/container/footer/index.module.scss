@@ -23,7 +23,6 @@
       h2 {
         letter-spacing: 0.2rem;
       }
-    
     }
   }
 
@@ -34,9 +33,10 @@
     align-items: flex-start;
     padding: 2% 0;
     flex-direction: column-reverse;
-    height: 35rem;
+    height: 37rem;
 
     @include desktop {
+      height: 35rem;
       flex-direction: row;
       height: auto;
     }
@@ -54,11 +54,14 @@
       }
       .img {
         margin-bottom: 20px;
+        width: 100px;
+        height: 20px;
+        position: relative;
       }
       .info {
         p {
           color: $black-banner;
-          margin-top: 5px;
+          padding: 2% 0;
           span {
             font-weight: 700;
           }

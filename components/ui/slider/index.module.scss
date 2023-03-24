@@ -36,6 +36,21 @@
   height: 100%;
   position: relative;
   z-index: 1;
+  @include flex();
+  padding: 20%;
+
+  // @include tablet {
+  //   padding: 63% 43%;
+  // }
+  @include desktop {
+    padding: 25%;
+  }
+  @include desktop-l {
+    padding: 22%;
+  }
+  // @include desktop-lg {
+  //   padding: 24% 43%;
+  // }
   &:before {
     position: absolute;
     top: 0;
@@ -51,14 +66,14 @@
 .logo {
   position: relative;
   z-index: 3;
-  padding: 79% 35%;
-  @include desktop-lg {
-    padding: 24% 43%;
+  width: 150px;
+  height: 80px;
+  @include tablet {
+    width: 200px;
+    height: 130px;
   }
   @include desktop {
-    padding: 23% 43%;
-  }
-  @include tablet {
-    padding: 63% 43%;
+    width: 300px;
+    height: 170px;
   }
 }

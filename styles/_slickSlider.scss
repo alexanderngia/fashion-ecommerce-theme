@@ -5,10 +5,16 @@
   position: relative;
   @include flex();
 
-  height: 35rem;
-  @include desktop() {
-    height: 40rem;
+  height: 40rem;
+  @include tablet() {
+    height: 37rem;
   }
+  @include desktop() {
+    height: 43rem;
+  }
+  // @include desktop() {
+  //   height: 40rem;
+  // }
 }
 .slick-list {
   width: 100%;

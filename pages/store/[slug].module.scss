@@ -10,7 +10,7 @@
     @include flex();
     justify-content: space-between;
     width: 100%;
-    height: 600px;
+    height: 50rem;
     border-bottom: 1px solid $black-divider;
     .col {
       @include flex();
@@ -39,6 +39,7 @@
               font-size: 0.7rem;
             }
             h1 {
+              padding: 0;
               line-height: 3.8rem;
               margin-bottom: 15px;
             }
@@ -59,10 +60,17 @@
               margin-bottom: 20px;
             }
             .cta {
-              width: 85%;
+              width: 100%;
               height: 44px;
               @include flex();
               justify-content: space-between;
+
+              @include desktop {
+                width: 100%;
+              }
+              @include desktop-l {
+                width: 85%;
+              }
 
               .qty {
                 height: 100%;
@@ -75,9 +83,11 @@
           &:last-of-type {
             width: 50%;
             height: 550px;
+            @include flex();
             .img {
               width: 100%;
-              height: 100%;
+              height: 90%;
+              position: relative;
             }
           }
         }
@@ -90,11 +100,13 @@
         height: 100%;
         padding: 0 0 0 4%;
         border-left: 1px solid $black-divider;
-        h3 {
+        h2 {
           font-weight: 800;
           text-transform: uppercase;
           font-family: $font-p;
           margin-bottom: 10px;
+          font-size: 1rem;
+          letter-spacing: 0.1rem;
         }
         .box {
           @include flex();
@@ -106,7 +118,28 @@
             height: 20px;
             border-radius: 25px;
             border: 3px solid white;
-            @include shadowColor();
+            cursor: pointer;
+            position: relative;
+
+            &:hover:before {
+              top: -6px;
+              left: -6px;
+              width: 26px;
+              height: 26px;
+            }
+            &:before {
+              content: "";
+              position: absolute;
+              top: -4px;
+              left: -4px;
+              width: 22px;
+              height: 22px;
+              background-color: transparent;
+              border-radius: 25px;
+              @include shadowColor();
+              z-index: 1;
+              transition: all 300ms ease-in-out;
+            }
           }
           .size {
             font-weight: 700;

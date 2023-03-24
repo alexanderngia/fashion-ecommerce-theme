@@ -29,12 +29,11 @@ export const Slider: NextPage<SliderProps> = ({ list }) => {
               <>
                 {currentSlide === index && (
                   <div key={`${img} + ${id}`} className={styles["slide"]}>
-                    <Img fill src={img} alt={img} />
+                    <Img priority src={img} alt={img} />
                     <div className={styles["logo"]}>
                       <Img
+                        priority
                         src="/images/logoWhiteTransText.png"
-                        width={270}
-                        height={162.46}
                         alt="logo carousel"
                       />
                     </div>

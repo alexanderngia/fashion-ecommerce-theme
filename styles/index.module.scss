@@ -11,27 +11,28 @@
   z-index: 0;
   @include flex();
   justify-content: space-between;
+  @include tablet {
+    height: 50rem;
+  }
   @include desktop {
     height: 60rem;
   }
 
   .head {
-    width: 60%;
+    width: 100%;
     padding: 0 5%;
-    @include desktop {
-      width: 50%;
-    }
-    @include desktop-l {
-      width: 40%;
-    }
+
     h3 {
       position: relative;
-      font-size: 2rem;
+      font-size: 3rem;
       color: $white;
       z-index: 2;
       margin-bottom: 1rem;
+      @include tablet {
+        font-size: 4rem;
+      }
       @include desktop {
-        font-size: 3rem;
+        font-size: 5rem;
       }
     }
     a {
@@ -43,7 +44,7 @@
     .right-arrow {
       margin-top: 10px;
       @include rightArrow();
-      width: 50%;
+      width: 15rem;
       position: relative;
       z-index: 2;
     }
