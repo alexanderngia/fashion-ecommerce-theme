@@ -14,53 +14,82 @@
     &:first-of-type {
       width: 12%;
       height: 40%;
+      @include desktop {
+        width: 12%;
+        height: 33%;
+      }
     }
     &:nth-of-type(2) {
       width: 16%;
       height: 52%;
+      @include desktop {
+        width: 22%;
+        height: 54%;
+      }
+      @include desktop-l {
+        height: 60%;
+      }
     }
     &:nth-of-type(3) {
       width: 24%;
       height: 82%;
+      @include desktop {
+        width: 28%;
+        height: 80%;
+      }
+      @include desktop-l {
+        height: 90%;
+      }
     }
     &:nth-of-type(4) {
       width: 16%;
       height: 53%;
+      @include desktop {
+        width: 19%;
+        height: 50%;
+      }
     }
     &:nth-of-type(5) {
       width: 12%;
       height: 37%;
+      @include desktop {
+        width: 14%;
+        height: 35%;
+      }
+      @include desktop-l {
+        height: 40%;
+      }
     }
     &:last-of-type {
       width: 20%;
       height: 65%;
-    }
-    @include desktop {
-      &:first-of-type {
-        width: 12%;
-        height: 33%;
-      }
-      &:nth-of-type(2) {
-        width: 22%;
-        height: 54%;
-      }
-      &:nth-of-type(3) {
-        width: 28%;
-        height: 80%;
-      }
-      &:nth-of-type(4) {
-        width: 19%;
-        height: 50%;
-      }
-      &:nth-of-type(5) {
-        width: 14%;
-        height: 35%;
-      }
-      &:last-of-type {
+      @include desktop {
         width: 22%;
         height: 55%;
       }
     }
+    // @include desktop {
+    //   &:nth-of-type(2) {
+    //     width: 22%;
+    //     height: 54%;
+    //   }
+    //   &:nth-of-type(3) {
+    //     width: 28%;
+    //     height: 80%;
+    //   }
+    //   &:nth-of-type(4) {
+    //     width: 19%;
+    //     height: 50%;
+    //   }
+    //   &:nth-of-type(5) {
+    //     width: 14%;
+    //     height: 35%;
+    //   }
+    //   &:last-of-type {
+    //     width: 22%;
+    //     height: 55%;
+    //   }
+    // }
   }
   &-product {
     @include flex();
