@@ -1,5 +1,9 @@
-import { NextApiRequest, NextApiResponse } from "next";
-const store = {
+import { IText } from "types/layout";
+export interface Data {
+  nav: IText[];
+  title: string;
+}
+export const data: Data = {
   nav: [
     {
       title: "DRESS",
@@ -19,9 +23,4 @@ const store = {
     },
   ],
   title: "LINGERIE",
-  breadcrumb: "/STORE/LINGERIA",
 };
-
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  res.status(200).json(store);
-}

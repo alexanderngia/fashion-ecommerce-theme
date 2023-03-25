@@ -29,8 +29,7 @@
   @include flex();
   flex-wrap: wrap;
   justify-content: flex-start;
-
-  .item {
+  a {
     width: 25%;
     height: 450px;
   }

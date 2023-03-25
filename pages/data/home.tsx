@@ -1,6 +1,23 @@
-import { NextApiRequest, NextApiResponse } from "next";
-
-const home = {
+import { CarouselData, CarouselProductData } from "types/carousel";
+import { CategoryData } from "types/category";
+import { IText } from "types/layout";
+import { QuoteData } from "types/quote";
+import { SliderData } from "types/slider";
+export interface Data {
+  nav: IText[];
+  slider: SliderData[];
+  cat: CategoryData;
+  blog: {
+    title: string;
+    backgroundImg: string;
+    backgroundSubImg: string;
+    subTitle: string;
+    link: string;
+  };
+  quote: QuoteData;
+  carousel: CarouselData[];
+}
+export const data: Data = {
   nav: [
     {
       title: "STORE",
@@ -112,7 +129,3 @@ const home = {
     },
   ],
 };
-
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  res.status(200).json(home);
-}

@@ -2,36 +2,33 @@ import LayoutProduct from "components/container/layout/product";
 import { ButtonMain } from "components/ui/button";
 import Divider from "components/ui/divider";
 import InputNumber from "components/ui/form/input";
-import { getStoreData } from "lib/pageService";
 import {
   getProductByCategory,
   getProductBySlug,
   getProductPath,
 } from "lib/productService";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import Link from "next/link";
-import { IText } from "types/layout";
-import { Product } from "types/product";
+import { Products } from "types/product";
 
 import { headerLayouts } from "@/components/container/header";
 import Img from "@/components/ui/img";
 import { ReturnUpBack } from "@styled-icons/ionicons-outline/ReturnUpBack";
 
 import styles from "./[slug].module.scss";
+import { data } from "pages/data/store";
+import router from "next/dist/client/router";
 
 interface SingleProductProps {
-  nav: IText[];
-  product: Product;
-  productCategory: Product;
+  product: Products;
+  productCategory: Products;
 }
 
 const SingleProduct: NextPage<SingleProductProps> = ({
   product,
   productCategory,
-  nav,
 }) => {
   const similarList = productCategory?.filter(
-    ({ id }: Product) => id !== product.id
+    ({ id }: Products) => id !== product.id
   );
   const layout = "store";
   const HeaderLayout = headerLayouts[layout] || headerLayouts.default;
@@ -39,18 +36,16 @@ const SingleProduct: NextPage<SingleProductProps> = ({
 
   return (
     <>
-      <HeaderLayout data={nav} layout={layout}></HeaderLayout>
+      <HeaderLayout data={data.nav} layout={layout}></HeaderLayout>
       <LayoutProduct>
         <div className={styles["root"]}>
           <div className={styles["product"]}>
             <div className={styles["col"]}>
-              <Link href={"/store"}>
-                <ReturnUpBack
-                  // onClick={() => router.back()}
-                  size={30}
-                  className={styles["back"]}
-                />
-              </Link>
+              <ReturnUpBack
+                onClick={() => router.back()}
+                size={30}
+                className={styles["back"]}
+              />
 
               <div className={styles["box"]}>
                 <p className={styles["subTitle"]}>
@@ -128,14 +123,11 @@ export default SingleProduct;
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug }: any = params;
-  const data = await getStoreData();
-  const { nav } = data;
   const product = await getProductBySlug(slug);
   const productCategory = await getProductByCategory(product.categoryItem);
 
   return {
     props: {
-      nav,
       product,
       productCategory,
     },

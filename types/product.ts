@@ -1,9 +1,5 @@
-export interface Product {
+export interface Products {
   [x: string]: any;
-  length: any;
-  map(
-    arg0: (item: any) => JSX.Element
-  ): import("react").ReactNode | import("react").ReactNode[];
   id: number;
   idItem: string;
   imgItem: string;

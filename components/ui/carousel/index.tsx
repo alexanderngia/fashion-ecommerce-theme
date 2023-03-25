@@ -85,7 +85,7 @@ export const CarouselProduct: NextPage<CarouselProductProps> = ({
                       customCardProduct
                     )}
                     key={imgItem + nameItem + index}
-                    href={urlItem}
+                    href={`/store/${urlItem}`}
                     title={nameItem}
                     image={imgItem}
                     price={priceItem}

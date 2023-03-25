@@ -1,27 +1,24 @@
 import { headerLayouts } from "@/components/container/header";
-import axios from "axios";
 import LayoutDefault from "components/container/layout/default";
 import Divider from "components/ui/divider";
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { getPostByCategory, getPostBySlug, getPostPath } from "lib/postService";
-import { IText } from "types/layout";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { data } from "pages/data/default";
 import { Post } from "types/post";
 import styles from "./[slug].module.scss";
-import { getDefaultData } from "lib/pageService";
 
 export interface SinglePostProps {
-  nav: IText[];
   post: Post;
   postCategory: Post;
 }
-const SinglePost: NextPage<SinglePostProps> = ({ post, postCategory, nav }) => {
+const SinglePost: NextPage<SinglePostProps> = ({ post, postCategory }) => {
   const layout = "default";
   const HeaderLayout = headerLayouts[layout] || headerLayouts.default;
   // const similarList = postCategory?.filter((item: Post) => item.id !== post.id);
 
   return (
     <>
-      <HeaderLayout data={nav} layout={layout}></HeaderLayout>
+      <HeaderLayout data={data.nav} layout={layout}></HeaderLayout>
       <LayoutDefault>
         <div className={styles["root"]}>
           <span className={styles["cate"]}>
@@ -57,8 +54,6 @@ export default SinglePost;
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug }: any = params;
-  const data = await getDefaultData();
-  const { nav } = data;
   const post = await getPostBySlug(slug);
   const postCategory = await getPostByCategory(post.category);
 
@@ -66,7 +61,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       post,
       postCategory,
-      nav,
     },
   };
 };

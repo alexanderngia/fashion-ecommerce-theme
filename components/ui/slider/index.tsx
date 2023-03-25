@@ -5,7 +5,7 @@ import Img from "@/components/ui/img";
 import { SliderData } from "types/slider";
 
 interface SliderProps {
-  list: SliderData;
+  list: SliderData[];
 }
 
 export const Slider: NextPage<SliderProps> = ({ list }) => {

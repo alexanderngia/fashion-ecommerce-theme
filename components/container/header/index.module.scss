@@ -52,6 +52,13 @@
         color: $black-head;
       }
     }
+    .search {
+      background: transparent;
+      border: 1px solid white;
+      border-radius: 3px;
+      padding: 5px;
+      color: white;
+    }
   }
 
   .logo {
@@ -160,6 +167,11 @@
         @include desktop {
           width: 20px;
         }
+      }
+      .search {
+        background: transparent;
+        border-radius: 3px;
+        padding: 5px;
       }
     }
   }

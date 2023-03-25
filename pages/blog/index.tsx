@@ -1,27 +1,26 @@
-import { headerLayouts } from "@/components/container/header";
-import axios from "axios";
 import LayoutDefault from "components/container/layout/default";
 import { CardPost } from "components/ui/card";
-import type { GetServerSideProps, GetStaticProps, NextPage } from "next";
-import Link from "next/link";
 import { getPosts } from "lib/postService";
-import { IText } from "types/layout";
+import Link from "next/link";
 import { Post } from "types/post";
+
+import { headerLayouts } from "@/components/container/header";
+
 import styles from "./index.module.scss";
-import { getStoreData } from "lib/pageService";
+
+import type { GetStaticProps, NextPage } from "next";
+import { data } from "pages/data/default";
 
 export interface BlogProps {
   posts: Post;
-  nav: IText[];
 }
 
-const Blog: NextPage<BlogProps> = ({ posts, nav }) => {
-  // const { t, lang } = useLocale(translations);
+const Blog: NextPage<BlogProps> = ({ posts }) => {
   const layout = "store";
   const HeaderLayout = headerLayouts[layout] || headerLayouts.default;
   return (
     <>
-      <HeaderLayout data={nav} layout={layout}></HeaderLayout>
+      <HeaderLayout data={data.nav} layout={layout}></HeaderLayout>
       <LayoutDefault>
         <h1 className={styles["heading"]}>
           LINGERIA/LIFESTYLE/ACCESSORIES DRESS/OIL/PERFURM
@@ -63,13 +62,10 @@ const Blog: NextPage<BlogProps> = ({ posts, nav }) => {
 export default Blog;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await getStoreData();
   const posts = await getPosts();
-  const { nav } = data;
   return {
     props: {
       posts,
-      nav,
     },
   };
 };

@@ -5,42 +5,22 @@ import Category from "@/components/ui/category";
 import Img from "@/components/ui/img";
 import Quote from "@/components/ui/quote";
 import { Slider } from "@/components/ui/slider";
-import { getHomeData } from "lib/pageService";
 import LayoutHome from "components/container/layout/home";
 import Banner from "components/ui/banner";
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import styles from "styles/index.module.scss";
-import { CarouselData, CarouselProductData } from "types/carousel";
-import { CategoryData } from "types/category";
-import { IText } from "types/layout";
-import { QuoteData } from "types/quote";
-import { SliderData } from "types/slider";
+
 import { getProducts } from "lib/productService";
-import { Product } from "types/product";
+import { data } from "pages/data/home";
+import { Products } from "types/product";
+
 interface HomeProps {
-  data: HomeData;
-  products: Product[];
+  products: Products[];
 }
 
-interface HomeData {
-  nav: IText[];
-  map: any;
-  slider: SliderData;
-  cat: CategoryData;
-  blog: {
-    title: string;
-    backgroundImg: string;
-    backgroundSubImg: string;
-    subTitle: string;
-    link: string;
-  };
-  quote: QuoteData;
-  carousel: CarouselData[];
-}
-
-const Home: NextPage<HomeProps> = ({ data, products }) => {
+const Home: NextPage<HomeProps> = ({ products }) => {
   const layout = "home";
   const HeaderLayout = headerLayouts[layout] || headerLayouts.default;
   return (
@@ -82,12 +62,11 @@ const Home: NextPage<HomeProps> = ({ data, products }) => {
 };
 
 export default Home;
+
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await getHomeData();
   const products = await getProducts();
   return {
     props: {
-      data,
       products,
     },
   };

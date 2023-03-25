@@ -1,41 +1,25 @@
-import LayoutStore from "components/container/layout/store";
-import { ButtonSub } from "components/ui/button";
-import { CardProduct } from "components/ui/card";
-import Filter from "components/ui/filter";
-import { getProducts } from "lib/productService";
-import { GetStaticProps, NextPage } from "next";
-import { useRouter } from "next/router";
-import { useState } from "react";
-import { IText } from "types/layout";
-import { Product } from "types/product";
+import LayoutStore from 'components/container/layout/store';
+import { ButtonSub } from 'components/ui/button';
+import { CardProduct } from 'components/ui/card';
+import Filter from 'components/ui/filter';
+import { getProducts } from 'lib/productService';
+import { GetStaticProps, NextPage } from 'next';
+import { useRouter } from 'next/router';
+import { data } from 'pages/data/store';
+import { Product } from 'types/product';
 
-import { headerLayouts } from "@/components/container/header";
-import { SearchOutline } from "@styled-icons/evaicons-outline/SearchOutline";
-import { AngleDown } from "@styled-icons/fa-solid/AngleDown";
+import { headerLayouts } from '@/components/container/header';
+import { AngleDown } from '@styled-icons/fa-solid/AngleDown';
 
-import { getStoreData } from "lib/pageService";
-import styles from "./index.module.scss";
+import styles from './index.module.scss';
 
 interface StoreProps {
-  data: StoreData;
   product: Product[];
 }
-
-interface StoreData {
-  nav: IText[];
-  title: string;
-}
-const Store: NextPage<StoreProps> = ({ data, product }) => {
-  const [searchToggle, setSearchToggle] = useState<boolean>(false);
-
+const Store: NextPage<StoreProps> = ({ product }) => {
   const router = useRouter();
   const layout = "store";
   const HeaderLayout = headerLayouts[layout] || headerLayouts.default;
-
-  const onToggleSearch = async () => {
-    setSearchToggle(!searchToggle);
-  };
-
   return (
     <>
       <HeaderLayout data={data.nav} layout={layout}></HeaderLayout>
@@ -48,12 +32,6 @@ const Store: NextPage<StoreProps> = ({ data, product }) => {
             </p>
           </div>
           <div className={styles["column"]}>
-            {searchToggle && <input type="text" />}
-            <Filter
-              onClick={onToggleSearch}
-              title="Search"
-              iconFilter={<SearchOutline />}
-            />
             <Filter title="Price" iconFilter={<AngleDown />} />
             <Filter title="Color" iconFilter={<AngleDown />} />
             <Filter title="Size" iconFilter={<AngleDown />} />
@@ -86,11 +64,9 @@ const Store: NextPage<StoreProps> = ({ data, product }) => {
 export default Store;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await getStoreData();
   const product = await getProducts();
   return {
     props: {
-      data,
       product,
     },
   };

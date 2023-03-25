@@ -11,10 +11,8 @@ interface FilterProps {
 const Filter: React.FC<FilterProps> = ({ title, iconFilter, onClick }) => {
   return (
     <div className={styles["root"]} onClick={onClick}>
-      <>
-        <p>{title}</p>
-        {iconFilter}
-      </>
+      <p>{title}</p>
+      {iconFilter}
     </div>
   );
 };
