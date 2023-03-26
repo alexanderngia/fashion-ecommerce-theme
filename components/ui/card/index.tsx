@@ -12,6 +12,7 @@ interface CardProps {
   className?: string;
   href: string;
   customClass?: string;
+  classThumb?: string;
 }
 
 interface Product extends CardProps {
@@ -48,6 +49,7 @@ export const CardProduct: NextPage<Product> = ({
   price,
   href,
   customClass,
+  classThumb,
   ...props
 }) => {
   // var str = price.toString().split(".");
@@ -56,7 +58,7 @@ export const CardProduct: NextPage<Product> = ({
   return (
     <Link href={href}>
       <div className={`${styles["cardProduct"]} ${className}`} {...props}>
-        <div className={styles["thumb"]}>
+        <div className={`${styles["thumb"]} ${classThumb}`}>
           <Img alt={title} src={image} />
         </div>
 

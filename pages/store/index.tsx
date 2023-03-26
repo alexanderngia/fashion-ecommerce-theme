@@ -1,20 +1,20 @@
-import LayoutStore from 'components/container/layout/store';
-import { ButtonSub } from 'components/ui/button';
-import { CardProduct } from 'components/ui/card';
-import Filter from 'components/ui/filter';
-import { getProducts } from 'lib/productService';
-import { GetStaticProps, NextPage } from 'next';
-import { useRouter } from 'next/router';
-import { data } from 'pages/data/store';
-import { Product } from 'types/product';
+import LayoutStore from "components/container/layout/store";
+import { ButtonSub } from "components/ui/button";
+import { CardProduct } from "components/ui/card";
+import Filter from "components/ui/filter";
+import { getProducts } from "lib/productService";
+import { GetStaticProps, NextPage } from "next";
+import { useRouter } from "next/router";
+import { data } from "pages/data/store";
+import { Products } from "types/product";
 
-import { headerLayouts } from '@/components/container/header';
-import { AngleDown } from '@styled-icons/fa-solid/AngleDown';
+import { headerLayouts } from "@/components/container/header";
+import { AngleDown } from "@styled-icons/fa-solid/AngleDown";
 
-import styles from './index.module.scss';
+import styles from "./index.module.scss";
 
 interface StoreProps {
-  product: Product[];
+  product: Products[];
 }
 const Store: NextPage<StoreProps> = ({ product }) => {
   const router = useRouter();
@@ -43,6 +43,7 @@ const Store: NextPage<StoreProps> = ({ product }) => {
               ({ nameItem, urlItem, imgItem, priceItem }, index: number) => {
                 return (
                   <CardProduct
+                    classThumb={styles["cardThumb"]}
                     className={styles["card"]}
                     key={nameItem + urlItem + index}
                     href={`/store/${urlItem}`}
