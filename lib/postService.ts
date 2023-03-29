@@ -12,23 +12,26 @@ export const getPosts = async () => {
 
 export const getPostPath = async () => {
   const posts = await getPosts();
-  return posts?.map(({ url }: Post) => `/blog/${url}`);
-};
-
-export const getPostById = async (id: string | number) => {
   try {
-    const { data } = await axios.get(`${process.env.HOST}/api/post?id=${id}`);
-
-    return data;
+    if (posts) return posts.map(({ url }: Post) => `/blog/${url}`);
   } catch (error) {
     console.log(error);
   }
 };
+
+// export const getPostById = async (id: string | number) => {
+//   try {
+//     const { data } = await axios.get(`${process.env.HOST}/api/post?id=${id}`);
+
+//     return data;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 export const getPostBySlug = async (urlPath: string) => {
   try {
     const posts = await getPosts();
-    const postId = posts?.find(({ url }: Post) => url === urlPath);
-    return postId;
+    if (posts) return posts.find(({ url }: Post) => url === urlPath);
   } catch (error) {
     console.log(error);
   }
@@ -37,8 +40,7 @@ export const getPostBySlug = async (urlPath: string) => {
 export const getPostByCategory = async (cat: string) => {
   try {
     const posts = await getPosts();
-    const postCat = posts?.filter(({ category }: Post) => category === cat);
-    return postCat;
+    if (posts) return posts.filter(({ category }: Post) => category === cat);
   } catch (error) {
     console.log(error);
   }

@@ -11,26 +11,25 @@ export const getProducts = async () => {
 };
 
 export const getProductPath = async () => {
-  const product = await getProducts();
-  return product?.map(({ urlItem }: Products) => `/store/${urlItem}`);
+  const data = await getProducts();
+  if (data) return data.map(({ urlItem }: Products) => `/store/${urlItem}`);
 };
 
-export const getProductById = async (id: string | number) => {
-  try {
-    // const { data } = await axios.get(
-    //   `${process.env.HOST}/api/product?id=${id}`
-    // );
+// export const getProductById = async (id: string | number) => {
+//   try {
+//     // const { data } = await axios.get(
+//     //   `${process.env.HOST}/api/product?id=${id}`
+//     // );
 
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-};
+//     return data;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 export const getProductBySlug = async (url: string) => {
   try {
     const data = await getProducts();
-    const productId = data?.find(({ urlItem }: Products) => urlItem === url);
-    return productId;
+    if (data) return data.find(({ urlItem }: Products) => urlItem === url);
   } catch (error) {
     console.log(error);
   }
@@ -39,10 +38,10 @@ export const getProductBySlug = async (url: string) => {
 export const getProductByCategory = async (category: string) => {
   try {
     const data = await getProducts();
-    const productCat = data?.filter(
-      ({ categoryItem }: Products) => categoryItem === category
-    );
-    return productCat;
+    if (data)
+      return data.filter(
+        ({ categoryItem }: Products) => categoryItem === category
+      );
   } catch (error) {
     console.log(error);
   }
