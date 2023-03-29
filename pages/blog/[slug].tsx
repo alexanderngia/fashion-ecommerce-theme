@@ -55,17 +55,17 @@ export default SinglePost;
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug }: any = params;
   const post = await getPostBySlug(slug);
-  const postCategory = await getPostByCategory(post.category);
+  // const postCategory = await getPostByCategory(post.category);
 
   return {
     props: {
       post,
-      postCategory,
+      // postCategory,
     },
   };
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths = async () => {
   const paths = await getPostPath();
 
   return { paths, fallback: false };

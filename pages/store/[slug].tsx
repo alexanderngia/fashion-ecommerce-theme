@@ -7,7 +7,7 @@ import {
   getProductBySlug,
   getProductPath,
 } from "lib/productService";
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import { Products } from "types/product";
 
 import { headerLayouts } from "@/components/container/header";
@@ -20,16 +20,16 @@ import router from "next/dist/client/router";
 
 interface SingleProductProps {
   product: Products;
-  productCategory: Products;
+  // productCategory: Products;
 }
 
 const SingleProduct: NextPage<SingleProductProps> = ({
   product,
-  productCategory,
+  // productCategory,
 }) => {
-  const similarList = productCategory?.filter(
-    ({ id }: Products) => id !== product.id
-  );
+  // const similarList = productCategory?.filter(
+  //   ({ id }: Products) => id !== product.id
+  // );
   const layout = "store";
   const HeaderLayout = headerLayouts[layout] || headerLayouts.default;
   const addToCart = () => {};
@@ -102,18 +102,18 @@ const SingleProduct: NextPage<SingleProductProps> = ({
           <div className={styles["good-to-know"]}>
             <h2>Good To Know</h2>
           </div>
-          {similarList && (
+          {/* {similarList && (
             <div className={styles["similar"]}>
               <h2>Similar</h2>
               <div className={styles["container"]}>
-                {/* <CarouselProduct
+                <CarouselProduct
               type="product"
               list={similarList}
               classCard={styles["similarCard"]}
-            /> */}
+            />
               </div>
             </div>
-          )}
+          )} */}
         </div>
       </LayoutProduct>
     </>
@@ -124,17 +124,17 @@ export default SingleProduct;
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug }: any = params;
   const product = await getProductBySlug(slug);
-  const productCategory = await getProductByCategory(product.categoryItem);
+  // const productCategory = await getProductByCategory(product.categoryItem);
 
   return {
     props: {
       product,
-      productCategory,
+      // productCategory,
     },
   };
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths = async () => {
   const paths = await getProductPath();
 
   return { paths, fallback: false };
