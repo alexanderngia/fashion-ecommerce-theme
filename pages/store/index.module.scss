@@ -67,7 +67,7 @@
     column-gap: 5%;
   }
   @include desktop-l {
-    column-gap: 36px;
+    column-gap: 2.66%;
   }
   a {
     width: 46%;
@@ -86,6 +86,11 @@
     }
     @include desktop-l {
       width: 23%;
+      &:nth-of-type(4),
+      &:nth-of-type(5) {
+        width: 23%;
+        height: 500px;
+      }
       &:nth-of-type(5),
       &:nth-of-type(6),
       &:nth-of-type(7) {
