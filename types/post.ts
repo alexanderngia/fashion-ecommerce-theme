@@ -1,6 +1,6 @@
 export interface Post {
   [x: string]: any;
-  id: number;
+  id: string;
   author: string;
   url: string;
   title: string;

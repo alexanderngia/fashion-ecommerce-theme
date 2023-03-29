@@ -1,6 +1,6 @@
 export interface Products {
   [x: string]: any;
-  id: number;
+  id?: number;
   idItem: string;
   imgItem: string;
   urlItem: string;

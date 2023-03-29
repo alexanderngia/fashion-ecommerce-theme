@@ -1,5 +1,5 @@
-import axios from "axios";
-import { Product } from "types/product";
+// import axios from "axios";
+import { Products } from "types/product";
 import { data } from "../pages/data/product";
 export const getProducts = async () => {
   // const { data } = await axios.get(`${process.env.HOST}/api/product`);
@@ -12,7 +12,7 @@ export const getProducts = async () => {
 
 export const getProductPath = async () => {
   const product = await getProducts();
-  return product.map(({ urlItem }: Product) => `/store/${urlItem}`);
+  return product?.map(({ urlItem }: Products) => `/store/${urlItem}`);
 };
 
 export const getProductById = async (id: string | number) => {
@@ -29,7 +29,7 @@ export const getProductById = async (id: string | number) => {
 export const getProductBySlug = async (url: string) => {
   try {
     const data = await getProducts();
-    const productId = data.find(({ urlItem }: Product) => urlItem === url);
+    const productId = data?.find(({ urlItem }: Products) => urlItem === url);
     return productId;
   } catch (error) {
     console.log(error);
@@ -39,8 +39,8 @@ export const getProductBySlug = async (url: string) => {
 export const getProductByCategory = async (category: string) => {
   try {
     const data = await getProducts();
-    const productCat = data.filter(
-      ({ categoryItem }: Product) => categoryItem === category
+    const productCat = data?.filter(
+      ({ categoryItem }: Products) => categoryItem === category
     );
     return productCat;
   } catch (error) {

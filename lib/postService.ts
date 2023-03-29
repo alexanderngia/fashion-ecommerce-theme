@@ -12,7 +12,7 @@ export const getPosts = async () => {
 
 export const getPostPath = async () => {
   const posts = await getPosts();
-  return posts.map(({ url }: Post) => `/blog/${url}`);
+  return posts?.map(({ url }: Post) => `/blog/${url}`);
 };
 
 export const getPostById = async (id: string | number) => {
@@ -27,7 +27,7 @@ export const getPostById = async (id: string | number) => {
 export const getPostBySlug = async (urlPath: string) => {
   try {
     const posts = await getPosts();
-    const postId = posts.find(({ url }: Post) => url === urlPath);
+    const postId = posts?.find(({ url }: Post) => url === urlPath);
     return postId;
   } catch (error) {
     console.log(error);
@@ -37,7 +37,7 @@ export const getPostBySlug = async (urlPath: string) => {
 export const getPostByCategory = async (cat: string) => {
   try {
     const posts = await getPosts();
-    const postCat = posts.filter(({ category }: Post) => category === cat);
+    const postCat = posts?.filter(({ category }: Post) => category === cat);
     return postCat;
   } catch (error) {
     console.log(error);

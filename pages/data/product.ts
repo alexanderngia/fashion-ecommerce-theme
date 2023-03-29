@@ -1,7 +1,6 @@
-import { IText } from "types/layout";
 import { Products } from "types/product";
 
-export const data: Products = [
+export const data: Products[] = [
   {
     idItem: "12412321nbj21b312j31231j23",
     imgItem: "/images/product2.jpg",
