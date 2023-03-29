@@ -1,6 +1,6 @@
 // import axios from "axios";
 import { Products } from "types/product";
-import { data } from "../pages/data/product";
+import { data } from "../data/product";
 export const getProducts = async () => {
   // const { data } = await axios.get(`${process.env.HOST}/api/product`);
   try {

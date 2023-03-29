@@ -5,7 +5,7 @@ import Filter from "components/ui/filter";
 import { getProducts } from "lib/productService";
 import { GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/router";
-import { data } from "pages/data/store";
+import { data } from "data/store";
 import { Products } from "types/product";
 
 import { headerLayouts } from "@/components/container/header";

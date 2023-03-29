@@ -3,7 +3,7 @@ import LayoutDefault from "components/container/layout/default";
 import Divider from "components/ui/divider";
 import { getPostByCategory, getPostBySlug, getPostPath } from "lib/postService";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { data } from "pages/data/default";
+import { data } from "data/default";
 import { Post } from "types/post";
 import styles from "./[slug].module.scss";
 

@@ -15,7 +15,7 @@ import Img from "@/components/ui/img";
 import { ReturnUpBack } from "@styled-icons/ionicons-outline/ReturnUpBack";
 
 import styles from "./[slug].module.scss";
-import { data } from "pages/data/store";
+import { data } from "data/store";
 import router from "next/dist/client/router";
 
 interface SingleProductProps {

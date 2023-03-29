@@ -9,7 +9,7 @@ import { headerLayouts } from "@/components/container/header";
 import styles from "./index.module.scss";
 
 import type { GetStaticProps, NextPage } from "next";
-import { data } from "pages/data/default";
+import { data } from "data/default";
 
 export interface BlogProps {
   posts: Post;

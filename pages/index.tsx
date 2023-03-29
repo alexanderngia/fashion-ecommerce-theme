@@ -13,7 +13,7 @@ import Link from "next/link";
 import styles from "styles/index.module.scss";
 
 import { getProducts } from "lib/productService";
-import { data } from "pages/data/home";
+import { data } from "data/home";
 import { Products } from "types/product";
 
 interface HomeProps {
