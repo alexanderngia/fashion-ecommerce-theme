@@ -1,6 +1,7 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { IText } from "types/layout";
+import { Products } from "types/product";
 
-const product = [
+export const data: Products = [
   {
     idItem: "12412321nbj21b312j31231j23",
     imgItem: "/images/product2.jpg",
@@ -119,7 +120,3 @@ const product = [
     categoryItem: "Black IP X",
   },
 ];
-
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  res.status(200).json(product);
-}

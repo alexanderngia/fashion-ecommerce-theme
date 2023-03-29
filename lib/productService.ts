@@ -1,8 +1,8 @@
 import axios from "axios";
 import { Product } from "types/product";
-
+import { data } from "../pages/data/product";
 export const getProducts = async () => {
-  const { data } = await axios.get(`${process.env.HOST}/api/product`);
+  // const { data } = await axios.get(`${process.env.HOST}/api/product`);
   try {
     return data;
   } catch (error) {
@@ -17,10 +17,9 @@ export const getProductPath = async () => {
 
 export const getProductById = async (id: string | number) => {
   try {
-    const { data } = await axios.get(
-      `${process.env.HOST}/api/product?id=${id}`
-    );
-    console.log(data, "data");
+    // const { data } = await axios.get(
+    //   `${process.env.HOST}/api/product?id=${id}`
+    // );
 
     return data;
   } catch (error) {

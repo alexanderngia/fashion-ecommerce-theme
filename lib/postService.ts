@@ -1,9 +1,9 @@
 import axios from "axios";
 import { Post } from "types/post";
-
+import { data } from "pages/data/post";
 export const getPosts = async () => {
   try {
-    const { data } = await axios.get(`${process.env.HOST}/api/post`);
+    // const { data } = await axios.get(`${process.env.HOST}/api/post`);
     return data;
   } catch (error) {
     console.log(error);

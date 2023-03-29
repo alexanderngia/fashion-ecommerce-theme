@@ -1,6 +1,6 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { Post } from "types/post";
 
-const post = [
+export const data: Post[] = [
   {
     id: "123124652312",
     author: "alexander",
@@ -58,7 +58,3 @@ const post = [
       "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem",
   },
 ];
-
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  res.status(200).json(post);
-}
