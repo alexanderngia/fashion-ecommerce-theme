@@ -39,9 +39,12 @@ h2 {
 }
 h3 {
   @include Heading();
-  font-size: 1rem;
+  font-size: 2rem;
   font-weight: 500;
   letter-spacing: 0.2rem;
+  @include tablet {
+    font-size: 2rem;
+  }
   @include desktop {
     font-size: 2rem;
   }
@@ -85,4 +88,22 @@ hr {
     top: 0;
     left: 0;
   }
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

@@ -38,11 +38,13 @@
       margin-left: 2rem !important;
     }
     svg {
-      cursor: pointer;
       margin-left: 30px;
-      width: 20px;
+      width: 15px;
       color: $white;
       transition: all 0.2s ease-in;
+      @include desktop {
+        width: 20px;
+      }
       &:hover {
         transform: scale(1.2);
       }
@@ -157,7 +159,6 @@
         margin-left: 2rem !important;
       }
       svg {
-        cursor: pointer;
         width: 15px;
         color: $black;
         transition: all 0.2s ease-in;
@@ -172,6 +173,9 @@
         background: transparent;
         border-radius: 3px;
         padding: 5px;
+      }
+      .searchIcon {
+        color: $black;
       }
     }
   }

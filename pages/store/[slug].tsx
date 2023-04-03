@@ -77,8 +77,7 @@ const SingleProduct: NextPage<SingleProductProps> = ({
                 <>
                   <div className={styles["box"]}>
                     <p>Size:</p>
-                    <span className={styles["size"]}>{product.sizeItem}</span>
-                  </div>
+                   </div>
                   <Divider />
                 </>
               )}

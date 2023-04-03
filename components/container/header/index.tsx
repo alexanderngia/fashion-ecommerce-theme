@@ -3,48 +3,55 @@ import React, { useState } from "react";
 import styles from "./index.module.scss";
 
 import Img from "@/components/ui/img";
-import { Cart } from "@styled-icons/bootstrap/Cart";
-import { CustomerService } from "@styled-icons/remix-line/CustomerService";
 import { IText } from "types/layout";
-import { SearchOutline } from "@styled-icons/evaicons-outline/SearchOutline";
-
+import { CartBar } from "components/ui/cart";
+import { Search, Cart, CustomerService } from "components/ui/icons";
 interface HeaderProps {
   layout: "home" | "store" | "default";
   data: IText[];
 }
 const Header: React.FC<HeaderProps> = ({ layout, data }) => {
   const [searchToggle, setSearchToggle] = useState<boolean>(false);
+  const [cartToggle, setCartToggle] = useState<boolean>(false);
 
   const onToggleSearch = async () => {
     setSearchToggle(!searchToggle);
   };
+  const onToggleCart = async () => {
+    setCartToggle(!cartToggle);
+  };
+  const onToggleChat = async () => {};
   switch (layout) {
     case "home":
       return (
-        <div className={styles["header"]}>
-          <div className={styles["menu"]}>
-            {data &&
-              data.map(({ title, url }) => {
-                return (
-                  <Link key={title} href={url}>
-                    {title}
-                  </Link>
-                );
-              })}
-          </div>
-          <div className={styles["icon"]}>
-            {/* <Translate /> */}
-            {searchToggle && <input className={styles["search"]} type="text" />}
+        <>
+          <div className={styles["header"]}>
+            <div className={styles["menu"]}>
+              {data &&
+                data.map(({ title, url }) => {
+                  return (
+                    <Link key={title} href={url}>
+                      {title}
+                    </Link>
+                  );
+                })}
+            </div>
+            <div className={styles["icon"]}>
+              {searchToggle && (
+                <input className={styles["search"]} type="text" />
+              )}
 
-            <SearchOutline onClick={onToggleSearch} />
-            <Link href="/cart">
-              <Cart />
-            </Link>
-            <Link href="/support">
-              <CustomerService />
-            </Link>
+              <Search
+                customClass={styles["searchIcon"]}
+                onClick={onToggleSearch}
+              />
+              <Cart onClick={onToggleCart} />
+              <CustomerService onClick={onToggleChat} />
+            </div>
           </div>
-        </div>
+          {/* {cartToggle && <CartBar onClick={onToggleCart} data={null} />} */}
+          {cartToggle && <CartBar onClick={onToggleCart} />}
+        </>
       );
     case "store":
       return (
@@ -68,13 +75,12 @@ const Header: React.FC<HeaderProps> = ({ layout, data }) => {
             {/* <Translate /> */}
             {searchToggle && <input className={styles["search"]} type="text" />}
 
-            <SearchOutline onClick={onToggleSearch} />
-            <Link href="/cart">
-              <Cart />
-            </Link>
-            <Link href="/support">
-              <CustomerService />
-            </Link>
+            <Search
+              customClass={styles["searchIcon"]}
+              onClick={onToggleSearch}
+            />
+            <Cart onClick={onToggleCart} />
+            <CustomerService onClick={onToggleChat} />
           </div>
         </div>
       );
@@ -100,13 +106,12 @@ const Header: React.FC<HeaderProps> = ({ layout, data }) => {
             {/* <Translate /> */}
             {searchToggle && <input className={styles["search"]} type="text" />}
 
-            <SearchOutline onClick={onToggleSearch} />
-            <Link href="/cart">
-              <Cart />
-            </Link>
-            <Link href="/support">
-              <CustomerService />
-            </Link>
+            <Search
+              customClass={styles["searchIcon"]}
+              onClick={onToggleSearch}
+            />
+            <Cart onClick={onToggleCart} />
+            <CustomerService onClick={onToggleChat} />
           </div>
         </div>
       );
