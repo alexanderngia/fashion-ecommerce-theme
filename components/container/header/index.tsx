@@ -5,12 +5,21 @@ import styles from "./index.module.scss";
 import Img from "@/components/ui/img";
 import { IText } from "types/layout";
 import { CartBar } from "components/ui/cart";
+import { SearchBar } from "components/ui/search";
+import { Products } from "types/product";
+
 import { Search, Cart, CustomerService } from "components/ui/icons";
 interface HeaderProps {
   layout: "home" | "store" | "default";
   data: IText[];
+  cart: Products[];
+
 }
-const Header: React.FC<HeaderProps> = ({ layout, data }) => {
+const Header: React.FC<HeaderProps> = ({
+  layout,
+  data,
+  cart
+}) => {
   const [searchToggle, setSearchToggle] = useState<boolean>(false);
   const [cartToggle, setCartToggle] = useState<boolean>(false);
 
@@ -21,6 +30,7 @@ const Header: React.FC<HeaderProps> = ({ layout, data }) => {
     setCartToggle(!cartToggle);
   };
   const onToggleChat = async () => {};
+
   switch (layout) {
     case "home":
       return (
@@ -37,10 +47,6 @@ const Header: React.FC<HeaderProps> = ({ layout, data }) => {
                 })}
             </div>
             <div className={styles["icon"]}>
-              {searchToggle && (
-                <input className={styles["search"]} type="text" />
-              )}
-
               <Search
                 customClass={styles["searchIcon"]}
                 onClick={onToggleSearch}
@@ -49,71 +55,97 @@ const Header: React.FC<HeaderProps> = ({ layout, data }) => {
               <CustomerService onClick={onToggleChat} />
             </div>
           </div>
-          {/* {cartToggle && <CartBar onClick={onToggleCart} data={null} />} */}
-          {cartToggle && <CartBar onClick={onToggleCart} />}
+          {searchToggle && (
+            <SearchBar onClickClose={onToggleSearch} onClick={onToggleSearch} />
+          )}
+          {cartToggle && (
+            <CartBar
+              cart={cart}
+              onClickClose={onToggleCart}
+              onClick={onToggleCart}
+            />
+          )}
         </>
       );
     case "store":
       return (
-        <div className={styles["header-store"]}>
-          <div className={styles["menu"]}>
-            {data &&
-              data.map(({ title, url }) => {
-                return (
-                  <Link key={title} href={url}>
-                    {title}
-                  </Link>
-                );
-              })}
+        <>
+          <div className={styles["header-store"]}>
+            <div className={styles["menu"]}>
+              {data &&
+                data.map(({ title, url }) => {
+                  return (
+                    <Link key={title} href={url}>
+                      {title}
+                    </Link>
+                  );
+                })}
+            </div>
+            <div className={styles["logo"]}>
+              <Link href="/">
+                <Img alt="logo store" src="/images/transBlack.png" />
+              </Link>
+            </div>
+            <div className={styles["icon"]}>
+              <Search
+                customClass={styles["searchIcon"]}
+                onClick={onToggleSearch}
+              />
+              <Cart onClick={onToggleCart} />
+              <CustomerService onClick={onToggleChat} />
+            </div>
           </div>
-          <div className={styles["logo"]}>
-            <Link href="/">
-              <Img alt="logo store" src="/images/transBlack.png" />
-            </Link>
-          </div>
-          <div className={styles["icon"]}>
-            {/* <Translate /> */}
-            {searchToggle && <input className={styles["search"]} type="text" />}
-
-            <Search
-              customClass={styles["searchIcon"]}
-              onClick={onToggleSearch}
+          {searchToggle && (
+            <SearchBar onClickClose={onToggleSearch} onClick={onToggleSearch} />
+          )}
+          {cartToggle && (
+            <CartBar
+              cart={cart}
+              onClickClose={onToggleCart}
+              onClick={onToggleCart}
             />
-            <Cart onClick={onToggleCart} />
-            <CustomerService onClick={onToggleChat} />
-          </div>
-        </div>
+          )}
+        </>
       );
     default:
       return (
-        <div className={styles["header-store"]}>
-          <div className={styles["menu"]}>
-            {data &&
-              data.map(({ title, url }) => {
-                return (
-                  <Link key={title} href={url}>
-                    {title}
-                  </Link>
-                );
-              })}
+        <>
+          <div className={styles["header-store"]}>
+            <div className={styles["menu"]}>
+              {data &&
+                data.map(({ title, url }) => {
+                  return (
+                    <Link key={title} href={url}>
+                      {title}
+                    </Link>
+                  );
+                })}
+            </div>
+            <div className={styles["logo"]}>
+              <Link href="/">
+                <Img alt="logo store" src="/images/transBlack.png" />
+              </Link>
+            </div>
+            <div className={styles["icon"]}>
+              <Search
+                customClass={styles["searchIcon"]}
+                onClick={onToggleSearch}
+              />
+              <Cart onClick={onToggleCart} />
+              <CustomerService onClick={onToggleChat} />
+            </div>
           </div>
-          <div className={styles["logo"]}>
-            <Link href="/">
-              <Img alt="logo store" src="/images/transBlack.png" />
-            </Link>
-          </div>
-          <div className={styles["icon"]}>
-            {/* <Translate /> */}
-            {searchToggle && <input className={styles["search"]} type="text" />}
-
-            <Search
-              customClass={styles["searchIcon"]}
-              onClick={onToggleSearch}
+          {searchToggle && (
+            <SearchBar onClickClose={onToggleSearch} onClick={onToggleSearch} />
+          )}
+          {cartToggle && (
+            <CartBar
+              cart={cart}
+              onClickClose={onToggleCart}
+              onClick={onToggleCart}
             />
-            <Cart onClick={onToggleCart} />
-            <CustomerService onClick={onToggleChat} />
-          </div>
-        </div>
+          )}
+        </>
       );
   }
 };

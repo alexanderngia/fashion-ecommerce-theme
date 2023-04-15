@@ -1,0 +1,104 @@
+@import "styles/variables";
+@import "styles/mixin";
+@import "styles/responsive";
+.root {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 999999;
+  @include flex();
+  align-items: flex-start;
+  .background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1000000;
+    background-color: $black-hover;
+  }
+  .container {
+    @include flexCol();
+    width: 100%;
+    height: 100%;
+    background-color: $white;
+    padding: 2% 3%;
+    z-index: 10000000;
+    justify-content: flex-start;
+    @include desktop {
+      height: 40%;
+    }
+    @include desktop-l {
+      height: 70%;
+    }
+
+    @include desktop-lg {
+      height: 60%;
+    }
+
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 15px;
+      @include desktop {
+        top: 30px;
+        right: 30px;
+      }
+    }
+    .title {
+      height: 7%;
+      line-height: 3;
+      max-height: 100px;
+      @include tablet {
+        height: 4%;
+        line-height: 1.6;
+      }
+      @include desktop {
+        height: 7%;
+        line-height: 1.6;
+      }
+    }
+    a {
+      padding: 1.1rem 0;
+    }
+    .search {
+      @include flex();
+      width: 100%;
+      height: 7%;
+      max-height: 100px;
+      @include desktop {
+        height: 13%;
+      }
+      @include desktop-l {
+        height: 20%;
+      }
+
+      input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 1rem;
+        border-radius: 4px;
+        border: 1px solid $black-hover;
+        font-family: $font-p;
+      }
+    }
+    .list {
+      @include flex();
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      width: 100%;
+      height: 72%;
+      overflow-x: hidden;
+      @include desktop {
+        height: 72%;
+      }
+      @include desktop-l {
+        height: 65%;
+      }
+    }
+  }
+}

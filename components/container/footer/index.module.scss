@@ -46,8 +46,9 @@
       @include flex();
       align-items: flex-start;
       flex-direction: column;
-      padding: 2% 10%;
+      padding: 2% 5%;
       height: 60%;
+
       @include desktop {
         padding: 0;
         height: auto;

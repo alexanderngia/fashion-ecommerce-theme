@@ -6,19 +6,35 @@
   flex-direction: column;
   align-items: flex-start;
   .product {
-    padding: 0 5%;
+    padding: 2% 5%;
     @include flex();
     justify-content: space-between;
     width: 100%;
-    height: 50rem;
+    height: 120rem;
     border-bottom: 1px solid $black-divider;
+    flex-direction: column;
+    @include tablet {
+      padding: 0 5%;
+      height: 50rem;
+      flex-direction: unset;
+    }
     .col {
       @include flex();
       justify-content: space-between;
       position: relative;
 
       &:first-of-type {
-        width: 65%;
+        width: 100%;
+        height: 70%;
+        flex-direction: column-reverse;
+        @include tablet {
+          flex-direction: unset;
+          height: 100%;
+          width: 65%;
+        }
+        @include desktop {
+          width: 65%;
+        }
         .back {
           position: absolute;
           top: 2%;
@@ -33,15 +49,19 @@
           padding: 2% 0;
 
           &:first-of-type {
-            width: 40%;
-            .subTitle {
-              margin-bottom: 10px;
-              font-size: 0.7rem;
+            width: 100%;
+            height: 50%;
+            @include tablet {
+              width: 40%;
+              height: 100%;
+              @include flex();
+              flex-direction: column;
+              align-items: flex-start;
             }
+
             h1 {
               padding: 0;
               line-height: 3.8rem;
-              margin-bottom: 15px;
             }
             span {
               overflow: hidden;
@@ -50,15 +70,26 @@
               -webkit-line-clamp: 3; /* number of lines to show */
               line-clamp: 2;
               -webkit-box-orient: vertical;
-              margin-bottom: 10px;
             }
 
             .price {
               font-weight: 800;
               font-size: 1rem;
               font-family: $font-p;
-              margin-bottom: 20px;
+              margin-bottom: 1.5rem;
             }
+
+            .size {
+              font-weight: 700;
+              font-family: $font-p;
+            }
+            .row {
+              @include flex();
+              justify-content: flex-start;
+              margin-bottom: 1.5rem;
+              padding: 0 6px;
+            }
+
             .cta {
               width: 100%;
               height: 44px;
@@ -81,12 +112,26 @@
             }
           }
           &:last-of-type {
-            width: 50%;
-            height: 550px;
+            width: 75%;
+            height: 50%;
             @include flex();
+            @include tablet {
+              width: 50%;
+              height: 230px;
+            }
+            @include desktop {
+              height: 550px;
+              width: 50%;
+            }
+            @include desktop-l {
+              width: 40%;
+            }
+            @include desktop-lg {
+              width: 30%;
+            }
             .img {
               width: 100%;
-              height: 90%;
+              height: 100%;
               position: relative;
             }
           }
@@ -96,10 +141,15 @@
         align-items: flex-start;
         justify-content: center;
         flex-direction: column;
-        width: 30%;
-        height: 100%;
-        padding: 0 0 0 4%;
-        border-left: 1px solid $black-divider;
+        width: 100%;
+        height: 40%;
+        @include tablet {
+          width: 30%;
+          height: 100%;
+          padding: 0 0 0 4%;
+
+          border-left: 1px solid $black-divider;
+        }
         h2 {
           font-weight: 800;
           text-transform: uppercase;
@@ -112,39 +162,6 @@
           @include flex();
           p {
             margin-right: 10px;
-          }
-          .color {
-            width: 20px;
-            height: 20px;
-            border-radius: 25px;
-            border: 3px solid white;
-            cursor: pointer;
-            position: relative;
-
-            &:hover:before {
-              top: -6px;
-              left: -6px;
-              width: 26px;
-              height: 26px;
-            }
-            &:before {
-              content: "";
-              position: absolute;
-              top: -4px;
-              left: -4px;
-              width: 22px;
-              height: 22px;
-              background-color: transparent;
-              border-radius: 25px;
-              @include shadowColor();
-              z-index: 1;
-              transition: all 300ms ease-in-out;
-            }
-          }
-          .size {
-            font-weight: 700;
-            font-size: 1rem;
-            font-family: $font-p;
           }
         }
       }

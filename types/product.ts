@@ -8,8 +8,8 @@ export interface Products {
   bodyItem: string;
   bodyHtmlItem: string;
   qualityItem: number;
-  colorItem: string;
-  sizeItem: string;
+  colorItem: string[];
+  sizeItem: string[];
   priceItem: number;
   categoryItem?: string;
   keywordTagItem?: string;

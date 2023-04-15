@@ -1,0 +1,40 @@
+@import "styles/mixin";
+@import "styles/variables";
+@import "styles/responsive";
+.root {
+  @include flex();
+  justify-content: flex-start;
+  column-gap: 26.5px;
+  margin-bottom: 1.5rem;
+
+  input:checked + label::before {
+    border: 1px solid $black;
+  }
+  .label {
+    display: flex;
+    border-radius: 25px;
+    cursor: pointer;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    &:hover:before {
+      transform: scale(1.1);
+    }
+    &:before {
+      content: "";
+      position: absolute;
+      top: -6px;
+      left: -6px;
+      width: 30px;
+      height: 30px;
+      background-color: transparent;
+      border-radius: 100%;
+      border: 1px solid $black-divider;
+      z-index: 1;
+      transition: all 100ms ease-in-out;
+    }
+  }
+  .input {
+    display: none;
+  }
+}

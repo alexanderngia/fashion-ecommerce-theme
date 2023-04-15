@@ -1,28 +1,35 @@
 import LayoutProduct from "components/container/layout/product";
 import { ButtonMain } from "components/ui/button";
 import Divider from "components/ui/divider";
-import InputNumber from "components/ui/form/input";
+import { data } from "data/store";
 import {
   getProductByCategory,
   getProductBySlug,
   getProductPath,
 } from "lib/productService";
 import { GetStaticProps, NextPage } from "next";
+import router from "next/dist/client/router";
+import { useEffect, useState } from "react";
 import { Products } from "types/product";
 
 import { headerLayouts } from "@/components/container/header";
+import InputColor from "@/components/ui/form/input/color";
+import InputNumber from "@/components/ui/form/input/number";
+import InputSize from "@/components/ui/form/input/size";
 import Img from "@/components/ui/img";
 import { ReturnUpBack } from "@styled-icons/ionicons-outline/ReturnUpBack";
 
 import styles from "./[slug].module.scss";
-import { data } from "data/store";
-import router from "next/dist/client/router";
+import classnames from "classnames";
 
 interface SingleProductProps {
   product: Products;
   // productCategory: Products;
 }
-
+interface SelectedOption {
+  colorSelected: string;
+  sizeSelected: string;
+}
 const SingleProduct: NextPage<SingleProductProps> = ({
   product,
   // productCategory,
@@ -30,13 +37,77 @@ const SingleProduct: NextPage<SingleProductProps> = ({
   // const similarList = productCategory?.filter(
   //   ({ id }: Products) => id !== product.id
   // );
+  const [selectedOptions, setSelectedOptions] = useState<SelectedOption>({
+    colorSelected: "",
+    sizeSelected: "",
+  });
+  const [cart, setCart] = useState<any[]>([]);
   const layout = "store";
   const HeaderLayout = headerLayouts[layout] || headerLayouts.default;
-  const addToCart = () => {};
 
+  const handleAddToCart = (product: Products, selectedOptions: any) => {
+    setCart((prev): Products[] => {
+      const exist = prev.find((x: Products) => x.id === product.id);
+      if (exist) {
+        return prev.map((item) => {
+          if (item.id === product.id) {
+            if (item.amount < item.qualityItem) {
+              return { ...item, amount: item.amount + 1, ...selectedOptions };
+            } else {
+              return { ...item, amount: item.qualityItem, ...selectedOptions };
+            }
+          } else {
+            return item;
+          }
+        });
+      }
+
+      return [...prev, { ...product, amount: 1 }];
+    });
+  };
+
+  const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedOptions({
+      ...selectedOptions,
+      colorSelected: event.target.value,
+    });
+    console.log(event.target.value);
+  };
+
+  const handleSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedOptions({
+      ...selectedOptions,
+      sizeSelected: event.target.value,
+    });
+    console.log(event.target.value);
+  };
+
+  // const handleAddToCart = (product: Products, options: any) => {
+  // const index = cart.find(({ id }: Products) => id === product.id);
+  // if (index !== -1) {
+  //   cart[index].amount += cart[index].amount;
+  // } else {
+  //   cart.push({ product, options });
+  // }
+  //   console.log(product, options, " options");
+  // };
+  // const handleRemoveFromCart = (product: Products) => {
+  //   setCart((cart): Products[] => {
+  //     return cart.map((item) => {
+  //       if (item.id === product.id) {
+  //         if (item.amount > 1) {
+  //           return { ...item, amount: item.amount - 1 };
+  //         } else {
+  //           return setCart(cart.filter((x) => x.id !== product.id));
+  //         }
+  //       }
+  //       return item;
+  //     });
+  //   });
+  // };
   return (
     <>
-      <HeaderLayout data={data.nav} layout={layout}></HeaderLayout>
+      <HeaderLayout cart={cart} data={data.nav} layout={layout}></HeaderLayout>
       <LayoutProduct>
         <div className={styles["root"]}>
           <div className={styles["product"]}>
@@ -56,14 +127,40 @@ const SingleProduct: NextPage<SingleProductProps> = ({
                 <p className={styles["price"]}>
                   {product.priceItem?.toLocaleString()} vnd
                 </p>
+
+                {product.colorItem && (
+                  <div className={styles["row"]}>
+                    <InputColor
+                      listColor={product.colorItem}
+                      onChange={handleColorChange}
+                    />
+                  </div>
+                )}
+
+                {product.sizeItem && (
+                  <div className={styles["row"]}>
+                    <InputSize
+                      listSize={product.sizeItem}
+                      onChange={handleSizeChange}
+                    />
+                  </div>
+                )}
                 <div className={styles["cta"]}>
-                  <InputNumber className={styles["qty"]} />
-                  <ButtonMain onClick={addToCart}> Add to cart </ButtonMain>
+                  {/* <InputNumber className={styles["qty"]} /> */}
+                  <ButtonMain
+                    disabled={
+                      !selectedOptions.colorSelected ||
+                      !selectedOptions.sizeSelected
+                    }
+                    onClick={() => handleAddToCart(product, selectedOptions)}
+                  >
+                    Add to cart
+                  </ButtonMain>
                 </div>
               </div>
               <div className={styles["box"]}>
                 <div className={styles["img"]}>
-                  <Img alt={product.nameItem} src={product.imgItem} />
+                  <Img priority alt={product.nameItem} src={product.imgItem} />
                 </div>
               </div>
             </div>
@@ -73,23 +170,6 @@ const SingleProduct: NextPage<SingleProductProps> = ({
                 dangerouslySetInnerHTML={{ __html: product.bodyHtmlItem }}
               />
               <Divider />
-              {product.sizeItem && (
-                <>
-                  <div className={styles["box"]}>
-                    <p>Size:</p>
-                   </div>
-                  <Divider />
-                </>
-              )}
-              {product.colorItem && (
-                <div className={styles["box"]}>
-                  <p>Color:</p>
-                  <span
-                    className={styles["color"]}
-                    style={{ backgroundColor: `${product.colorItem}` }}
-                  ></span>
-                </div>
-              )}
             </div>
           </div>
           <div className={styles["product-des"]}>
@@ -123,11 +203,13 @@ export default SingleProduct;
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug }: any = params;
   const product = await getProductBySlug(slug);
+  const id = product?.idItem;
   // const productCategory = await getProductByCategory(product.categoryItem);
 
   return {
     props: {
       product,
+      id,
       // productCategory,
     },
   };

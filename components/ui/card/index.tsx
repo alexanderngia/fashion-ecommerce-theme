@@ -112,3 +112,42 @@ export const CardProductItem: NextPage<Product> = ({
     </Link>
   );
 };
+
+export const CardProductCart: NextPage<Product> = ({
+  title,
+  image,
+  author,
+  className,
+  price,
+  href,
+  sizeItem,
+  colorItem,
+  customClass,
+  classThumb,
+  ...props
+}) => {
+  // var str = price.toString().split(".");
+  // str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  return (
+    <Link href={href}>
+      <div className={`${styles["cardProductItem"]} ${className}`} {...props}>
+        <div className={`${styles["thumb"]} ${classThumb}`}>
+          <Img alt={title} src={image} />
+        </div>
+
+        <div className={classnames(styles["info"], customClass)}>
+          <p className={styles["title"]}>{title}</p>
+
+          <span
+            className={styles["color"]}
+            style={{ backgroundColor: `${colorItem}` }}
+          ></span>
+          <p className={styles["size"]}>{sizeItem}</p>
+          <p className={styles["price"]}>{price?.toLocaleString()} VND</p>
+        </div>
+      </div>
+    </Link>
+  );
+};
+
