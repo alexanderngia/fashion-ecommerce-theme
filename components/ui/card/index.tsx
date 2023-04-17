@@ -4,6 +4,7 @@ import styles from "./index.module.scss";
 import { NextPage } from "next";
 import classnames from "classnames";
 import Img from "components/ui/img";
+import { Close } from "../icons";
 interface CardProps {
   title: string;
   image: string;
@@ -18,6 +19,7 @@ interface Product extends CardProps {
   price?: number;
   colorItem?: string;
   sizeItem?: string;
+  qualityItem?: number;
 }
 export const CardPost: NextPage<CardProps> = ({
   title,
@@ -122,13 +124,13 @@ export const CardProductCart: NextPage<Product> = ({
   href,
   sizeItem,
   colorItem,
+  qualityItem,
   customClass,
   classThumb,
   ...props
 }) => {
   // var str = price.toString().split(".");
   // str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
   return (
     <Link href={href}>
       <div className={`${styles["cardProductItem"]} ${className}`} {...props}>
@@ -144,10 +146,10 @@ export const CardProductCart: NextPage<Product> = ({
             style={{ backgroundColor: `${colorItem}` }}
           ></span>
           <p className={styles["size"]}>{sizeItem}</p>
+          {qualityItem && <p>x {qualityItem}</p>}
           <p className={styles["price"]}>{price?.toLocaleString()} VND</p>
         </div>
       </div>
     </Link>
   );
 };
-

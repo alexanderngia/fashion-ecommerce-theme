@@ -80,7 +80,7 @@
     .checkout {
       width: 100%;
       @include flex();
-      justify-content: flex-end;
+      justify-content: space-between;
 
       button {
         margin-right: 0;

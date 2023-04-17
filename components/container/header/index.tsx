@@ -12,14 +12,9 @@ import { Search, Cart, CustomerService } from "components/ui/icons";
 interface HeaderProps {
   layout: "home" | "store" | "default";
   data: IText[];
-  cart: Products[];
-
 }
-const Header: React.FC<HeaderProps> = ({
-  layout,
-  data,
-  cart
-}) => {
+
+const Header: React.FC<HeaderProps> = ({ layout, data }) => {
   const [searchToggle, setSearchToggle] = useState<boolean>(false);
   const [cartToggle, setCartToggle] = useState<boolean>(false);
 
@@ -59,11 +54,7 @@ const Header: React.FC<HeaderProps> = ({
             <SearchBar onClickClose={onToggleSearch} onClick={onToggleSearch} />
           )}
           {cartToggle && (
-            <CartBar
-              cart={cart}
-              onClickClose={onToggleCart}
-              onClick={onToggleCart}
-            />
+            <CartBar onClickClose={onToggleCart} onClick={onToggleCart} />
           )}
         </>
       );
@@ -99,11 +90,7 @@ const Header: React.FC<HeaderProps> = ({
             <SearchBar onClickClose={onToggleSearch} onClick={onToggleSearch} />
           )}
           {cartToggle && (
-            <CartBar
-              cart={cart}
-              onClickClose={onToggleCart}
-              onClick={onToggleCart}
-            />
+            <CartBar onClickClose={onToggleCart} onClick={onToggleCart} />
           )}
         </>
       );
@@ -139,11 +126,7 @@ const Header: React.FC<HeaderProps> = ({
             <SearchBar onClickClose={onToggleSearch} onClick={onToggleSearch} />
           )}
           {cartToggle && (
-            <CartBar
-              cart={cart}
-              onClickClose={onToggleCart}
-              onClick={onToggleCart}
-            />
+            <CartBar onClickClose={onToggleCart} onClick={onToggleCart} />
           )}
         </>
       );

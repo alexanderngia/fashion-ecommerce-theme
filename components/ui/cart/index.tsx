@@ -1,40 +1,37 @@
 import { NextPage } from "next";
 import { Products } from "types/product";
-import { CardProductCart, CardProductItem } from "components/ui/card";
+import { CardProductCart } from "components/ui/card";
 import styles from "./index.module.scss";
 import { MouseEventHandler, useEffect, useState } from "react";
 import { data } from "data/product";
-import { ButtonMain } from "../button";
+import { ButtonMain, ButtonSub } from "../button";
 import { Close } from "../icons";
+import { useAppSelector } from "redux/hook";
+import { selectCart, selectCartList } from "redux/action/cart";
 interface CartBarProps {
   // data: Products[] | null;
   onClick: MouseEventHandler;
   onClickClose: MouseEventHandler;
-  cart: Products[];
   sizeSelected?: string;
   colorSelected?: string;
 }
 
-export const CartBar: NextPage<CartBarProps> = ({
-  onClick,
-  onClickClose,
-  cart,
-  sizeSelected,
-  colorSelected,
-}) => {
+export const CartBar: NextPage<CartBarProps> = ({ onClick, onClickClose }) => {
+  const cart = useAppSelector(selectCartList);
+
   const [totalPrice, setTotalPrice] = useState<number>(0);
 
   useEffect(() => {
     setTotalPrice(
       cart &&
         cart.reduce(
-          (accumulator, current: Products) =>
-            accumulator + current.priceItem * current.amount,
+          (total: any, item: Products) => total + item.priceItem * item.amount,
           0
         )
     );
-
   }, [cart]);
+
+
   return (
     <div className={styles["root"]}>
       <div onClick={onClick} className={styles["background"]}></div>
@@ -44,9 +41,20 @@ export const CartBar: NextPage<CartBarProps> = ({
         <Close customClass={styles["close"]} onClick={onClickClose} />
         <div className={styles["cart"]}>
           {cart &&
-            cart.length > 0 &&
+            cart?.length > 0 &&
             cart?.map(
-              ({ nameItem, imgItem, priceItem, urlItem }, index: number) => {
+              (
+                {
+                  nameItem,
+                  imgItem,
+                  priceItem,
+                  urlItem,
+                  sizeSelected,
+                  colorSelected,
+                  amount,
+                }: Products,
+                index: number
+              ) => {
                 return (
                   <CardProductCart
                     className={styles["card"]}
@@ -57,6 +65,7 @@ export const CartBar: NextPage<CartBarProps> = ({
                     sizeItem={sizeSelected}
                     colorItem={colorSelected}
                     price={priceItem}
+                    qualityItem={amount}
                   />
                 );
               }
@@ -65,10 +74,11 @@ export const CartBar: NextPage<CartBarProps> = ({
 
         <div className={styles["total"]}>
           <h3>Total</h3>
-          <h3 className={styles["price"]}>{totalPrice} VND</h3>
+          <p className={styles["price"]}>{totalPrice.toLocaleString()} VND</p>
         </div>
         <div className={styles["checkout"]}>
-          <ButtonMain type="submit">Checkout</ButtonMain>
+        <ButtonSub type="submit">Giỏ Hàng</ButtonSub>
+          <ButtonMain type="submit">Thanh Toán</ButtonMain>
         </div>
       </div>
     </div>

@@ -3,33 +3,29 @@ import { ButtonMain } from "components/ui/button";
 import Divider from "components/ui/divider";
 import { data } from "data/store";
 import {
-  getProductByCategory,
   getProductBySlug,
-  getProductPath,
+  getProductPath
 } from "lib/productService";
 import { GetStaticProps, NextPage } from "next";
 import router from "next/dist/client/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Products } from "types/product";
 
 import { headerLayouts } from "@/components/container/header";
 import InputColor from "@/components/ui/form/input/color";
-import InputNumber from "@/components/ui/form/input/number";
 import InputSize from "@/components/ui/form/input/size";
 import Img from "@/components/ui/img";
 import { ReturnUpBack } from "@styled-icons/ionicons-outline/ReturnUpBack";
 
+import { addToCart } from "redux/action/cart";
+import { useAppDispatch } from "redux/hook";
 import styles from "./[slug].module.scss";
-import classnames from "classnames";
 
 interface SingleProductProps {
   product: Products;
   // productCategory: Products;
 }
-interface SelectedOption {
-  colorSelected: string;
-  sizeSelected: string;
-}
+
 const SingleProduct: NextPage<SingleProductProps> = ({
   product,
   // productCategory,
@@ -37,60 +33,15 @@ const SingleProduct: NextPage<SingleProductProps> = ({
   // const similarList = productCategory?.filter(
   //   ({ id }: Products) => id !== product.id
   // );
-  const [selectedOptions, setSelectedOptions] = useState<SelectedOption>({
-    colorSelected: "",
-    sizeSelected: "",
-  });
-  const [cart, setCart] = useState<any[]>([]);
+
+  const [colorSelected, setColorSelected] = useState<string>("");
+  const [sizeSelected, setSizeSelected] = useState<string>("");
   const layout = "store";
   const HeaderLayout = headerLayouts[layout] || headerLayouts.default;
+  const dispatch = useAppDispatch();
 
-  const handleAddToCart = (product: Products, selectedOptions: any) => {
-    setCart((prev): Products[] => {
-      const exist = prev.find((x: Products) => x.id === product.id);
-      if (exist) {
-        return prev.map((item) => {
-          if (item.id === product.id) {
-            if (item.amount < item.qualityItem) {
-              return { ...item, amount: item.amount + 1, ...selectedOptions };
-            } else {
-              return { ...item, amount: item.qualityItem, ...selectedOptions };
-            }
-          } else {
-            return item;
-          }
-        });
-      }
 
-      return [...prev, { ...product, amount: 1 }];
-    });
-  };
 
-  const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedOptions({
-      ...selectedOptions,
-      colorSelected: event.target.value,
-    });
-    console.log(event.target.value);
-  };
-
-  const handleSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedOptions({
-      ...selectedOptions,
-      sizeSelected: event.target.value,
-    });
-    console.log(event.target.value);
-  };
-
-  // const handleAddToCart = (product: Products, options: any) => {
-  // const index = cart.find(({ id }: Products) => id === product.id);
-  // if (index !== -1) {
-  //   cart[index].amount += cart[index].amount;
-  // } else {
-  //   cart.push({ product, options });
-  // }
-  //   console.log(product, options, " options");
-  // };
   // const handleRemoveFromCart = (product: Products) => {
   //   setCart((cart): Products[] => {
   //     return cart.map((item) => {
@@ -107,7 +58,7 @@ const SingleProduct: NextPage<SingleProductProps> = ({
   // };
   return (
     <>
-      <HeaderLayout cart={cart} data={data.nav} layout={layout}></HeaderLayout>
+      <HeaderLayout data={data.nav} layout={layout}></HeaderLayout>
       <LayoutProduct>
         <div className={styles["root"]}>
           <div className={styles["product"]}>
@@ -132,7 +83,9 @@ const SingleProduct: NextPage<SingleProductProps> = ({
                   <div className={styles["row"]}>
                     <InputColor
                       listColor={product.colorItem}
-                      onChange={handleColorChange}
+                      onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                        setColorSelected(event.target.value)
+                      }
                     />
                   </div>
                 )}
@@ -141,18 +94,20 @@ const SingleProduct: NextPage<SingleProductProps> = ({
                   <div className={styles["row"]}>
                     <InputSize
                       listSize={product.sizeItem}
-                      onChange={handleSizeChange}
+                      onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                        setSizeSelected(event.target.value)
+                      }
                     />
                   </div>
                 )}
                 <div className={styles["cta"]}>
-                  {/* <InputNumber className={styles["qty"]} /> */}
                   <ButtonMain
-                    disabled={
-                      !selectedOptions.colorSelected ||
-                      !selectedOptions.sizeSelected
+                    disabled={!colorSelected || !sizeSelected}
+                    onClick={() =>
+                      dispatch(
+                        addToCart({ product, colorSelected, sizeSelected })
+                      )
                     }
-                    onClick={() => handleAddToCart(product, selectedOptions)}
                   >
                     Add to cart
                   </ButtonMain>
