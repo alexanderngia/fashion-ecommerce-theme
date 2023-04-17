@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { cartSlice, CartState } from "./action/cart";
+import { cartSlice } from "./action/cart";
 export const store = configureStore({
   reducer: {
-    cart: cartSlice.reducer
+    cart: cartSlice.reducer,
   },
 });
 

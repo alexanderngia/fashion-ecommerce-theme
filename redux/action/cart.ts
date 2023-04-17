@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "./../store";
 import { Products } from "types/product";
-import { stringify } from "querystring";
 
 export interface CartState {
   list: Products[];

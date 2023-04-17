@@ -17,8 +17,8 @@ interface CardProps {
 
 interface Product extends CardProps {
   price?: number;
-  colorItem?: string;
-  sizeItem?: string;
+  colorItem?: string[];
+  sizeItem?: string[];
   qualityItem?: number;
 }
 export const CardPost: NextPage<CardProps> = ({
