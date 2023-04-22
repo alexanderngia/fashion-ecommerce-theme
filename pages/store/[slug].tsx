@@ -2,9 +2,11 @@ import LayoutProduct from "components/container/layout/product";
 import { ButtonMain } from "components/ui/button";
 import Divider from "components/ui/divider";
 import { data } from "data/store";
+
 import {
   getProductBySlug,
-  getProductPath
+  getProductPath,
+  getProducts,
 } from "lib/productService";
 import { GetStaticProps, NextPage } from "next";
 import router from "next/dist/client/router";
@@ -20,42 +22,26 @@ import { ReturnUpBack } from "@styled-icons/ionicons-outline/ReturnUpBack";
 import { addToCart } from "redux/action/cart";
 import { useAppDispatch } from "redux/hook";
 import styles from "./[slug].module.scss";
+import { CarouselProduct } from "@/components/ui/carousel";
 
 interface SingleProductProps {
   product: Products;
-  // productCategory: Products;
+  productList: Products[];
 }
 
 const SingleProduct: NextPage<SingleProductProps> = ({
   product,
-  // productCategory,
+  productList,
 }) => {
-  // const similarList = productCategory?.filter(
-  //   ({ id }: Products) => id !== product.id
-  // );
-
   const [colorSelected, setColorSelected] = useState<string>("");
   const [sizeSelected, setSizeSelected] = useState<string>("");
   const layout = "store";
   const HeaderLayout = headerLayouts[layout] || headerLayouts.default;
   const dispatch = useAppDispatch();
-
-
-
-  // const handleRemoveFromCart = (product: Products) => {
-  //   setCart((cart): Products[] => {
-  //     return cart.map((item) => {
-  //       if (item.id === product.id) {
-  //         if (item.amount > 1) {
-  //           return { ...item, amount: item.amount - 1 };
-  //         } else {
-  //           return setCart(cart.filter((x) => x.id !== product.id));
-  //         }
-  //       }
-  //       return item;
-  //     });
-  //   });
-  // };
+  const productCategory = productList.filter(
+    ({ categoryItem, idItem }: Products) =>
+      categoryItem === product.categoryItem && idItem !== product.idItem
+  );
   return (
     <>
       <HeaderLayout data={data.nav} layout={layout}></HeaderLayout>
@@ -127,27 +113,25 @@ const SingleProduct: NextPage<SingleProductProps> = ({
               <Divider />
             </div>
           </div>
-          <div className={styles["product-des"]}>
-            <h2>Description</h2>
+          <div className={styles["row"]}>
+            <h2>Detail</h2>
+            <span dangerouslySetInnerHTML={{ __html: product.bodyHtmlItem }} />
           </div>
-          <div className={styles["ingredient"]}>
+          <Divider />
+          <div className={styles["row"]}>
             <h2>Ingredient</h2>
           </div>
-          <div className={styles["good-to-know"]}>
+          <Divider />
+          <div className={styles["row"]}>
             <h2>Good To Know</h2>
           </div>
-          {/* {similarList && (
-            <div className={styles["similar"]}>
+          <Divider />
+          {productCategory && (
+            <div className={styles["row"]}>
               <h2>Similar</h2>
-              <div className={styles["container"]}>
-                <CarouselProduct
-              type="product"
-              list={similarList}
-              classCard={styles["similarCard"]}
-            />
-              </div>
+              <CarouselProduct data={productCategory}  customArrow={styles["pagination"]}/>
             </div>
-          )} */}
+          )}
         </div>
       </LayoutProduct>
     </>
@@ -158,14 +142,11 @@ export default SingleProduct;
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug }: any = params;
   const product = await getProductBySlug(slug);
-  const id = product?.idItem;
-  // const productCategory = await getProductByCategory(product.categoryItem);
-
+  const productList = await getProducts();
   return {
     props: {
+      productList,
       product,
-      id,
-      // productCategory,
     },
   };
 };

@@ -3,6 +3,7 @@
 @import "styles/responsive";
 .slick-slider {
   position: relative;
+  width: 100%;
   @include flex();
 
   height: 40rem;

@@ -168,10 +168,7 @@
     }
   }
 
-  .ingredient,
-  .variant,
-  .good-to-know,
-  .similar {
+  .row {
     @include padding-2-5();
     width: 100%;
     h2 {
@@ -180,15 +177,8 @@
     .container {
       width: 100%;
     }
-  }
-
-  .similar {
-    .container {
-      overflow-x: hidden;
-
-      .similarCard {
-        width: 100%;
-      }
+    .pagination {
+      display: none;
     }
   }
 }

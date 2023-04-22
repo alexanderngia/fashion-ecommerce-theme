@@ -4,16 +4,18 @@ import Img from "components/ui/img";
 import { NextPage } from "next";
 import React from "react";
 import Slider from "react-slick";
-import { CarouselData, CarouselProductData } from "types/carousel";
+import { CarouselData } from "types/carousel";
 import styles from "./index.module.scss";
+import { Products } from "types/product";
 interface CarouselProps {
   data: CarouselData[];
 }
 interface CarouselProductProps {
-  data: CarouselProductData[];
+  data: Products[];
   customClass?: string;
   customCont?: string;
   customCardProduct?: string;
+  customArrow?: string;
 }
 
 export const CarouselImg: NextPage<CarouselProps> = ({ data }) => {
@@ -35,6 +37,7 @@ export const CarouselProduct: NextPage<CarouselProductProps> = ({
   customClass,
   customCont,
   customCardProduct,
+  customArrow,
 }) => {
   var settings = {
     dots: false,
@@ -94,7 +97,7 @@ export const CarouselProduct: NextPage<CarouselProductProps> = ({
               }
             )}
         </Slider>
-        <div className={styles["decord-arrow"]}>
+        <div className={(classnames(styles["decord-arrow"]), customArrow)}>
           <p>Vuốt sang trái</p>
           <div className={styles["right-arrow-white"]}></div>
         </div>

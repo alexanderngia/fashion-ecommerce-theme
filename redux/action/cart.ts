@@ -26,7 +26,7 @@ export const cartSlice = createSlice({
       const { product, colorSelected, sizeSelected } = action.payload;
       const exist = state.list.find(
         (item) =>
-          item.id === product.id &&
+          item.idItem === product.idItem &&
           item.colorSelected === colorSelected &&
           item.sizeSelected === sizeSelected
       );
@@ -47,10 +47,37 @@ export const cartSlice = createSlice({
         localStorage.setItem("CART", JSON.stringify(state.list));
       }
     },
+    removeFromCart: (
+      state: CartState,
+      action: PayloadAction<{
+        idItem: string;
+        colorSelected: string;
+        sizeSelected: string;
+      }>
+    ) => {
+      const { idItem, colorSelected, sizeSelected } = action.payload;
+      const exist = state.list.find(
+        (item) =>
+          item.idItem === idItem &&
+          item.colorSelected === colorSelected &&
+          item.sizeSelected === sizeSelected
+      );
+      if (exist)
+        if (exist.amount > 1) {
+          exist.amount--;
+        } else {
+          state.list = state.list.filter(
+            (items: Products) =>
+              items.idItem !== idItem ||
+              items.colorSelected !== colorSelected ||
+              items.sizeSelected !== sizeSelected
+          );
+        }
+    },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, removeFromCart } = cartSlice.actions;
 
 export const selectCart = (state: RootState) => state.cart;
 export const selectCartList = (state: RootState) => state.cart.list;

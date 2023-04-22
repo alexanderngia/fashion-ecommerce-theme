@@ -1,13 +1,15 @@
-import { NextPage } from "next";
-import { Products } from "types/product";
 import { CardProductCart } from "components/ui/card";
-import styles from "./index.module.scss";
+import { NextPage } from "next";
 import { MouseEventHandler, useEffect, useState } from "react";
-import { data } from "data/product";
-import { ButtonMain, ButtonSub } from "../button";
-import { Close } from "../icons";
-import { useAppSelector } from "redux/hook";
-import { selectCart, selectCartList } from "redux/action/cart";
+import { selectCartList } from "redux/action/cart";
+import { useAppDispatch, useAppSelector } from "redux/hook";
+import { Products } from "types/product";
+import { ButtonMain } from "../button";
+import { Close } from "components/ui/icons";
+import styles from "./index.module.scss";
+import { removeFromCart } from "redux/action/cart";
+import { useRouter } from "next/router";
+
 interface CartBarProps {
   // data: Products[] | null;
   onClick: MouseEventHandler;
@@ -18,6 +20,8 @@ interface CartBarProps {
 
 export const CartBar: NextPage<CartBarProps> = ({ onClick, onClickClose }) => {
   const cart = useAppSelector(selectCartList);
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const [totalPrice, setTotalPrice] = useState<number>(0);
 
@@ -30,7 +34,6 @@ export const CartBar: NextPage<CartBarProps> = ({ onClick, onClickClose }) => {
         )
     );
   }, [cart]);
-
 
   return (
     <div className={styles["root"]}>
@@ -45,6 +48,7 @@ export const CartBar: NextPage<CartBarProps> = ({ onClick, onClickClose }) => {
             cart?.map(
               (
                 {
+                  idItem,
                   nameItem,
                   imgItem,
                   priceItem,
@@ -57,7 +61,11 @@ export const CartBar: NextPage<CartBarProps> = ({ onClick, onClickClose }) => {
               ) => {
                 return (
                   <CardProductCart
-                    className={styles["card"]}
+                    onClick={() =>
+                      dispatch(
+                        removeFromCart({ idItem, colorSelected, sizeSelected })
+                      )
+                    }
                     key={imgItem + nameItem + index}
                     href={`store/${urlItem}`}
                     title={nameItem}
@@ -71,14 +79,22 @@ export const CartBar: NextPage<CartBarProps> = ({ onClick, onClickClose }) => {
               }
             )}
         </div>
-
+        <div className={styles["note"]}>
+          <p>Đã bao gồm thuế</p>
+          <p>Phí ship sẽ được tính khi thanh toán</p>
+        </div>
         <div className={styles["total"]}>
           <h3>Total</h3>
           <p className={styles["price"]}>{totalPrice.toLocaleString()} VND</p>
         </div>
         <div className={styles["checkout"]}>
-        <ButtonSub type="submit">Giỏ Hàng</ButtonSub>
-          <ButtonMain type="submit">Thanh Toán</ButtonMain>
+          <ButtonMain
+            disabled={cart.length < 0}
+            onClick={() => router.push("/cart")}
+            type="button"
+          >
+            Thanh Toán
+          </ButtonMain>
         </div>
       </div>
     </div>

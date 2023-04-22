@@ -1,9 +1,9 @@
 import { CarouselProduct } from "@/components/ui/carousel";
 import { NextPage } from "next";
-import { CarouselProductData } from "types/carousel";
 import styles from "./index.module.scss";
+import { Products } from "types/product";
 export interface BestSellerProps {
-  data: CarouselProductData[];
+  data: Products[];
 }
 
 const BestSeller: NextPage<BestSellerProps> = ({ data }) => {
@@ -13,12 +13,7 @@ const BestSeller: NextPage<BestSellerProps> = ({ data }) => {
         <h2>BestSeller</h2>
         <span>BestSeller</span>
       </div>
-      <CarouselProduct
-        customCont={styles["carousel-container"]}
-        customCardProduct={styles["productCard"]}
-        customClass={styles["card"]}
-        data={data}
-      />
+      <CarouselProduct data={data} />
     </div>
   );
 };

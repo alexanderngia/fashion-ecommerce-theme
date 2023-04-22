@@ -10,7 +10,7 @@ import Banner from "components/ui/banner";
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import styles from "styles/index.module.scss";
+import styles from "./index.module.scss";
 
 import { getProducts } from "lib/productService";
 import { data } from "data/home";

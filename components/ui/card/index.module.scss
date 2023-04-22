@@ -116,8 +116,8 @@
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
-      -webkit-line-clamp: 2; /* number of lines to show */
-      line-clamp: 2;
+      -webkit-line-clamp: 1; /* number of lines to show */
+      line-clamp: 1;
       -webkit-box-orient: vertical;
     }
 
@@ -127,8 +127,6 @@
   }
 }
 .cardProductItem {
-  cursor: pointer;
-
   @include flex();
   justify-content: flex-start;
   width: 300px;
@@ -147,7 +145,6 @@
     height: 100%;
     font-weight: 400;
     color: $black;
-    align-items: flex-start;
     flex-wrap: wrap;
     column-gap: 10px;
     p {
@@ -157,7 +154,7 @@
       padding: 0;
       width: 100%;
       text-transform: capitalize;
-      font-weight: 700;
+      font-weight: 900;
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
@@ -193,13 +190,24 @@
         transition: all 300ms ease-in-out;
       }
     }
-    .size {
-      font-weight: 700;
+    .size,
+    .quality {
+      font-weight: 900;
       font-size: 1rem;
       font-family: $font-head;
     }
-    .price {
+    .container {
+      @include flex();
+      justify-content: space-between;
       width: 100%;
+      .price {
+        width: 100%;
+        font-weight: 900;
+        font-size: 0.8rem;
+      }
+      .trash {
+        width: 12px;
+      }
     }
   }
 }

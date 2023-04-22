@@ -1,10 +1,10 @@
 import Link from "next/link";
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import styles from "./index.module.scss";
 import { NextPage } from "next";
 import classnames from "classnames";
 import Img from "components/ui/img";
-import { Close } from "../icons";
+import { Trash } from "components/ui/icons";
 interface CardProps {
   title: string;
   image: string;
@@ -13,6 +13,7 @@ interface CardProps {
   href: string;
   customClass?: string;
   classThumb?: string;
+  onClick?: MouseEventHandler;
 }
 
 interface Product extends CardProps {
@@ -127,29 +128,33 @@ export const CardProductCart: NextPage<Product> = ({
   qualityItem,
   customClass,
   classThumb,
+  onClick,
   ...props
 }) => {
   // var str = price.toString().split(".");
   // str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return (
-    <Link href={href}>
-      <div className={`${styles["cardProductItem"]} ${className}`} {...props}>
-        <div className={`${styles["thumb"]} ${classThumb}`}>
-          <Img alt={title} src={image} />
-        </div>
+    <div className={`${styles["cardProductItem"]} ${className}`} {...props}>
+      <div className={`${styles["thumb"]} ${classThumb}`}>
+        <Img alt={title} src={image} />
+      </div>
 
-        <div className={classnames(styles["info"], customClass)}>
+      <div className={classnames(styles["info"], customClass)}>
+        <Link href={href}>
           <p className={styles["title"]}>{title}</p>
+        </Link>
 
-          <span
-            className={styles["color"]}
-            style={{ backgroundColor: `${colorItem}` }}
-          ></span>
-          <p className={styles["size"]}>{sizeItem}</p>
-          {qualityItem && <p>x {qualityItem}</p>}
+        <span
+          className={styles["color"]}
+          style={{ backgroundColor: `${colorItem}` }}
+        ></span>
+        <p className={styles["size"]}>{sizeItem}</p>
+        {qualityItem && <p className={styles["quality"]}>x {qualityItem}</p>}
+        <div className={styles["container"]}>
           <p className={styles["price"]}>{price?.toLocaleString()} VND</p>
+          <Trash customClass={styles["trash"]} onClick={onClick} />
         </div>
       </div>
-    </Link>
+    </div>
   );
 };

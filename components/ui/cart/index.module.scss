@@ -18,6 +18,7 @@
     right: 0;
     z-index: 1000000;
     background-color: $black-hover;
+    cursor: pointer;
   }
   .container {
     @include flexCol();
@@ -42,10 +43,9 @@
     .title {
       margin-bottom: 2rem;
     }
-    a {
-      padding: 1.1rem 0;
-    }
+
     .cart {
+      row-gap: 1.5rem;
       @include flexCol();
       justify-content: flex-start;
       align-items: flex-start;
@@ -57,6 +57,13 @@
       }
       @include desktop-l {
         height: 65%;
+      }
+    }
+    .note {
+      width: 100%;
+      @include Text();
+      p {
+        padding: 0;
       }
     }
     .total {
@@ -80,7 +87,7 @@
     .checkout {
       width: 100%;
       @include flex();
-      justify-content: space-between;
+      justify-content: flex-end;
 
       button {
         margin-right: 0;

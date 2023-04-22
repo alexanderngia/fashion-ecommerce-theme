@@ -11,7 +11,7 @@ export interface Products {
   colorItem: string[];
   sizeItem: string[];
   priceItem: number;
-  categoryItem?: string;
+  categoryItem: string;
   keywordTagItem?: string;
   titleTagItem?: string;
   descripTagItem?: string;
