@@ -14,6 +14,9 @@
   @include flex();
   flex-direction: column;
 }
+@mixin padding-2() {
+  padding: 2%;
+}
 @mixin padding-2-5() {
   padding: 2% 5%;
 }
