@@ -20,6 +20,48 @@ export const cartSlice = createSlice({
     handleCartToggle: (state: CartState) => {
       state.cartToggle = !state.cartToggle;
     },
+    increaseQuantityItem: (
+      state: CartState,
+      action: PayloadAction<{
+        idItem: string;
+        sizeItem: string;
+        colorItem: string;
+      }>
+    ) => {
+      const { idItem, sizeItem, colorItem } = action.payload;
+      const exist = state.list.find(
+        (item) =>
+          item.idItem === idItem &&
+          item.colorSelected === colorItem &&
+          item.sizeSelected === sizeItem
+      );
+      if (exist)
+        if (exist.amount < exist.qualityItem) {
+          exist.amount++;
+        } else {
+          exist.amount === exist.qualityItem;
+        }
+    },
+    decreaseQuantityItem: (
+      state: CartState,
+      action: PayloadAction<{
+        idItem: string;
+        sizeItem: string;
+        colorItem: string;
+      }>
+    ) => {
+      const { idItem, sizeItem, colorItem } = action.payload;
+      const exist = state.list.find(
+        (item) =>
+          item.idItem === idItem &&
+          item.colorSelected === colorItem &&
+          item.sizeSelected === sizeItem
+      );
+      if (exist)
+        if (exist.amount > 1) {
+          exist.amount--;
+        }
+    },
     addToCart: (
       state: CartState,
       action: PayloadAction<{
@@ -83,8 +125,13 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, removeFromCart, handleCartToggle } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  handleCartToggle,
+  decreaseQuantityItem,
+  increaseQuantityItem,
+} = cartSlice.actions;
 
 export const selectCart = (state: RootState) => state.cart;
 export const selectCartList = (state: RootState) => state.cart.list;

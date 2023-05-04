@@ -3,6 +3,7 @@ import { ButtonMain, ButtonSub } from "components/ui/button";
 import {
   CardProduct,
   CardProductCart,
+  CardProductCartQuantity,
   CardProductItem,
 } from "components/ui/card";
 import Filter from "components/ui/filter";
@@ -48,45 +49,50 @@ const Cart: NextPage<CartProps> = () => {
           <div className={styles["cart"]}>
             <h4>ITEMS</h4>
             <Divider />
-            {cart &&
-              cart?.length > 0 &&
-              cart?.map(
-                (
-                  {
-                    idItem,
-                    nameItem,
-                    imgItem,
-                    priceItem,
-                    urlItem,
-                    sizeSelected,
-                    colorSelected,
-                    amount,
-                  }: Products,
-                  index: number
-                ) => {
-                  return (
-                    <CardProductCart
-                      onClick={() =>
-                        dispatch(
-                          removeFromCart({
-                            idItem,
-                            colorSelected,
-                            sizeSelected,
-                          })
-                        )
-                      }
-                      key={imgItem + nameItem + index}
-                      href={`store/${urlItem}`}
-                      title={nameItem}
-                      image={imgItem}
-                      sizeItem={sizeSelected}
-                      colorItem={colorSelected}
-                      price={priceItem}
-                      qualityItem={amount}
-                    />
-                  );
-                }
-              )}
+            <div className={styles["cartList"]}>
+              <div className={styles["cartListItem"]}>
+                {cart &&
+                  cart?.length > 0 &&
+                  cart?.map(
+                    (
+                      {
+                        idItem,
+                        nameItem,
+                        imgItem,
+                        priceItem,
+                        urlItem,
+                        sizeSelected,
+                        colorSelected,
+                        amount,
+                      }: Products,
+                      index: number
+                    ) => {
+                      return (
+                        <CardProductCartQuantity
+                          onClick={() =>
+                            dispatch(
+                              removeFromCart({
+                                idItem,
+                                colorSelected,
+                                sizeSelected,
+                              })
+                            )
+                          }
+                          key={imgItem + nameItem + index}
+                          href={`store/${urlItem}`}
+                          title={nameItem}
+                          image={imgItem}
+                          sizeItem={sizeSelected}
+                          colorItem={colorSelected}
+                          price={priceItem}
+                          qualityItem={amount}
+                          idItem={idItem}
+                        />
+                      );
+                    }
+                  )}
+              </div>
+            </div>
           </div>
           <div className={styles["sidebar"]}>
             <div className={styles["total"]}>

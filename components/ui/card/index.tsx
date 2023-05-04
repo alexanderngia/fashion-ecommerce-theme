@@ -5,6 +5,10 @@ import { NextPage } from "next";
 import classnames from "classnames";
 import Img from "components/ui/img";
 import { Trash } from "components/ui/icons";
+import InputNumber from "@/components/ui/form/input/number";
+import { decreaseQuantityItem, increaseQuantityItem } from "redux/action/cart";
+import { useAppDispatch } from "redux/hook";
+
 interface CardProps {
   title: string;
   image: string;
@@ -21,6 +25,14 @@ interface Product extends CardProps {
   colorItem?: string[];
   sizeItem?: string[];
   qualityItem?: number;
+  idItem?: string;
+}
+interface ProductCart extends CardProps {
+  price: number;
+  colorItem: string;
+  sizeItem: string;
+  qualityItem: number;
+  idItem: string;
 }
 export const CardPost: NextPage<CardProps> = ({
   title,
@@ -153,6 +165,73 @@ export const CardProductCart: NextPage<Product> = ({
         <div className={styles["container"]}>
           <p className={styles["price"]}>{price?.toLocaleString()} VND</p>
           <Trash customClass={styles["trash"]} onClick={onClick} />
+        </div>
+      </div>
+    </div>
+  );
+};
+export const CardProductCartQuantity: NextPage<ProductCart> = ({
+  title,
+  image,
+  author,
+  className,
+  price,
+  href,
+  sizeItem,
+  colorItem,
+  qualityItem,
+  customClass,
+  classThumb,
+  idItem,
+  onClick,
+  ...props
+}) => {
+  const dispatch = useAppDispatch();
+  return (
+    <div
+      className={classnames(
+        styles["cardProductItem"],
+        styles["cardProductCartQuantity"],
+        className
+      )}
+      {...props}
+    >
+      <div className={styles["col"]}>
+        <div className={classnames(styles["thumb"], classThumb)}>
+          <Img alt={title} src={image} />
+        </div>
+
+        <div className={classnames(styles["info"], customClass)}>
+          <Link href={href}>
+            <p className={styles["title"]}>{title}</p>
+          </Link>
+
+          <span
+            className={styles["color"]}
+            style={{ backgroundColor: `${colorItem}` }}
+          ></span>
+          <p className={styles["size"]}>{sizeItem}</p>
+          <Trash customClass={styles["trash"]} onClick={onClick} />
+        </div>
+      </div>
+      <div className={styles["col"]}>
+        {qualityItem !== undefined &&
+          sizeItem !== undefined &&
+          colorItem !== undefined && (
+            <InputNumber
+              decrement={() =>
+                dispatch(decreaseQuantityItem({ idItem, sizeItem, colorItem }))
+              }
+              increment={() =>
+                dispatch(increaseQuantityItem({ idItem, sizeItem, colorItem }))
+              }
+              valueDefault={qualityItem}
+            />
+          )}
+      </div>
+      <div className={styles["col"]}>
+        <div className={styles["container"]}>
+          <p className={styles["price"]}>{price?.toLocaleString()} VND</p>
         </div>
       </div>
     </div>

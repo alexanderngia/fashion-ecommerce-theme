@@ -4,7 +4,7 @@ import { MouseEventHandler, useEffect, useState } from "react";
 import { handleCartToggle, selectCartList } from "redux/action/cart";
 import { useAppDispatch, useAppSelector } from "redux/hook";
 import { Products } from "types/product";
-import { ButtonMain } from "../button";
+import { ButtonMain, ButtonSub } from "../button";
 import { Close } from "components/ui/icons";
 import styles from "./index.module.scss";
 import { removeFromCart } from "redux/action/cart";
@@ -80,7 +80,7 @@ export const CartBar: NextPage<CartBarProps> = ({ onClick }) => {
         </div>
         <div className={styles["note"]}>
           <p>
-            <strong>Đã bao gồm thuế </strong>
+            <strong>Đã bao gồm thuế 10%</strong>
             <strong>{(totalPrice * 0.1).toLocaleString()} VND</strong>
           </p>
           <p>Phí ship sẽ được tính khi thanh toán</p>
@@ -92,6 +92,16 @@ export const CartBar: NextPage<CartBarProps> = ({ onClick }) => {
           </p>
         </div>
         <div className={styles["checkout"]}>
+        <ButtonSub
+            disabled={cart.length < 0}
+            onClick={() => {
+              dispatch(handleCartToggle());
+              router.push("/cart");
+            }}
+            type="button"
+          >
+            Giỏ Hàng
+          </ButtonSub>
           <ButtonMain
             disabled={cart.length < 0}
             onClick={() => {

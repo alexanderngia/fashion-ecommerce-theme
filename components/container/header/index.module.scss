@@ -33,7 +33,7 @@
   }
   .icon {
     padding: 3% 5%;
-
+    @include flex();
     span {
       margin-left: 2rem !important;
     }

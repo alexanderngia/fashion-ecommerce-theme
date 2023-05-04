@@ -205,9 +205,23 @@
         font-weight: 900;
         font-size: 0.8rem;
       }
-      .trash {
-        width: 12px;
-      }
+    }
+  }
+}
+.trash {
+  width: 12px;
+}
+.cardProductCartQuantity {
+  width: 100%;
+  justify-content: space-between;
+  .col {
+    @include flex();
+    position: relative;
+    height: 100%;
+    width: 20%;
+    &:first-of-type {
+      width: 40%;
+      max-width: 350px;
     }
   }
 }
