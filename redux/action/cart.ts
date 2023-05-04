@@ -5,16 +5,21 @@ import { Products } from "types/product";
 
 export interface CartState {
   list: Products[];
+  cartToggle: boolean;
 }
 
 const initialState: CartState = {
   list: [],
+  cartToggle: false,
 };
 
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    handleCartToggle: (state: CartState) => {
+      state.cartToggle = !state.cartToggle;
+    },
     addToCart: (
       state: CartState,
       action: PayloadAction<{
@@ -46,6 +51,7 @@ export const cartSlice = createSlice({
         });
         localStorage.setItem("CART", JSON.stringify(state.list));
       }
+      state.cartToggle = !state.cartToggle;
     },
     removeFromCart: (
       state: CartState,
@@ -77,9 +83,11 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, handleCartToggle } =
+  cartSlice.actions;
 
 export const selectCart = (state: RootState) => state.cart;
 export const selectCartList = (state: RootState) => state.cart.list;
+export const selectCartToggle = (state: RootState) => state.cart.cartToggle;
 
 export default cartSlice.reducer;

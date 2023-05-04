@@ -9,6 +9,8 @@ import { SearchBar } from "components/ui/search";
 import { Products } from "types/product";
 
 import { Search, Cart, CustomerService } from "components/ui/icons";
+import { useAppDispatch, useAppSelector } from "redux/hook";
+import { handleCartToggle, selectCartToggle } from "redux/action/cart";
 interface HeaderProps {
   layout: "home" | "store" | "default";
   data: IText[];
@@ -16,14 +18,12 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ layout, data }) => {
   const [searchToggle, setSearchToggle] = useState<boolean>(false);
-  const [cartToggle, setCartToggle] = useState<boolean>(false);
-
+  const cartToggle = useAppSelector(selectCartToggle);
+  const dispatch = useAppDispatch();
   const onToggleSearch = async () => {
     setSearchToggle(!searchToggle);
   };
-  const onToggleCart = async () => {
-    setCartToggle(!cartToggle);
-  };
+
   const onToggleChat = async () => {};
 
   switch (layout) {
@@ -46,7 +46,7 @@ const Header: React.FC<HeaderProps> = ({ layout, data }) => {
                 customClass={styles["searchIcon"]}
                 onClick={onToggleSearch}
               />
-              <Cart onClick={onToggleCart} />
+              <Cart onClick={() => dispatch(handleCartToggle())} />
               <CustomerService onClick={onToggleChat} />
             </div>
           </div>
@@ -54,7 +54,7 @@ const Header: React.FC<HeaderProps> = ({ layout, data }) => {
             <SearchBar onClickClose={onToggleSearch} onClick={onToggleSearch} />
           )}
           {cartToggle && (
-            <CartBar onClickClose={onToggleCart} onClick={onToggleCart} />
+            <CartBar onClick={() => dispatch(handleCartToggle())} />
           )}
         </>
       );
@@ -82,7 +82,7 @@ const Header: React.FC<HeaderProps> = ({ layout, data }) => {
                 customClass={styles["searchIcon"]}
                 onClick={onToggleSearch}
               />
-              <Cart onClick={onToggleCart} />
+              <Cart onClick={() => dispatch(handleCartToggle())} />
               <CustomerService onClick={onToggleChat} />
             </div>
           </div>
@@ -90,7 +90,7 @@ const Header: React.FC<HeaderProps> = ({ layout, data }) => {
             <SearchBar onClickClose={onToggleSearch} onClick={onToggleSearch} />
           )}
           {cartToggle && (
-            <CartBar onClickClose={onToggleCart} onClick={onToggleCart} />
+            <CartBar onClick={() => dispatch(handleCartToggle())} />
           )}
         </>
       );
@@ -118,7 +118,7 @@ const Header: React.FC<HeaderProps> = ({ layout, data }) => {
                 customClass={styles["searchIcon"]}
                 onClick={onToggleSearch}
               />
-              <Cart onClick={onToggleCart} />
+              <Cart onClick={() => dispatch(handleCartToggle())} />
               <CustomerService onClick={onToggleChat} />
             </div>
           </div>
@@ -126,7 +126,7 @@ const Header: React.FC<HeaderProps> = ({ layout, data }) => {
             <SearchBar onClickClose={onToggleSearch} onClick={onToggleSearch} />
           )}
           {cartToggle && (
-            <CartBar onClickClose={onToggleCart} onClick={onToggleCart} />
+            <CartBar onClick={() => dispatch(handleCartToggle())} />
           )}
         </>
       );

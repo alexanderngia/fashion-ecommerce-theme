@@ -1,7 +1,26 @@
+@import "styles/mixin";
+@import "styles/variables";
 .root {
   cursor: pointer;
   transition: all 0.2s ease-in;
   &:hover {
     transform: scale(1.2);
   }
+}
+.number-cart {
+  background-color: $black-head;
+  color: $white;
+  position: absolute;
+  text-align: center;
+  border-radius: 100%;
+  right: -8px;
+  top: -8px;
+  font-size: 0.8rem;
+  font-family: $font-p;
+  width: 15px;
+  height: 15px;
+  line-height: 1.9;
+}
+.container-cart {
+  position: relative;
 }

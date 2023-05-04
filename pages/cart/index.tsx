@@ -6,19 +6,19 @@ import {
   CardProductItem,
 } from "components/ui/card";
 import Filter from "components/ui/filter";
+import { data } from "data/store";
 import { getProducts } from "lib/productService";
 import { GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/router";
-import { data } from "data/store";
+import { addToCart, removeFromCart, selectCartList } from "redux/action/cart";
+import { useAppDispatch, useAppSelector } from "redux/hook";
 import { Products } from "types/product";
 
 import { headerLayouts } from "@/components/container/header";
-import { AngleDown } from "@styled-icons/fa-solid/AngleDown";
-
-import styles from "./index.module.scss";
-import { useAppDispatch, useAppSelector } from "redux/hook";
-import { addToCart, removeFromCart, selectCartList } from "redux/action/cart";
 import Divider from "@/components/ui/divider";
+import { AngleDown } from "@styled-icons/fa-solid/AngleDown";
+import { useEffect, useState } from "react";
+import styles from "./index.module.scss";
 
 interface CartProps {
   product: Products[];
@@ -28,6 +28,17 @@ const Cart: NextPage<CartProps> = () => {
   const HeaderLayout = headerLayouts[layout] || headerLayouts.default;
   const cart = useAppSelector(selectCartList);
   const dispatch = useAppDispatch();
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+
+  useEffect(() => {
+    setTotalPrice(
+      cart &&
+        cart.reduce(
+          (total: any, item: Products) => total + item.priceItem * item.amount,
+          0
+        ) * 1.1
+    );
+  }, [cart]);
   return (
     <>
       <HeaderLayout data={data.nav} layout={layout}></HeaderLayout>
@@ -81,7 +92,7 @@ const Cart: NextPage<CartProps> = () => {
             <div className={styles["total"]}>
               <h4>TỔNG</h4>
               <p>
-                <strong>20000000 VND</strong>
+                <strong>{totalPrice.toLocaleString()} VND</strong>
               </p>
             </div>
             <div className={styles["tax"]}>

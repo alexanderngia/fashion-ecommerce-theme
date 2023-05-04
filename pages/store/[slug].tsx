@@ -42,6 +42,13 @@ const SingleProduct: NextPage<SingleProductProps> = ({
     ({ categoryItem, idItem }: Products) =>
       categoryItem === product.categoryItem && idItem !== product.idItem
   );
+  const handleAddToCart = (
+    product: Products,
+    colorSelected: string,
+    sizeSelected: string
+  ) => {
+    dispatch(addToCart({ product, colorSelected, sizeSelected }));
+  };
   return (
     <>
       <HeaderLayout data={data.nav} layout={layout}></HeaderLayout>
@@ -90,9 +97,7 @@ const SingleProduct: NextPage<SingleProductProps> = ({
                   <ButtonMain
                     disabled={!colorSelected || !sizeSelected}
                     onClick={() =>
-                      dispatch(
-                        addToCart({ product, colorSelected, sizeSelected })
-                      )
+                      handleAddToCart(product, colorSelected, sizeSelected)
                     }
                   >
                     Add to cart
@@ -129,7 +134,10 @@ const SingleProduct: NextPage<SingleProductProps> = ({
           {productCategory && (
             <div className={styles["row"]}>
               <h2>Similar</h2>
-              <CarouselProduct data={productCategory}  customArrow={styles["pagination"]}/>
+              <CarouselProduct
+                data={productCategory}
+                customArrow={styles["pagination"]}
+              />
             </div>
           )}
         </div>

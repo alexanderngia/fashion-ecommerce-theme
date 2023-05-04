@@ -1,7 +1,7 @@
 import { CardProductCart } from "components/ui/card";
 import { NextPage } from "next";
 import { MouseEventHandler, useEffect, useState } from "react";
-import { selectCartList } from "redux/action/cart";
+import { handleCartToggle, selectCartList } from "redux/action/cart";
 import { useAppDispatch, useAppSelector } from "redux/hook";
 import { Products } from "types/product";
 import { ButtonMain } from "../button";
@@ -13,12 +13,11 @@ import { useRouter } from "next/router";
 interface CartBarProps {
   // data: Products[] | null;
   onClick: MouseEventHandler;
-  onClickClose: MouseEventHandler;
   sizeSelected?: string;
   colorSelected?: string;
 }
 
-export const CartBar: NextPage<CartBarProps> = ({ onClick, onClickClose }) => {
+export const CartBar: NextPage<CartBarProps> = ({ onClick }) => {
   const cart = useAppSelector(selectCartList);
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -41,7 +40,7 @@ export const CartBar: NextPage<CartBarProps> = ({ onClick, onClickClose }) => {
 
       <div className={styles["container"]}>
         <h3 className={styles["title"]}>Cart</h3>
-        <Close customClass={styles["close"]} onClick={onClickClose} />
+        <Close customClass={styles["close"]} onClick={onClick} />
         <div className={styles["cart"]}>
           {cart &&
             cart?.length > 0 &&
@@ -80,17 +79,25 @@ export const CartBar: NextPage<CartBarProps> = ({ onClick, onClickClose }) => {
             )}
         </div>
         <div className={styles["note"]}>
-          <p>Đã bao gồm thuế</p>
+          <p>
+            <strong>Đã bao gồm thuế </strong>
+            <strong>{(totalPrice * 0.1).toLocaleString()} VND</strong>
+          </p>
           <p>Phí ship sẽ được tính khi thanh toán</p>
         </div>
         <div className={styles["total"]}>
           <h3>Total</h3>
-          <p className={styles["price"]}>{totalPrice.toLocaleString()} VND</p>
+          <p className={styles["price"]}>
+            {(totalPrice * 1.1).toLocaleString()} VND
+          </p>
         </div>
         <div className={styles["checkout"]}>
           <ButtonMain
             disabled={cart.length < 0}
-            onClick={() => router.push("/cart")}
+            onClick={() => {
+              dispatch(handleCartToggle());
+              router.push("/cart");
+            }}
             type="button"
           >
             Thanh Toán

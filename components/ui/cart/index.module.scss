@@ -64,6 +64,10 @@
       @include Text();
       p {
         padding: 0;
+        &:first-of-type {
+          @include flex();
+          justify-content: space-between;
+        }
       }
     }
     .total {
