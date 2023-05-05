@@ -170,6 +170,53 @@ export const CardProductCart: NextPage<Product> = ({
     </div>
   );
 };
+
+export const CardProductCartSub: NextPage<Product> = ({
+  title,
+  image,
+  author,
+  className,
+  price,
+  href,
+  sizeItem,
+  colorItem,
+  qualityItem,
+  customClass,
+  classThumb,
+  onClick,
+  ...props
+}) => {
+
+  return (
+    <div
+      className={classnames(
+        styles["cardProductItem"],
+        styles["cardProductCartSub"],
+        className
+      )}
+      {...props}
+    >
+      <div className={classnames(styles["thumb"], classThumb)}>
+        <Img alt={title} src={image} />
+      </div>
+
+      <div className={classnames(styles["info"], customClass)}>
+        <Link href={href}>
+          <p className={styles["title"]}>{title}</p>
+        </Link>
+        <div className={styles["container"]}>
+          <p className={styles["price"]}>{price?.toLocaleString()} VND</p>
+        </div>
+        <span
+          className={styles["color"]}
+          style={{ backgroundColor: `${colorItem}` }}
+        ></span>
+        <p className={styles["size"]}>{sizeItem}</p>
+        {qualityItem && <p className={styles["quality"]}>x {qualityItem}</p>}
+      </div>
+    </div>
+  );
+};
 export const CardProductCartQuantity: NextPage<ProductCart> = ({
   title,
   image,

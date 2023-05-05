@@ -42,7 +42,7 @@ export const CartBar: NextPage<CartBarProps> = ({ onClick }) => {
           : []
       )
     );
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     setTotalPrice(

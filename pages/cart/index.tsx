@@ -23,7 +23,7 @@ import { Products } from "types/product";
 import { headerLayouts } from "@/components/container/header";
 import Divider from "@/components/ui/divider";
 import { AngleDown } from "@styled-icons/fa-solid/AngleDown";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import styles from "./index.module.scss";
 
 interface CartProps {
@@ -34,7 +34,10 @@ const Cart: NextPage<CartProps> = () => {
   const HeaderLayout = headerLayouts[layout] || headerLayouts.default;
   const cart = useAppSelector(selectCartList);
   const dispatch = useAppDispatch();
+  const router = useRouter();
+
   const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [note, setNote] = useState<string>("");
 
   useEffect(() => {
     const getFromLocalStorage = (key: string) => {
@@ -50,7 +53,7 @@ const Cart: NextPage<CartProps> = () => {
           : []
       )
     );
-  }, []);
+  }, [dispatch]);
   useEffect(() => {
     setTotalPrice(
       cart &&
@@ -60,6 +63,14 @@ const Cart: NextPage<CartProps> = () => {
         ) * 1.1
     );
   }, [cart]);
+
+  const handleSubmitCart = () => {
+    localStorage.setItem("NOTE_CART", JSON.stringify(note));
+    router.push("/shipping");
+  };
+  const onChangeNote = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setNote(e.target.value);
+  };
   return (
     <>
       <HeaderLayout data={data.nav} layout={layout}></HeaderLayout>
@@ -132,10 +143,12 @@ const Cart: NextPage<CartProps> = () => {
               </p>
               <p>Phí ship sẽ được tính khi thanh toán</p>
             </div>
-            <textarea className={styles["note"]} placeholder="Ghi chú" />
-            <ButtonMain onClick={() => console.log(cart, "cart current")}>
-              Đặt Hàng
-            </ButtonMain>
+            <textarea
+              onChange={onChangeNote}
+              className={styles["note"]}
+              placeholder="Ghi chú"
+            />
+            <ButtonMain onClick={handleSubmitCart}>Đặt Hàng</ButtonMain>
           </div>
         </div>
       </LayoutStore>
