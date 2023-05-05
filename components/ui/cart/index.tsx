@@ -101,14 +101,14 @@ export const CartBar: NextPage<CartBarProps> = ({ onClick }) => {
         <div className={styles["note"]}>
           <p>
             <strong>Đã bao gồm thuế 10%</strong>
-            <strong>{(totalPrice * 0.1).toLocaleString()} VND</strong>
+            <strong>{(totalPrice * 0.1)?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} VND</strong>
           </p>
           <p>Phí ship sẽ được tính khi thanh toán</p>
         </div>
         <div className={styles["total"]}>
           <h3>Total</h3>
           <p className={styles["price"]}>
-            {(totalPrice * 1.1).toLocaleString()} VND
+            {(totalPrice * 1.1)?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} VND
           </p>
         </div>
         <div className={styles["checkout"]}>

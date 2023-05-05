@@ -68,9 +68,6 @@ export const CardProduct: NextPage<Product> = ({
   classThumb,
   ...props
 }) => {
-  // var str = price.toString().split(".");
-  // str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
   return (
     <Link href={href}>
       <div className={`${styles["cardProduct"]} ${className}`} {...props}>
@@ -81,9 +78,9 @@ export const CardProduct: NextPage<Product> = ({
         <div className={classnames(styles["info"], customClass)}>
           <span>
             <p className={styles["title"]}>{title}</p>
-            {/* <p className={styles["cta"]}>DETAIL</p> */}
           </span>
-          <p className={styles["price"]}>{price?.toLocaleString()} vnd</p>
+
+          <p className={styles["price"]}>{price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} vnd</p>
         </div>
       </div>
     </Link>
@@ -103,9 +100,6 @@ export const CardProductItem: NextPage<Product> = ({
   classThumb,
   ...props
 }) => {
-  // var str = price.toString().split(".");
-  // str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
   return (
     <Link href={href}>
       <div className={`${styles["cardProductItem"]} ${className}`} {...props}>
@@ -121,7 +115,7 @@ export const CardProductItem: NextPage<Product> = ({
             style={{ backgroundColor: `${colorItem}` }}
           ></span>
           <p className={styles["size"]}>{sizeItem}</p>
-          <p className={styles["price"]}>{price?.toLocaleString()} VND</p>
+          <p className={styles["price"]}>{price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} VND</p>
         </div>
       </div>
     </Link>
@@ -163,7 +157,7 @@ export const CardProductCart: NextPage<Product> = ({
         <p className={styles["size"]}>{sizeItem}</p>
         {qualityItem && <p className={styles["quality"]}>x {qualityItem}</p>}
         <div className={styles["container"]}>
-          <p className={styles["price"]}>{price?.toLocaleString()} VND</p>
+          <p className={styles["price"]}>{price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} VND</p>
           <Trash customClass={styles["trash"]} onClick={onClick} />
         </div>
       </div>
@@ -205,7 +199,7 @@ export const CardProductCartSub: NextPage<Product> = ({
           <p className={styles["title"]}>{title}</p>
         </Link>
         <div className={styles["container"]}>
-          <p className={styles["price"]}>{price?.toLocaleString()} VND</p>
+          <p className={styles["price"]}>{price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} VND</p>
         </div>
         <span
           className={styles["color"]}
@@ -278,7 +272,7 @@ export const CardProductCartQuantity: NextPage<ProductCart> = ({
       </div>
       <div className={styles["col"]}>
         <div className={styles["container"]}>
-          <p className={styles["price"]}>{price?.toLocaleString()} VND</p>
+          <p className={styles["price"]}>{price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} VND</p>
         </div>
       </div>
     </div>

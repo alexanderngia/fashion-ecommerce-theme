@@ -134,7 +134,7 @@ const Cart: NextPage<CartProps> = () => {
             <div className={styles["total"]}>
               <h4>TỔNG</h4>
               <p>
-                <strong>{totalPrice.toLocaleString()} VND</strong>
+                <strong>{totalPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} VND</strong>
               </p>
             </div>
             <div className={styles["tax"]}>

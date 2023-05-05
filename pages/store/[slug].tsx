@@ -69,7 +69,10 @@ const SingleProduct: NextPage<SingleProductProps> = ({
                 <h1>{product.nameItem}</h1>
 
                 <p className={styles["price"]}>
-                  {product.priceItem?.toLocaleString()} vnd
+                  {product.priceItem
+                    ?.toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+                  vnd
                 </p>
 
                 {product.colorItem && (
