@@ -1,10 +1,10 @@
-import React, { MouseEventHandler } from "react";
+import React, { MouseEventHandler, useEffect } from "react";
 import Image, { ImageProps } from "next/legacy/image";
 import styles from "./index.module.scss";
 import searchIcon from "icons/search.svg";
 import classnames from "classnames";
-import { useAppSelector } from "redux/hook";
-import { selectCartList } from "redux/action/cart";
+import { useAppSelector, useAppDispatch } from "redux/hook";
+import { selectCartList, updateCart } from "redux/action/cart";
 
 interface IconsProps {
   onClick?: MouseEventHandler;
@@ -33,6 +33,22 @@ export const Search: React.FC<IconsProps> = ({ onClick, customClass }) => {
 };
 export const Cart: React.FC<IconsProps> = ({ onClick, customClass }) => {
   const cart = useAppSelector(selectCartList);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    const getFromLocalStorage = (key: string) => {
+      if (!key || typeof window === "undefined") {
+        return "";
+      }
+      return localStorage.getItem(key);
+    };
+    dispatch(
+      updateCart(
+        getFromLocalStorage("CART")
+          ? JSON.parse(getFromLocalStorage("CART") || "{}")
+          : []
+      )
+    );
+  }, []);
   return (
     <div className={styles["container-cart"]}>
       {cart?.length >= 1 && (

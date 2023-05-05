@@ -21,6 +21,7 @@
     "react-multi-carousel": "^2.8.2",
     "react-redux": "^8.0.5",
     "react-slick": "^0.29.0",
+    "redux-persist": "^6.0.0",
     "sass": "^1.53.0",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.5",

@@ -47,6 +47,19 @@ h3 {
     font-size: 2rem;
   }
 }
+h4 {
+  @include Heading();
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.1rem;
+
+  @include tablet {
+    font-size: 1rem;
+  }
+  @include desktop {
+    font-size: 1rem;
+  }
+}
 p {
   @include Text();
   font-size: 1rem;
@@ -61,7 +74,7 @@ p {
 a {
   @include Text();
   font-weight: 600;
-  color: $black-banner;
+  color: $black;
   &:hover {
     transition: 0.3s all ease-in-out;
     color: $black-hover;

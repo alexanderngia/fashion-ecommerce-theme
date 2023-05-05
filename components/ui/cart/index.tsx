@@ -1,7 +1,11 @@
 import { CardProductCart } from "components/ui/card";
 import { NextPage } from "next";
 import { MouseEventHandler, useEffect, useState } from "react";
-import { handleCartToggle, selectCartList } from "redux/action/cart";
+import {
+  handleCartToggle,
+  selectCartList,
+  updateCart,
+} from "redux/action/cart";
 import { useAppDispatch, useAppSelector } from "redux/hook";
 import { Products } from "types/product";
 import { ButtonMain, ButtonSub } from "../button";
@@ -23,6 +27,22 @@ export const CartBar: NextPage<CartBarProps> = ({ onClick }) => {
   const router = useRouter();
 
   const [totalPrice, setTotalPrice] = useState<number>(0);
+
+  useEffect(() => {
+    const getFromLocalStorage = (key: string) => {
+      if (!key || typeof window === "undefined") {
+        return "";
+      }
+      return localStorage.getItem(key);
+    };
+    dispatch(
+      updateCart(
+        getFromLocalStorage("CART")
+          ? JSON.parse(getFromLocalStorage("CART") || "{}")
+          : []
+      )
+    );
+  }, []);
 
   useEffect(() => {
     setTotalPrice(
@@ -92,7 +112,7 @@ export const CartBar: NextPage<CartBarProps> = ({ onClick }) => {
           </p>
         </div>
         <div className={styles["checkout"]}>
-        <ButtonSub
+          <ButtonSub
             disabled={cart.length < 0}
             onClick={() => {
               dispatch(handleCartToggle());

@@ -214,6 +214,7 @@
 .cardProductCartQuantity {
   width: 100%;
   justify-content: space-between;
+  height: 110px;
   .col {
     @include flex();
     position: relative;
@@ -222,6 +223,20 @@
     &:first-of-type {
       width: 40%;
       max-width: 350px;
+    }
+    &:nth-of-type(2) {
+      width: 15%;
+    }
+    &:last-of-type {
+      justify-content: flex-end;
+    }
+    .info {
+      column-gap: 15px;
+    }
+    .price {
+      width: 100%;
+      font-weight: 900;
+      font-size: 1rem;
     }
   }
 }

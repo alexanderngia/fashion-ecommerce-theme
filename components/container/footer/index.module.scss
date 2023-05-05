@@ -6,11 +6,11 @@
   flex-direction: column;
   padding: 2% 5%;
   background-color: $white;
-  color: $black-banner;
+  color: $black;
   width: 100%;
   margin-top: 7rem;
   a {
-    color: $black-banner;
+    color: $black;
   }
 
   .cta {
@@ -61,7 +61,7 @@
       }
       .info {
         p {
-          color: $black-banner;
+          color: $black;
           padding: 2% 0;
           span {
             font-weight: 700;
@@ -78,7 +78,7 @@
             }
           }
           svg {
-            color: $black-banner;
+            color: $black;
             margin-right: 10px;
           }
         }
@@ -110,7 +110,7 @@
   }
 }
 .copyright {
-  color: $black-banner;
+  color: $black;
   text-align: center;
   padding: 2% 0% 0% 0%;
 }

@@ -26,10 +26,10 @@ import { AngleDown } from "@styled-icons/fa-solid/AngleDown";
 import { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 
-interface CartProps {
+interface ShippingProps {
   product: Products[];
 }
-const Cart: NextPage<CartProps> = () => {
+const Shipping: NextPage<ShippingProps> = () => {
   const layout = "store";
   const HeaderLayout = headerLayouts[layout] || headerLayouts.default;
   const cart = useAppSelector(selectCartList);
@@ -142,7 +142,7 @@ const Cart: NextPage<CartProps> = () => {
     </>
   );
 };
-export default Cart;
+export default Shipping;
 
 export const getStaticProps: GetStaticProps = async () => {
   const product = await getProducts();

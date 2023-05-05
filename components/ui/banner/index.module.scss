@@ -18,7 +18,7 @@
     animation: scroll 6s linear infinite;
     @include Heading;
     text-align: center;
-    color: $black-banner;
+    color: $black;
     font-weight: 700;
     @keyframes scroll {
       0% {

@@ -17,6 +17,9 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    updateCart: (state: CartState, action: PayloadAction<Products[]>) => {
+      state.list = action.payload;
+    },
     handleCartToggle: (state: CartState) => {
       state.cartToggle = !state.cartToggle;
     },
@@ -38,8 +41,10 @@ export const cartSlice = createSlice({
       if (exist)
         if (exist.amount < exist.qualityItem) {
           exist.amount++;
+          localStorage.setItem("CART", JSON.stringify(state.list));
         } else {
           exist.amount === exist.qualityItem;
+          localStorage.setItem("CART", JSON.stringify(state.list));
         }
     },
     decreaseQuantityItem: (
@@ -60,6 +65,7 @@ export const cartSlice = createSlice({
       if (exist)
         if (exist.amount > 1) {
           exist.amount--;
+          localStorage.setItem("CART", JSON.stringify(state.list));
         }
     },
     addToCart: (
@@ -113,6 +119,7 @@ export const cartSlice = createSlice({
       if (exist)
         if (exist.amount > 1) {
           exist.amount--;
+          localStorage.setItem("CART", JSON.stringify(state.list));
         } else {
           state.list = state.list.filter(
             (items: Products) =>
@@ -120,12 +127,14 @@ export const cartSlice = createSlice({
               items.colorSelected !== colorSelected ||
               items.sizeSelected !== sizeSelected
           );
+          localStorage.setItem("CART", JSON.stringify(state.list));
         }
     },
   },
 });
 
 export const {
+  updateCart,
   addToCart,
   removeFromCart,
   handleCartToggle,
