@@ -1,8 +1,13 @@
 import React from "react";
 import styles from "./index.module.scss";
-const Divider = () => {
+import classnames from "classnames";
+
+export interface DividerProps {
+  classname?: string;
+}
+const Divider: React.FC<DividerProps> = ({ classname }) => {
   return (
-    <span className={styles["root"]}>
+    <span className={classnames(styles["root"], classname)}>
       <div className={styles["divider"]}></div>
     </span>
   );

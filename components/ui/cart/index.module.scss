@@ -24,7 +24,7 @@
     @include flexCol();
     width: 75vw;
     height: 100vh;
-    background-color: $white;
+    background-color: $gray-light;
     padding: 2% 3%;
     z-index: 10000000;
     @include desktop {

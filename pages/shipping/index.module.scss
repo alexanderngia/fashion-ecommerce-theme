@@ -10,7 +10,25 @@
     font-size: 1rem;
   }
   .main {
-    width: 65%;
+    width: 55%;
+    @include flexCol();
+    row-gap: 20px;
+
+    .row {
+      width: 100%;
+      @include flex();
+      flex-wrap: wrap;
+      justify-content: space-between;
+      row-gap: 15px;
+    }
+    h4 {
+      width: 100%;
+      color: $black;
+      letter-spacing: 0;
+    }
+    .col-4 {
+      width: 43%;
+    }
   }
   .sidebar {
     width: 40%;
@@ -20,7 +38,7 @@
       &:first-of-type {
         .cartList {
           width: 100%;
-          height: 350px;
+          height: 285px;
           overflow-x: hidden;
           .cartListItem {
             @include flexCol();
@@ -34,28 +52,53 @@
         align-items: flex-end;
         justify-content: flex-start;
         row-gap: 20px;
-        height: 300px;
-
-        .total {
-          width: 100%;
-          height: 20px;
+        padding: 5% 0%;
+        height: 400px;
+        .sub-row {
           @include flex();
-          justify-content: space-between;
-        }
-        .tax {
           width: 100%;
-
+          justify-content: space-between;
+          h4 {
+            font-family: $font-p;
+            color: $black;
+          }
           p {
             padding: 0;
           }
         }
-        .note {
-          width: 100%;
-          height: 120px;
-          @include padding-2;
-          box-sizing: border-box;
+        .divider {
+          height: 10px;
         }
-        button {
+        .note {
+          p {
+            @include Text;
+            font-weight: 700;
+          }
+        }
+        .coupon {
+          .input {
+            width: 65%;
+          }
+          .button {
+            padding: 10px 13px;
+            font-size: 1rem;
+            margin-right: 0;
+          }
+        }
+        .total {
+          height: 20px;
+        }
+        .tax {
+          flex-direction: column;
+          align-items: flex-start;
+          p {
+            width: 100%;
+            @include flex();
+            justify-content: space-between;
+            padding: 0;
+          }
+        }
+        .submit {
           margin: 0;
         }
       }

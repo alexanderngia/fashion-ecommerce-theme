@@ -64,14 +64,14 @@
   }
   &:hover {
     background-color: $black;
-    color: $white;
+    color: $gray-light;
     transition: all 100ms ease-in;
     .icon {
-      color: $white;
+      color: $gray-light;
     }
   }
   &:active {
-    color: $white;
+    color: $gray-light;
 
     background-color: $black;
     transition: all 100ms ease-in;

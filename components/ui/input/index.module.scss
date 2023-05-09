@@ -1,0 +1,24 @@
+@import "styles/mixin";
+@import "styles/variables";
+.root {
+  width: 100%;
+  height: 40px;
+  padding: 0 2%;
+  font-family: $font-p;
+  font-weight: bold;
+  color: $black-p;
+  font-size: 1rem;
+  border: 1px solid $black-divider;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  background-color: $gray-light;
+  &::placeholder {
+    color: $gray-hard;
+  }
+  &:focus,
+  &:active {
+    border: 1px solid $black-sub;
+    background-color: $white;
+  }
+}

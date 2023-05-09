@@ -5,7 +5,7 @@
   width: 100%;
   height: fit-content;
   @include flex();
-  background-color: $white;
+  background-color: $gray-light;
   .main {
     @include flex();
     flex-direction: column;

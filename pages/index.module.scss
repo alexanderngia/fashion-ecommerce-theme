@@ -25,7 +25,7 @@
     h3 {
       position: relative;
       font-size: 3rem;
-      color: $white;
+      color: $gray-light;
       z-index: 2;
       margin-bottom: 1rem;
       @include tablet {
@@ -39,7 +39,7 @@
       position: relative;
       z-index: 2;
       font-size: 1rem;
-      color: $white;
+      color: $gray-light;
     }
     .right-arrow {
       margin-top: 10px;

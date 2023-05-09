@@ -6,7 +6,7 @@
   height: fit-content;
   @include flex();
   flex-direction: column;
-  background-color: $white;
+  background-color: $gray-light;
   .header {
     border-bottom: 1px solid $black-divider;
   }

@@ -2,7 +2,6 @@ import LayoutProduct from "components/container/layout/product";
 import { ButtonMain } from "components/ui/button";
 import Divider from "components/ui/divider";
 import { data } from "data/store";
-
 import {
   getProductBySlug,
   getProductPath,
@@ -14,8 +13,8 @@ import { useState } from "react";
 import { Products } from "types/product";
 
 import { headerLayouts } from "@/components/container/header";
-import InputColor from "@/components/ui/form/input/color";
-import InputSize from "@/components/ui/form/input/size";
+import InputColor from "@/components/ui/input/color";
+import InputSize from "@/components/ui/input/size";
 import Img from "@/components/ui/img";
 import { ReturnUpBack } from "@styled-icons/ionicons-outline/ReturnUpBack";
 

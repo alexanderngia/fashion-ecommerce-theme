@@ -9,7 +9,7 @@
     height: 70px;
     @include flex();
     justify-content: space-evenly;
-    background-color: $white;
+    background-color: $gray-light;
     @include desktop {
       width: 200vw;
     }

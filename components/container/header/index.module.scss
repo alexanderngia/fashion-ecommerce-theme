@@ -12,7 +12,7 @@
   .menu {
     padding: 3% 5%;
     a {
-      color: $white;
+      color: $gray-light;
       margin-right: 2rem;
       font-family: $font-head;
       text-transform: uppercase;
@@ -40,7 +40,7 @@
     svg {
       margin-left: 20px;
       width: 15px;
-      color: $white;
+      color: $gray-light;
       transition: all 0.2s ease-in;
       @include tablet {
         margin-left: 30px;
@@ -94,7 +94,7 @@
     top: 0;
     left: 0;
     z-index: 999999;
-    background-color: rgba($white, 0.9);
+    background-color: rgba($gray-light, 0.9);
     border-bottom: 1px solid $black-divider;
     flex-wrap: wrap;
     @include desktop {

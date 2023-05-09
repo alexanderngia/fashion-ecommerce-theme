@@ -44,14 +44,14 @@
 @mixin rightArrow {
   position: relative;
   width: 60%;
-  border-top: 1px solid $white;
+  border-top: 1px solid $gray-light;
   margin-top: 6px;
   &::before {
     content: "";
     position: absolute;
     width: 5px;
     height: 5px;
-    border: solid $white;
+    border: solid $gray-light;
     border-width: 0 1px 1px 0;
     top: -4px;
     right: 0;
@@ -62,13 +62,13 @@
   }
   @include desktop {
     margin-top: 10px;
-    border-top: 2px solid $white;
+    border-top: 2px solid $gray-light;
   }
 }
 @mixin leftArrow {
   position: relative;
   width: 60%;
-  border-top: 2px solid $white;
+  border-top: 2px solid $gray-light;
   margin-top: 6px;
 
   &::before {
@@ -76,7 +76,7 @@
     position: absolute;
     width: 5px;
     height: 5px;
-    border: solid $white;
+    border: solid $gray-light;
     border-width: 0 2px 2px 0;
     top: -4px;
     left: 0;
