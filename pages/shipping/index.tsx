@@ -279,14 +279,14 @@ const Shipping: NextPage<ShippingProps> = () => {
                 <ButtonMain className={styles["button"]}>Áp Dụng</ButtonMain>
               </div>
               <div className={classnames(styles["note"], styles["sub-row"])}>
-                <h4>GHI CHÚ</h4>
+                <h4>Ghi Chú</h4>
                 <p>{note}</p>
               </div>
 
               <div
                 className={classnames(styles["subTotal"], styles["sub-row"])}
               >
-                <h4>ĐƠN HÀNG</h4>
+                <h4>Đơn Hàng</h4>
                 <p>
                   <strong>
                     {(totalPrice / 1.1)
@@ -299,7 +299,7 @@ const Shipping: NextPage<ShippingProps> = () => {
               <div
                 className={classnames(styles["shipping"], styles["sub-row"])}
               >
-                <h4>PHÍ VẬN CHUYỂN</h4>
+                <h4>Phí Vận Chuyển</h4>
                 <p>
                   <strong>
                     {((totalPrice / 1.1) * 0.1)
@@ -322,7 +322,9 @@ const Shipping: NextPage<ShippingProps> = () => {
                 </p>
               </div>
               <div className={classnames(styles["total"], styles["sub-row"])}>
-                <h4>TỔNG</h4>
+                <h4>
+                  <strong>TỔNG</strong>
+                </h4>
                 <p>
                   <strong>
                     {totalPrice
