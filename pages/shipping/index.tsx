@@ -15,10 +15,29 @@ import InputText from "components/ui/input";
 import classnames from "classnames";
 import Divider from "@/components/ui/divider";
 import InputPayment from "@/components/ui/input/payment";
-import { CreditCard, Dollar, Right, Tablet } from "@/components/ui/icons";
+import { State } from "data/country";
+import {
+  CreditCard,
+  Dollar,
+  Right,
+  Tablet,
+  ChevronDown,
+} from "@/components/ui/icons";
+import InputSelect from "@/components/ui/input/select";
 
 interface ShippingProps {
   product: Products[];
+}
+interface ShippingForm {
+  phone: string;
+  email: string;
+  country: string;
+  firstName: string;
+  lastName: string;
+  address: string;
+  payment: string;
+  city: string;
+  code_city: string;
 }
 const Shipping: NextPage<ShippingProps> = () => {
   const layout = "store";
@@ -28,7 +47,22 @@ const Shipping: NextPage<ShippingProps> = () => {
   const [totalPrice, setTotalPrice] = useState<number>(0);
 
   const [note, setNote] = useState<string>("");
-  const [payment, setPayment] = useState<string>("");
+
+  const [formValues, setFormValues] = useState<ShippingForm>({
+    phone: "",
+    email: "",
+    country: "Việt Nam",
+    firstName: "",
+    lastName: "",
+    address: "",
+    city: "",
+    code_city: "",
+    payment: "COD",
+  });
+
+  useEffect(() => {
+    console.log(formValues, "form");
+  }, [formValues]);
 
   useEffect(() => {
     const getFromLocalStorage = (key: string) => {
@@ -69,17 +103,65 @@ const Shipping: NextPage<ShippingProps> = () => {
           <div className={styles["main"]}>
             <div className={styles["row"]}>
               <h4>THÔNG TIN LIÊN HỆ / CONTACT</h4>
-              <InputText classname={styles["col-4"]} placeholder="Điện Thoại" />
-              <InputText classname={styles["col-4"]} placeholder="Email" />
+              <InputText
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  setFormValues({ ...formValues, phone: e.target.value });
+                }}
+                classname={styles["col-4"]}
+                placeholder="Điện Thoại"
+              />
+              <InputText
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  setFormValues({ ...formValues, email: e.target.value });
+                }}
+                classname={styles["col-4"]}
+                placeholder="Email"
+              />
             </div>
             <div className={styles["row"]}>
               <h4>ĐỊA CHỈ GIAO HÀNG / INFORMATION</h4>
-              <InputText placeholder="Quốc Gia" />
-              <InputText classname={styles["col-4"]} placeholder="Tên" />
-              <InputText classname={styles["col-4"]} placeholder="Họ" />
-              <InputText placeholder="Địa Chỉ" />
-              <InputText classname={styles["col-4"]} placeholder="Thành phố" />
+
+              <InputPayment
+                customCol={styles["countryCol"]}
+                name="country"
+                id="country"
+                value="Việt Nam"
+                subLabel="Quốc Gia"
+                label="Việt Nam"
+                arrow={true}
+                defaultChecked
+              ></InputPayment>
               <InputText
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  setFormValues({ ...formValues, firstName: e.target.value });
+                }}
+                classname={styles["col-4"]}
+                placeholder="Tên"
+              />
+              <InputText
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  setFormValues({ ...formValues, lastName: e.target.value });
+                }}
+                classname={styles["col-4"]}
+                placeholder="Họ"
+              />
+              <InputText
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  setFormValues({ ...formValues, address: e.target.value });
+                }}
+                placeholder="Địa Chỉ"
+              />
+              <InputText
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  setFormValues({ ...formValues, city: e.target.value });
+                }}
+                classname={styles["col-4"]}
+                placeholder="Thành phố"
+              />
+              <InputText
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  setFormValues({ ...formValues, code_city: e.target.value });
+                }}
                 classname={styles["col-4"]}
                 placeholder="Postal Code"
               />
@@ -88,49 +170,53 @@ const Shipping: NextPage<ShippingProps> = () => {
               <h4>PHƯƠNG THỨC THANH TOÁN / PAYMENT METHOD</h4>
               <InputPayment
                 onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                  setPayment(e.target.value);
-                  console.log(e.target.value, "payment");
+                  setFormValues({ ...formValues, payment: e.target.value });
                 }}
                 id="COD"
                 value="COD"
                 subLabel="Thanh toán ngay khi nhận hàng"
                 label="COD"
+                name="payment"
+                defaultChecked
               >
                 <Dollar />
               </InputPayment>
               <InputPayment
                 onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                  setPayment(e.target.value);
-                  console.log(e.target.value, "BT");
+                  setFormValues({ ...formValues, payment: e.target.value });
                 }}
                 id="BT"
-                value="BT"
+                value="BANK TRANSFER"
                 subLabel="Chuyển khoản ngân hàng"
                 label="BANK TRANSFER"
+                arrow={true}
+                name="payment"
               >
                 <Right />
               </InputPayment>
               <InputPayment
                 onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                  setPayment(e.target.value);
-                  console.log(e.target.value, "Momo");
+                  setFormValues({ ...formValues, payment: e.target.value });
                 }}
                 id="MOMO"
                 value="MOMO"
                 subLabel="Thanh toán bằng ví điện tử"
                 label="MOMO"
+                name="payment"
+                arrow={true}
               >
                 <Tablet />
               </InputPayment>
               <InputPayment
                 onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                  setPayment(e.target.value);
-                  console.log(e.target.value, "VISA/MASTERCARD");
+                  setFormValues({ ...formValues, payment: e.target.value });
                 }}
                 id="VISA/MASTERCARD"
                 value="VISA/MASTERCARD"
                 subLabel="Thanh toán bằng thẻ ngân hàng"
                 label="Visa / Mastercard"
+                name="payment"
+                arrow={true}
               >
                 <CreditCard />
               </InputPayment>

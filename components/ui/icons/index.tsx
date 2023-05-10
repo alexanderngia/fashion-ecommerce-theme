@@ -214,3 +214,21 @@ export const CreditCard: React.FC<IconsProps> = ({ onClick, customClass }) => {
     </svg>
   );
 };
+export const ChevronDown: React.FC<IconsProps> = ({ onClick, customClass }) => {
+  return (
+    <svg
+      onClick={onClick}
+      className={classnames(styles["root"], customClass)}
+      width="15"
+      height="11"
+      viewBox="0 0 15 11"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M2.8125 0L0 2.8125L7.5 10.3125L15 2.8125L12.1875 0L7.5 4.6875L2.8125 0Z"
+        fill="black"
+      />
+    </svg>
+  );
+};

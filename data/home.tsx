@@ -1,4 +1,4 @@
-import { CarouselData, CarouselProductData } from "types/carousel";
+import { CarouselData } from "types/carousel";
 import { CategoryData } from "types/category";
 import { IText } from "types/layout";
 import { QuoteData } from "types/quote";
