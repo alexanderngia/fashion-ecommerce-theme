@@ -2,9 +2,8 @@
 @import "styles/variables";
 @import "styles/responsive";
 .root {
-  @include flex();
+  @include flexCol();
   width: 100%;
-  height: 55px;
   position: relative;
   justify-content: flex-start;
   input {
@@ -13,27 +12,44 @@
     width: 17px;
     height: 17px;
     left: 18px;
+    top: 19px;
+
+    z-index: 1;
+  }
+  .descript {
+    display: none;
   }
   input:checked + .label {
+    border-bottom: 1px solid $white;
+
     .chevronDown {
       transform: rotate(0);
     }
+  }
+  input:checked ~ .descript {
+    @include flex();
+    width: 100%;
+    background-color: $white;
+    border: 1px solid $black-divider;
+    border-top: 0;
   }
   .label {
     border: 1px solid $black-divider;
     @include flex();
     justify-content: flex-start;
     width: 100%;
-    height: 100%;
+    height: 55px;
     cursor: pointer;
     padding: 0px 30px;
     position: relative;
+    background-color: $white;
 
     .chevronDown {
       position: absolute;
       top: 23px;
       right: 20px;
       transform: rotate(-90deg);
+      transition: all 0.1s;
     }
 
     .describe {
@@ -53,6 +69,38 @@
       p {
         line-height: 1;
         padding: 0;
+      }
+    }
+  }
+  .descript {
+    .info {
+      @include flex();
+      width: 100%;
+      justify-content: space-between;
+      padding: 20px 80px 30px 80px;
+      .col {
+        width: 36%;
+        flex-direction: column;
+        align-items: flex-start;
+
+        &:last-of-type {
+          justify-content: flex-start;
+          height: 200px;
+          row-gap: 10px;
+          width: 58%;
+          p {
+            padding: 0;
+          }
+        }
+        h5 {
+          font-family: $font-p;
+          font-weight: bold;
+        }
+        .img {
+          position: relative;
+          width: 200px;
+          height: 200px;
+        }
       }
     }
   }

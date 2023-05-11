@@ -15,14 +15,7 @@ import InputText from "components/ui/input";
 import classnames from "classnames";
 import Divider from "@/components/ui/divider";
 import InputPayment from "@/components/ui/input/payment";
-import { State } from "data/country";
-import {
-  CreditCard,
-  Dollar,
-  Right,
-  Tablet,
-  ChevronDown,
-} from "@/components/ui/icons";
+import { CreditCard, Dollar, Right, Tablet } from "@/components/ui/icons";
 import InputSelect from "@/components/ui/input/select";
 
 interface ShippingProps {
@@ -59,7 +52,7 @@ const Shipping: NextPage<ShippingProps> = () => {
     code_city: "",
     payment: "COD",
   });
-
+  const country = [{ name: "Việt Nam" }];
   useEffect(() => {
     console.log(formValues, "form");
   }, [formValues]);
@@ -109,6 +102,8 @@ const Shipping: NextPage<ShippingProps> = () => {
                 }}
                 classname={styles["col-4"]}
                 placeholder="Điện Thoại"
+                type="text"
+                required
               />
               <InputText
                 onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -116,27 +111,31 @@ const Shipping: NextPage<ShippingProps> = () => {
                 }}
                 classname={styles["col-4"]}
                 placeholder="Email"
+                type="email"
+                required
               />
             </div>
             <div className={styles["row"]}>
               <h4>ĐỊA CHỈ GIAO HÀNG / INFORMATION</h4>
 
-              <InputPayment
-                customCol={styles["countryCol"]}
+              <InputSelect
                 name="country"
                 id="country"
-                value="Việt Nam"
-                subLabel="Quốc Gia"
-                label="Việt Nam"
+                value={country}
                 arrow={true}
-                defaultChecked
-              ></InputPayment>
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  setFormValues({ ...formValues, country: e.target.value });
+                }}
+                required
+              />
               <InputText
                 onChange={(e: ChangeEvent<HTMLInputElement>) => {
                   setFormValues({ ...formValues, firstName: e.target.value });
                 }}
                 classname={styles["col-4"]}
                 placeholder="Tên"
+                type="text"
+                required
               />
               <InputText
                 onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -144,12 +143,16 @@ const Shipping: NextPage<ShippingProps> = () => {
                 }}
                 classname={styles["col-4"]}
                 placeholder="Họ"
+                type="text"
+                required
               />
               <InputText
                 onChange={(e: ChangeEvent<HTMLInputElement>) => {
                   setFormValues({ ...formValues, address: e.target.value });
                 }}
                 placeholder="Địa Chỉ"
+                type="text"
+                required
               />
               <InputText
                 onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -157,6 +160,8 @@ const Shipping: NextPage<ShippingProps> = () => {
                 }}
                 classname={styles["col-4"]}
                 placeholder="Thành phố"
+                type="text"
+                required
               />
               <InputText
                 onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -164,6 +169,7 @@ const Shipping: NextPage<ShippingProps> = () => {
                 }}
                 classname={styles["col-4"]}
                 placeholder="Postal Code"
+                type="text"
               />
             </div>
             <div className={styles["row"]}>
@@ -178,6 +184,7 @@ const Shipping: NextPage<ShippingProps> = () => {
                 label="COD"
                 name="payment"
                 defaultChecked
+                required
               >
                 <Dollar />
               </InputPayment>
@@ -191,6 +198,7 @@ const Shipping: NextPage<ShippingProps> = () => {
                 label="BANK TRANSFER"
                 arrow={true}
                 name="payment"
+                required
               >
                 <Right />
               </InputPayment>
@@ -204,6 +212,7 @@ const Shipping: NextPage<ShippingProps> = () => {
                 label="MOMO"
                 name="payment"
                 arrow={true}
+                required
               >
                 <Tablet />
               </InputPayment>
@@ -217,6 +226,7 @@ const Shipping: NextPage<ShippingProps> = () => {
                 label="Visa / Mastercard"
                 name="payment"
                 arrow={true}
+                required
               >
                 <CreditCard />
               </InputPayment>
@@ -275,6 +285,7 @@ const Shipping: NextPage<ShippingProps> = () => {
                 <InputText
                   classname={styles["input"]}
                   placeholder="Thẻ quà tặng hoặc mã giảm giá"
+                  type="text"
                 />
                 <ButtonMain className={styles["button"]}>Áp Dụng</ButtonMain>
               </div>

@@ -1,4 +1,4 @@
-import { StateData } from "types/country";
+import { StateData } from "types/state";
 export const State: StateData[] = [
     {
     name: "Thành phố Hà Nội",
