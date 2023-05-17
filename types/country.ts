@@ -4,6 +4,10 @@ export interface Data {
   codename: string;
   division_type: string;
 }
+export interface CountryData {
+  name: string;
+  state: StateData[];
+}
 
 export interface StateData extends Data {
   phone_code: number;
@@ -11,9 +15,9 @@ export interface StateData extends Data {
 }
 export interface DistrictData extends Data {
   short_codename: string;
-  wards: WardsData[];
+  wards: WardData[];
 }
 
-export interface WardsData extends Data {
+export interface WardData extends Data {
   short_codename: string;
 }

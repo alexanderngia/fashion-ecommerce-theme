@@ -1,7 +1,8 @@
 import { ChangeEventHandler } from "react";
 import { ChevronDown } from "../../icons";
 import styles from "./index.module.scss";
-import { StateData } from "types/state";
+import { StateData } from "types/country";
+import classnames from "classnames";
 export interface InputSelectProps {
   onChange?: ChangeEventHandler;
   id: string;
@@ -9,6 +10,10 @@ export interface InputSelectProps {
   arrow?: boolean;
   name: string;
   required?: boolean;
+  title: string;
+  classname?: string;
+  state?: boolean;
+  districts?: boolean;
 }
 
 const InputSelect: React.FC<InputSelectProps> = ({
@@ -17,10 +22,14 @@ const InputSelect: React.FC<InputSelectProps> = ({
   value,
   arrow,
   name,
+  classname,
+  title,
+  state,
+  districts,
   ...props
 }) => {
   return (
-    <div className={styles["root"]}>
+    <div className={classnames(styles["root"], classname)}>
       <select onChange={onChange} name={name} id={id} {...props}>
         {value &&
           value.map(({ name }: StateData, index: number) => {
@@ -31,7 +40,7 @@ const InputSelect: React.FC<InputSelectProps> = ({
             );
           })}
       </select>
-      <p className={styles["title"]}>Quốc Gia</p>
+      <p className={styles["title"]}>{title}</p>
       {arrow && <ChevronDown customClass={styles["chevronDown"]} />}
     </div>
   );

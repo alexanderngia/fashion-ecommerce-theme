@@ -1,4 +1,4 @@
-import { CarouselProduct } from "@/components/ui/carousel";
+import { CarouselProduct } from "@/components/container/carousel";
 import { NextPage } from "next";
 import styles from "./index.module.scss";
 import { Products } from "types/product";

@@ -30,4 +30,14 @@
       color: $gray-light;
     }
   }
+  &:disabled {
+    background-color: $gray;
+    color: $black;
+    cursor: auto;
+
+    &:hover {
+      border: 1px solid $gray;
+      background-color: $gray;
+    }
+  }
 }

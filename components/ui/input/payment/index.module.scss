@@ -85,7 +85,7 @@
 
         &:last-of-type {
           justify-content: flex-start;
-          height: 200px;
+          height: 180px;
           row-gap: 10px;
           width: 58%;
           p {
@@ -99,7 +99,10 @@
         .img {
           position: relative;
           width: 200px;
-          height: 200px;
+          height: 280px;
+        }
+        .momo {
+          height: 250px;
         }
       }
     }

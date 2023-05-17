@@ -4,7 +4,7 @@ import styles from "./index.module.scss";
 
 import Img from "@/components/ui/img";
 import { IText } from "types/layout";
-import { CartBar } from "components/ui/cart";
+import { CartBar } from "@/components/container/cart";
 import { SearchBar } from "components/ui/search";
 import { Products } from "types/product";
 

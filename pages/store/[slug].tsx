@@ -21,7 +21,7 @@ import { ReturnUpBack } from "@styled-icons/ionicons-outline/ReturnUpBack";
 import { addToCart } from "redux/action/cart";
 import { useAppDispatch } from "redux/hook";
 import styles from "./[slug].module.scss";
-import { CarouselProduct } from "@/components/ui/carousel";
+import { CarouselProduct } from "@/components/container/carousel";
 
 interface SingleProductProps {
   product: Products;

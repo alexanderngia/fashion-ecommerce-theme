@@ -1,12 +1,12 @@
 import { headerLayouts } from "@/components/container/header";
-import BestSeller from "@/components/ui/bestSeller";
-import { CarouselImg } from "@/components/ui/carousel";
-import Category from "@/components/ui/category";
+import BestSeller from "@/components/container/bestSeller";
+import { CarouselImg } from "@/components/container/carousel";
+import Category from "@/components/container/category";
 import Img from "@/components/ui/img";
-import Quote from "@/components/ui/quote";
-import { Slider } from "@/components/ui/slider";
+import Quote from "@/components/container/quote";
+import { Slider } from "@/components/container/slider";
 import LayoutHome from "components/container/layout/home";
-import Banner from "components/ui/banner";
+import Banner from "@/components/container/banner";
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";

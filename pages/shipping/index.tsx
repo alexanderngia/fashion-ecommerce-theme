@@ -1,22 +1,25 @@
+import classnames from "classnames";
 import LayoutStore from "components/container/layout/store";
 import { ButtonMain } from "components/ui/button";
 import { CardProductCartSub } from "components/ui/card";
+import InputText from "components/ui/input";
+import { Country } from "data/country";
 import { data } from "data/store";
 import { getProducts } from "lib/productService";
 import { GetStaticProps, NextPage } from "next";
-import { updateCart, removeFromCart, selectCartList } from "redux/action/cart";
+import { ChangeEvent, ChangeEventHandler, useEffect, useState } from "react";
+import { removeFromCart, selectCartList, updateCart } from "redux/action/cart";
 import { useAppDispatch, useAppSelector } from "redux/hook";
+import { CountryData, DistrictData, StateData, WardData } from "types/country";
 import { Products } from "types/product";
 
 import { headerLayouts } from "@/components/container/header";
-import { ChangeEvent, useEffect, useState } from "react";
-import styles from "./index.module.scss";
-import InputText from "components/ui/input";
-import classnames from "classnames";
 import Divider from "@/components/ui/divider";
-import InputPayment from "@/components/ui/input/payment";
 import { CreditCard, Dollar, Right, Tablet } from "@/components/ui/icons";
-import InputSelect from "@/components/ui/input/select";
+import InputPayment from "@/components/ui/input/payment";
+import InputSelectAdress from "@/components/ui/input/selectAdress";
+
+import styles from "./index.module.scss";
 
 interface ShippingProps {
   product: Products[];
@@ -29,33 +32,48 @@ interface ShippingForm {
   lastName: string;
   address: string;
   payment: string;
-  city: string;
-  code_city: string;
+  state: string;
+  district: string;
+  ward: string;
+  discount: string;
+  price: number;
+  shippingFee: number;
+  vat: number;
+  total: number;
 }
 const Shipping: NextPage<ShippingProps> = () => {
   const layout = "store";
   const HeaderLayout = headerLayouts[layout] || headerLayouts.default;
   const cart = useAppSelector(selectCartList);
   const dispatch = useAppDispatch();
-  const [totalPrice, setTotalPrice] = useState<number>(0);
-
+  const [shippingPrice, setShippingPrice] = useState<number>(0);
   const [note, setNote] = useState<string>("");
+  const [selectedCountry, setSelectedCountry] = useState<CountryData | null>(
+    null
+  );
+  const [selectedState, setSelectedState] = useState<StateData | null>(null);
+  const [selectedDistrict, setSelectedDistrict] = useState<DistrictData | null>(
+    null
+  );
+  const [selectedWard, setSelectedWard] = useState<WardData | null>(null);
 
   const [formValues, setFormValues] = useState<ShippingForm>({
     phone: "",
     email: "",
-    country: "Việt Nam",
+    country: "",
     firstName: "",
     lastName: "",
     address: "",
-    city: "",
-    code_city: "",
+    state: "",
+    district: "",
+    ward: "",
     payment: "COD",
+    discount: "",
+    price: 0,
+    shippingFee: 0,
+    vat: 0,
+    total: 0,
   });
-  const country = [{ name: "Việt Nam" }];
-  useEffect(() => {
-    console.log(formValues, "form");
-  }, [formValues]);
 
   useEffect(() => {
     const getFromLocalStorage = (key: string) => {
@@ -79,14 +97,102 @@ const Shipping: NextPage<ShippingProps> = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    setTotalPrice(
-      cart &&
-        cart.reduce(
-          (total: any, item: Products) => total + item.priceItem * item.amount,
-          0
-        ) * 1.1
+    const totalCart = cart.reduce(
+      (total: any, item: Products) => total + item.priceItem * item.amount,
+      0
     );
-  }, [cart, setTotalPrice]);
+
+    formValues.shippingFee > 0
+      ? setFormValues({
+          ...formValues,
+          price: totalCart,
+          vat: totalCart * 0.1,
+          total: totalCart + formValues.shippingFee + totalCart * 0.1,
+        })
+      : setFormValues({
+          ...formValues,
+          price: totalCart,
+          vat: totalCart * 0.1,
+          total: totalCart + totalCart * 0.1,
+        });
+  }, [cart, formValues.shippingFee]);
+
+  useEffect(() => {
+    console.log(formValues, "form");
+  }, [formValues]);
+
+  const onHandleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const countryName = e.target.value;
+    const selectedCountry = Country.find(
+      (country) => country.name === countryName
+    );
+    if (selectedCountry) {
+      setSelectedCountry(selectedCountry);
+      setFormValues({ ...formValues, country: selectedCountry.name });
+    }
+    setSelectedState(null);
+    setSelectedDistrict(null);
+    setSelectedWard(null);
+  };
+
+  const onHandleStateChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedState = selectedCountry?.state.find(
+      (state) => state.name === e.target.value
+    );
+    if (selectedState) {
+      setSelectedState(selectedState);
+      selectedState.code === 79
+        ? setFormValues({
+            ...formValues,
+            state: selectedState.name,
+            shippingFee: 0,
+          })
+        : setFormValues({
+            ...formValues,
+            state: selectedState.name,
+            shippingFee: 40000,
+          });
+    }
+    setSelectedDistrict(null);
+    setSelectedWard(null);
+  };
+  const onHandleDistrictChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedDistrict = selectedState?.districts.find(
+      (district) => district.name === e.target.value
+    );
+    if (selectedDistrict) {
+      setSelectedDistrict(selectedDistrict);
+      setFormValues({ ...formValues, district: selectedDistrict.name });
+    }
+    setSelectedWard(null);
+  };
+  const onHandleWardChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedWard = selectedDistrict?.wards.find(
+      (ward) => ward.name === e.target.value
+    );
+    if (selectedWard) {
+      setSelectedWard(selectedWard);
+      setFormValues({ ...formValues, ward: selectedWard.name });
+    }
+  };
+  const isFormValid =
+    formValues.phone &&
+    formValues.email &&
+    formValues.lastName &&
+    formValues.firstName &&
+    formValues.address &&
+    formValues.country &&
+    formValues.state &&
+    formValues.district &&
+    formValues.ward ;
+  const submit = (cart: Products[], formValue: ShippingForm, note: string) => {
+    const order = { cart, formValue, note };
+    localStorage.setItem("ORDER", JSON.stringify(order));
+    // if (formValue.payment !== "COD") {
+    // }
+    console.log("submit");
+  };
+
   return (
     <>
       <HeaderLayout data={data.nav} layout={layout}></HeaderLayout>
@@ -101,8 +207,8 @@ const Shipping: NextPage<ShippingProps> = () => {
                   setFormValues({ ...formValues, phone: e.target.value });
                 }}
                 classname={styles["col-4"]}
-                placeholder="Điện Thoại"
-                type="text"
+                title="Điện Thoại"
+                type="number"
                 required
               />
               <InputText
@@ -110,7 +216,7 @@ const Shipping: NextPage<ShippingProps> = () => {
                   setFormValues({ ...formValues, email: e.target.value });
                 }}
                 classname={styles["col-4"]}
-                placeholder="Email"
+                title="Email"
                 type="email"
                 required
               />
@@ -118,14 +224,13 @@ const Shipping: NextPage<ShippingProps> = () => {
             <div className={styles["row"]}>
               <h4>ĐỊA CHỈ GIAO HÀNG / INFORMATION</h4>
 
-              <InputSelect
-                name="country"
-                id="country"
-                value={country}
-                arrow={true}
+              <InputText
                 onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                  setFormValues({ ...formValues, country: e.target.value });
+                  setFormValues({ ...formValues, lastName: e.target.value });
                 }}
+                classname={styles["col-4"]}
+                type="text"
+                title="Họ"
                 required
               />
               <InputText
@@ -133,43 +238,32 @@ const Shipping: NextPage<ShippingProps> = () => {
                   setFormValues({ ...formValues, firstName: e.target.value });
                 }}
                 classname={styles["col-4"]}
-                placeholder="Tên"
                 type="text"
+                title="Tên"
                 required
               />
               <InputText
-                onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                  setFormValues({ ...formValues, lastName: e.target.value });
-                }}
                 classname={styles["col-4"]}
-                placeholder="Họ"
-                type="text"
-                required
-              />
-              <InputText
                 onChange={(e: ChangeEvent<HTMLInputElement>) => {
                   setFormValues({ ...formValues, address: e.target.value });
                 }}
-                placeholder="Địa Chỉ"
                 type="text"
+                title="Số nhà, Tên Đường"
                 required
               />
-              <InputText
-                onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                  setFormValues({ ...formValues, city: e.target.value });
-                }}
-                classname={styles["col-4"]}
-                placeholder="Thành phố"
-                type="text"
-                required
-              />
-              <InputText
-                onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                  setFormValues({ ...formValues, code_city: e.target.value });
-                }}
-                classname={styles["col-4"]}
-                placeholder="Postal Code"
-                type="text"
+              <InputSelectAdress
+                arrow={true}
+                col1={styles["col-4"]}
+                col2={styles["col-4"]}
+                col3={styles["col-4"]}
+                selectedCountry={selectedCountry}
+                selectedState={selectedState}
+                selectedDistrict={selectedDistrict}
+                selectedWard={selectedWard}
+                onHandleCountry={onHandleCountryChange}
+                onHandleState={onHandleStateChange}
+                onHandleDistrict={onHandleDistrictChange}
+                onHandleWard={onHandleWardChange}
               />
             </div>
             <div className={styles["row"]}>
@@ -227,6 +321,7 @@ const Shipping: NextPage<ShippingProps> = () => {
                 name="payment"
                 arrow={true}
                 required
+                disabled
               >
                 <CreditCard />
               </InputPayment>
@@ -284,8 +379,11 @@ const Shipping: NextPage<ShippingProps> = () => {
               <div className={classnames(styles["coupon"], styles["sub-row"])}>
                 <InputText
                   classname={styles["input"]}
-                  placeholder="Thẻ quà tặng hoặc mã giảm giá"
                   type="text"
+                  title="Thẻ quà tặng hoặc mã giảm giá"
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                    setFormValues({ ...formValues, discount: e.target.value });
+                  }}
                 />
                 <ButtonMain className={styles["button"]}>Áp Dụng</ButtonMain>
               </div>
@@ -300,10 +398,10 @@ const Shipping: NextPage<ShippingProps> = () => {
                 <h4>Đơn Hàng</h4>
                 <p>
                   <strong>
-                    {(totalPrice / 1.1)
+                    {formValues.price
                       ?.toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                    VND
+                    &nbsp; VND
                   </strong>
                 </p>
               </div>
@@ -313,22 +411,22 @@ const Shipping: NextPage<ShippingProps> = () => {
                 <h4>Phí Vận Chuyển</h4>
                 <p>
                   <strong>
-                    {((totalPrice / 1.1) * 0.1)
+                    {formValues.shippingFee
                       ?.toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                    VND
+                    &nbsp; VND
                   </strong>
                 </p>
               </div>
               <Divider classname={styles["divider"]} />
               <div className={classnames(styles["tax"], styles["sub-row"])}>
                 <p>
-                  <strong>Đã bao gồm thuế 10%</strong>
+                  <strong>Đã bao gồm thuế VAT 10%</strong>
                   <strong>
-                    {((totalPrice / 1.1) * 0.1)
+                    {formValues.vat
                       ?.toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                    VND
+                    &nbsp; VND
                   </strong>
                 </p>
               </div>
@@ -338,17 +436,18 @@ const Shipping: NextPage<ShippingProps> = () => {
                 </h4>
                 <p>
                   <strong>
-                    {totalPrice
+                    {formValues.total
                       ?.toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                    VND
+                    &nbsp; VND
                   </strong>
                 </p>
               </div>
 
               <ButtonMain
                 className={styles["submit"]}
-                onClick={() => console.log(cart, "cart current")}
+                onClick={() => submit(cart, formValues, note)}
+                disabled={!isFormValid}
               >
                 Đặt Hàng
               </ButtonMain>

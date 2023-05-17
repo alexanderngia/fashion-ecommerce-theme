@@ -16,6 +16,7 @@ interface InputPaymentProps {
   defaultChecked?: boolean;
   customCol?: string;
   required?: boolean;
+  disabled?: boolean;
 }
 
 const InputPayment: React.FC<InputPaymentProps> = ({
@@ -57,7 +58,7 @@ const InputPayment: React.FC<InputPaymentProps> = ({
           <div className={styles["info"]}>
             <div className={styles["col"]}>
               <div className={styles["img"]}>
-                <Img alt="/images/qrCode.png" src="/images/qrCode.png" />
+                <Img alt="/images/qr.jpg" src="/images/qr.jpg" />
               </div>
               <p>
                 <strong>QUÉT MÃ ĐỂ CHUYỂN KHOẢN</strong>
@@ -86,7 +87,34 @@ const InputPayment: React.FC<InputPaymentProps> = ({
             </div>
           </div>
         )}
-        {id === "MOMO" && <div className={styles["info"]}> MOMO</div>}
+        {id === "MOMO" && (
+          <div className={styles["info"]}>
+            <div className={styles["col"]}>
+              <div className={classnames(styles["img"], styles["momo"])}>
+                <Img alt="/images/qrMomo.jpg" src="/images/qrMomo.jpg" />
+              </div>
+              <p>
+                <strong>QUÉT MÃ ĐỂ CHUYỂN KHOẢN</strong>
+              </p>
+            </div>
+            <div className={styles["col"]}>
+              <h5>
+                <strong>THÔNG TIN TÀI KHOẢN</strong>
+              </h5>
+              <p>
+                Chủ Tài Khoản: <strong>NGUYEN GIA BAO</strong>
+              </p>
+
+              <p>
+                Nội Dung: <strong>HỌ TÊN + SĐT</strong>
+              </p>
+              <p>
+                *Lưu ý: Đơn hàng sẽ được vận chuyển sau khi chúng tôi nhận được
+                thanh toán của quý khách
+              </p>
+            </div>
+          </div>
+        )}
         {id === "VISA/MASTERCARD" && (
           <div className={styles["info"]}> VISA/MASTERCARD</div>
         )}

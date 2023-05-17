@@ -8,7 +8,7 @@ import {
 } from "redux/action/cart";
 import { useAppDispatch, useAppSelector } from "redux/hook";
 import { Products } from "types/product";
-import { ButtonMain, ButtonSub } from "../button";
+import { ButtonMain, ButtonSub } from "../../ui/button";
 import { Close } from "components/ui/icons";
 import styles from "./index.module.scss";
 import { removeFromCart } from "redux/action/cart";
@@ -101,14 +101,22 @@ export const CartBar: NextPage<CartBarProps> = ({ onClick }) => {
         <div className={styles["note"]}>
           <p>
             <strong>Đã bao gồm thuế 10%</strong>
-            <strong>{(totalPrice * 0.1)?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} VND</strong>
+            <strong>
+              {(totalPrice * 0.1)
+                ?.toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+              VND
+            </strong>
           </p>
           <p>Phí ship sẽ được tính khi thanh toán</p>
         </div>
         <div className={styles["total"]}>
           <h3>Total</h3>
           <p className={styles["price"]}>
-            {(totalPrice * 1.1)?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} VND
+            {(totalPrice * 1.1)
+              ?.toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+            VND
           </p>
         </div>
         <div className={styles["checkout"]}>
