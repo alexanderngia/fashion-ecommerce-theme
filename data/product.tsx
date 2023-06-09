@@ -4,29 +4,29 @@ export const data: Products[] = [
   {
     idItem: "12412321nbj21b312j31231j23",
     imgItem: "/images/product2.jpg",
-    urlItem: "sexy-lingeria",
+    urlItem: "sexy-lingerie",
     nameItem: "IPhone X praesent sapien massa, convallis a pellentesque nec",
     bodyItem: "text nè",
     bodyHtmlItem: `<p>test nè</p>`,
     qualityItem: 10,
-    colorItem: ["#444444", "#19c37d", "#6e6e80", "#ef4146"],
-    sizeItem: ["S", "M", "L", "XL"],
+    colorItem: ["#444444", "#6e6e80", "#ef4146"],
+    sizeItem: ["M", "L", "XL"],
     priceItem: 20000000,
-    categoryItem: "Black IP X",
+    categoryItem: "dress",
   },
   {
     idItem: "12412321nbj21b312j3123151523",
     imgItem: "/images/product3.jpg",
-    urlItem: "lingeria-X",
+    urlItem: "lingerie-X",
     nameItem:
-      "lingeria sexy praesent sapien massa, convallis a pellentesque nec",
+      "lingerie sexy praesent sapien massa, convallis a pellentesque nec",
     bodyItem: "text nè",
     bodyHtmlItem: `<p>test nè</p>`,
     qualityItem: 10,
     colorItem: ["#444444", "#19c37d", "#6e6e80", "#ef4146"],
     sizeItem: ["S", "M", "L", "XL"],
     priceItem: 20000000,
-    categoryItem: "Black IP X",
+    categoryItem: "lingerie",
   },
   {
     idItem: "12412321nbj21b312j312372df",
@@ -39,7 +39,7 @@ export const data: Products[] = [
     colorItem: ["#444444", "#19c37d", "#6e6e80", "#ef4146"],
     sizeItem: ["S", "M", "L", "XL"],
     priceItem: 20000000,
-    categoryItem: "Black IP X",
+    categoryItem: "bikini",
   },
   {
     idItem: "1241236hahwj21b38334fdh3",
@@ -53,7 +53,7 @@ export const data: Products[] = [
     colorItem: ["#444444", "#19c37d", "#6e6e80", "#ef4146"],
     sizeItem: ["S", "M", "L", "XL"],
     priceItem: 20000000,
-    categoryItem: "Black IP X",
+    categoryItem: "accessories",
   },
   {
     idItem: "1241236hah235235sdg",
@@ -67,7 +67,7 @@ export const data: Products[] = [
     colorItem: ["#444444", "#19c37d", "#6e6e80", "#ef4146"],
     sizeItem: ["S", "M", "L", "XL"],
     priceItem: 20000000,
-    categoryItem: "Black IP X",
+    categoryItem: "accessories",
   },
   {
     idItem: "1241236hah9811sfwfdh3",
@@ -81,7 +81,7 @@ export const data: Products[] = [
     colorItem: ["#444444", "#19c37d", "#6e6e80", "#ef4146"],
     sizeItem: ["S", "M", "L", "XL"],
     priceItem: 20000000,
-    categoryItem: "Black IP X",
+    categoryItem: "bikini",
   },
   {
     idItem: "1241236hah0amqudgeh3",
@@ -95,7 +95,7 @@ export const data: Products[] = [
     colorItem: ["#444444", "#19c37d", "#6e6e80", "#ef4146"],
     sizeItem: ["S", "M", "L", "XL"],
     priceItem: 20000000,
-    categoryItem: "Black IP X",
+    categoryItem: "lingerie",
   },
   {
     idItem: "1241236hahka302wfdh3",
@@ -109,7 +109,7 @@ export const data: Products[] = [
     colorItem: ["#444444", "#19c37d", "#6e6e80", "#ef4146"],
     sizeItem: ["S", "M", "L", "XL"],
     priceItem: 20000000,
-    categoryItem: "Black IP X",
+    categoryItem: "dress",
   },
   {
     idItem: "1241200099a76a66agbg",
@@ -123,7 +123,7 @@ export const data: Products[] = [
     colorItem: ["#444444", "#19c37d", "#6e6e80", "#ef4146"],
     sizeItem: ["S", "M", "L", "XL"],
     priceItem: 20000000,
-    categoryItem: "Black IP X",
+    categoryItem: "dress",
   },
   {
     idItem: "1241236hah616202wfdh3",
@@ -137,7 +137,7 @@ export const data: Products[] = [
     colorItem: ["#444444", "#19c37d", "#6e6e80", "#ef4146"],
     sizeItem: ["S", "M", "L", "XL"],
     priceItem: 20000000,
-    categoryItem: "Black IP X",
+    categoryItem: "bikini",
   },
   {
     idItem: "12016520099a76a66agbg",
@@ -151,6 +151,6 @@ export const data: Products[] = [
     colorItem: ["#444444", "#19c37d", "#6e6e80", "#ef4146"],
     sizeItem: ["S", "M", "L", "XL"],
     priceItem: 20000000,
-    categoryItem: "Black IP X",
+    categoryItem: "bikini",
   },
 ];

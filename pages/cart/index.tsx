@@ -37,6 +37,8 @@ const Cart: NextPage<CartProps> = () => {
   const router = useRouter();
 
   const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [totalPriceItem, setTotalPriceItem] = useState<number>(0);
+
   const [note, setNote] = useState<string>("");
 
   useEffect(() => {
@@ -55,13 +57,11 @@ const Cart: NextPage<CartProps> = () => {
     );
   }, [dispatch]);
   useEffect(() => {
-    setTotalPrice(
-      cart &&
-        cart.reduce(
-          (total: any, item: Products) => total + item.priceItem * item.amount,
-          0
-        ) * 1.1
+    const totalCart = cart.reduce(
+      (total: any, item: Products) => total + item.priceItem * item.amount,
+      0
     );
+    setTotalPrice(totalCart);
   }, [cart]);
 
   const handleSubmitCart = () => {
@@ -100,6 +100,7 @@ const Cart: NextPage<CartProps> = () => {
                         sizeSelected,
                         colorSelected,
                         amount,
+                        categoryItem,
                       }: Products,
                       index: number
                     ) => {
@@ -115,7 +116,7 @@ const Cart: NextPage<CartProps> = () => {
                             )
                           }
                           key={imgItem + nameItem + index}
-                          href={`store/${urlItem}`}
+                          href={`/store/${categoryItem}/${urlItem}`}
                           title={nameItem}
                           image={imgItem}
                           sizeItem={sizeSelected}
@@ -123,6 +124,7 @@ const Cart: NextPage<CartProps> = () => {
                           price={priceItem}
                           qualityItem={amount}
                           idItem={idItem}
+                          total={amount * priceItem}
                         />
                       );
                     }
@@ -134,12 +136,15 @@ const Cart: NextPage<CartProps> = () => {
             <div className={styles["total"]}>
               <h4>TỔNG</h4>
               <p>
-                <strong>{totalPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} VND</strong>
+                <strong>
+                  {totalPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+                  VND
+                </strong>
               </p>
             </div>
             <div className={styles["tax"]}>
               <p>
-                <strong>Đã bao gồm thuế 10%</strong>
+                <strong>Chưa bao gồm thuế VAT</strong>
               </p>
               <p>Phí ship sẽ được tính khi thanh toán</p>
             </div>

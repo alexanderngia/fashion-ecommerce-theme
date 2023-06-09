@@ -1,30 +1,34 @@
-import LayoutStore from "components/container/layout/store";
-import { ButtonSub } from "components/ui/button";
-import { CardProduct } from "components/ui/card";
-import Filter from "components/ui/filter";
-import { getProducts } from "lib/productService";
-import { GetStaticProps, NextPage } from "next";
-import { useRouter } from "next/router";
 import { data } from "data/store";
+import { getCatePath, getProductByCate, getProducts } from "lib/productService";
+import { GetServerSideProps, GetStaticProps, NextPage } from "next";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { Products } from "types/product";
 
 import { headerLayouts } from "@/components/container/header";
+import LayoutStore from "@/components/container/layout/store";
+import { ButtonSub } from "@/components/ui/button";
+import { CardProduct } from "@/components/ui/card";
+import Divider from "@/components/ui/divider";
 
 import styles from "./index.module.scss";
-import { useState } from "react";
-import InputColor from "@/components/ui/input/color";
-import Divider from "@/components/ui/divider";
 import InputSize from "@/components/ui/input/size";
-
-interface StoreProps {
+import InputColor from "@/components/ui/input/color";
+import Filter from "@/components/ui/filter";
+interface CategoryProps {
   product: Products[];
 }
-const Store: NextPage<StoreProps> = ({ product }) => {
+const Category: NextPage<CategoryProps> = ({ product }) => {
   const router = useRouter();
+  const { category } = router.query;
   const layout = "store";
   const HeaderLayout = headerLayouts[layout] || headerLayouts.default;
   const [filteredProducts, setFilteredProducts] = useState<Products[]>(product);
   const [toggle, setToggle] = useState<boolean>(false);
+
+  useEffect(() => {
+    setFilteredProducts(product);
+  }, [product]);
 
   const variantFilter = {
     size: ["S", "M", "L", "XL"],
@@ -45,12 +49,12 @@ const Store: NextPage<StoreProps> = ({ product }) => {
     setFilteredProducts(filtered);
   };
 
-  const filterByPrice = (selectedPrice: number) => {
-    const filtered = product.filter(
-      (product) => product.price <= selectedPrice
-    );
-    setFilteredProducts(filtered);
-  };
+  // const filterByPrice = (selectedPrice: number) => {
+  //   const filtered = product.filter(
+  //     (product) => product.price <= selectedPrice
+  //   );
+  //   setFilteredProducts(filtered);
+  // };
 
   return (
     <>
@@ -95,10 +99,8 @@ const Store: NextPage<StoreProps> = ({ product }) => {
         )}
         <div className={styles["function"]}>
           <div className={styles["column"]}>
-            <h1>{data.title}</h1>
-            <p>
-              <span>{router.asPath}</span>
-            </p>
+            <h1>{category}</h1>
+            <p>{router.asPath}</p>
           </div>
           <div className={styles["column"]}>
             <Filter onClick={() => setToggle(!toggle)} title="Filter" />
@@ -115,7 +117,7 @@ const Store: NextPage<StoreProps> = ({ product }) => {
                   <CardProduct
                     classThumb={styles["cardThumb"]}
                     className={styles["card"]}
-                    key={nameItem + urlItem + index}
+                    key={`${nameItem}-${urlItem}-${index * priceItem}`}
                     href={`${categoryItem}/${urlItem}`}
                     title={nameItem}
                     image={imgItem}
@@ -132,13 +134,21 @@ const Store: NextPage<StoreProps> = ({ product }) => {
     </>
   );
 };
-export default Store;
+export default Category;
 
-export const getStaticProps: GetStaticProps = async () => {
-  const product = await getProducts();
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { category }: any = params;
+  const product = await getProductByCate(category);
   return {
     props: {
       product,
     },
+    revalidate: 1,
   };
+};
+
+export const getStaticPaths = async () => {
+  const paths = await getCatePath();
+
+  return { paths, fallback: "blocking" };
 };

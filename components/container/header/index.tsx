@@ -11,8 +11,9 @@ import { Products } from "types/product";
 import { Search, Cart, CustomerService } from "components/ui/icons";
 import { useAppDispatch, useAppSelector } from "redux/hook";
 import { handleCartToggle, selectCartToggle } from "redux/action/cart";
+import { useRouter } from "next/router";
 interface HeaderProps {
-  layout: "home" | "store" | "default";
+  layout: "home" | "store" | "cate" | "default";
   data: IText[];
 }
 
@@ -20,6 +21,7 @@ const Header: React.FC<HeaderProps> = ({ layout, data }) => {
   const [searchToggle, setSearchToggle] = useState<boolean>(false);
   const cartToggle = useAppSelector(selectCartToggle);
   const dispatch = useAppDispatch();
+  const router = useRouter();
   const onToggleSearch = async () => {
     setSearchToggle(!searchToggle);
   };
@@ -66,7 +68,7 @@ const Header: React.FC<HeaderProps> = ({ layout, data }) => {
               {data &&
                 data.map(({ title, url }) => {
                   return (
-                    <Link key={title} href={url}>
+                    <Link key={title} href={`/store/${url}`}>
                       {title}
                     </Link>
                   );
@@ -94,6 +96,7 @@ const Header: React.FC<HeaderProps> = ({ layout, data }) => {
           )}
         </>
       );
+
     default:
       return (
         <>

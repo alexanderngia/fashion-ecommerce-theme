@@ -5,7 +5,7 @@
 .root {
   @include Text();
   background-color: $black;
-  font-weight: 500;
+  font-weight: 700;
   color: $gray-light;
   padding: 13px;
   appearance: none;
@@ -38,6 +38,15 @@
     &:hover {
       border: 1px solid $gray;
       background-color: $gray;
+    }
+  }
+  &.cancelBtn {
+    background-color: $gray;
+    color: $black;
+    font-weight: 700;
+    &:hover {
+      background-color: $black;
+      color: $white;
     }
   }
 }

@@ -95,32 +95,23 @@
     width: 100%;
     font-weight: 400;
     color: $black;
-    span {
-      height: 20px;
-      width: 100%;
-      @include flex();
-      align-items: flex-start;
-      justify-content: space-between;
-      p {
-        padding: 0;
-      }
-    }
+
     p {
       @include desktop {
         padding: 2% 0;
       }
     }
+
     .title {
+      width: 100%;
+
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
+      overflow: hidden;
       text-transform: uppercase;
       font-weight: 700;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 1; /* number of lines to show */
-      line-clamp: 1;
-      -webkit-box-orient: vertical;
     }
-
     .price {
       width: 100%;
     }
@@ -169,25 +160,21 @@
       border: 3px solid white;
       cursor: pointer;
       position: relative;
-
       &:hover:before {
-        top: -6px;
-        left: -6px;
-        width: 26px;
-        height: 26px;
+        transform: scale(1.4);
       }
       &:before {
         content: "";
         position: absolute;
-        top: -4px;
-        left: -4px;
-        width: 22px;
-        height: 22px;
-        background-color: transparent;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
         border-radius: 25px;
         @include shadowColor();
-        z-index: 1;
         transition: all 300ms ease-in-out;
+        transform: scale(1.3);
+        z-index: 1;
       }
     }
     .size,

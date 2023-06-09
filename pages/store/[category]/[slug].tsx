@@ -10,18 +10,18 @@ import {
 import { GetStaticProps, NextPage } from "next";
 import router from "next/dist/client/router";
 import { useState } from "react";
-import { Products } from "types/product";
-
-import { headerLayouts } from "@/components/container/header";
-import InputColor from "@/components/ui/input/color";
-import InputSize from "@/components/ui/input/size";
-import Img from "@/components/ui/img";
-import { ReturnUpBack } from "@styled-icons/ionicons-outline/ReturnUpBack";
-
 import { addToCart } from "redux/action/cart";
 import { useAppDispatch } from "redux/hook";
-import styles from "./[slug].module.scss";
+import { Products } from "types/product";
+
 import { CarouselProduct } from "@/components/container/carousel";
+import { headerLayouts } from "@/components/container/header";
+import Img from "@/components/ui/img";
+import InputColor from "@/components/ui/input/color";
+import InputSize from "@/components/ui/input/size";
+import { ReturnUpBack } from "@styled-icons/ionicons-outline/ReturnUpBack";
+
+import styles from "./[slug].module.scss";
 
 interface SingleProductProps {
   product: Products;
@@ -150,8 +150,9 @@ const SingleProduct: NextPage<SingleProductProps> = ({
 export default SingleProduct;
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { slug }: any = params;
-  const product = await getProductBySlug(slug);
+  const { slug, category }: any = params;
+
+  const product = await getProductBySlug(`/store/${category}/${slug}`);
   const productList = await getProducts();
   return {
     props: {
@@ -163,6 +164,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 export const getStaticPaths = async () => {
   const paths = await getProductPath();
-
   return { paths, fallback: false };
 };

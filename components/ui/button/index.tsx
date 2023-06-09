@@ -4,14 +4,14 @@ import classNames from "classnames";
 export interface ButtonProps {
   children: any;
   onClick?: any;
-  className?: string;
+  classname?: string;
   type?: any;
   disabled?: boolean;
 }
 export const ButtonMain: React.FC<ButtonProps> = ({
   children,
   onClick,
-  className,
+  classname,
   type,
   disabled,
 }) => {
@@ -19,7 +19,7 @@ export const ButtonMain: React.FC<ButtonProps> = ({
     <button
       type={type}
       onClick={onClick}
-      className={classNames(styles["root"], className)}
+      className={classNames(styles["root"], classname)}
       disabled={disabled}
     >
       {children}
@@ -30,7 +30,7 @@ export const ButtonMain: React.FC<ButtonProps> = ({
 export const ButtonSub: React.FC<ButtonProps> = ({
   children,
   onClick,
-  className,
+  classname,
   type,
   disabled,
 }) => {
@@ -38,11 +38,28 @@ export const ButtonSub: React.FC<ButtonProps> = ({
     <button
       type={type}
       onClick={onClick}
-      className={`${styles["root"]} ${styles["subBtn"]} ${className} `}
+      className={`${styles["root"]} ${styles["subBtn"]} ${classname} `}
       disabled={disabled}
     >
       {children}
     </button>
   );
 };
-
+export const ButtonCancel: React.FC<ButtonProps> = ({
+  children,
+  onClick,
+  classname,
+  type,
+  disabled,
+}) => {
+  return (
+    <button
+      type={type}
+      onClick={onClick}
+      className={`${styles["root"]} ${styles["cancelBtn"]} ${classname} `}
+      disabled={disabled}
+    >
+      {children}
+    </button>
+  );
+};

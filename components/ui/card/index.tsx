@@ -34,6 +34,14 @@ interface ProductCart extends CardProps {
   qualityItem: number;
   idItem: string;
 }
+
+interface ProductCartQuantity extends ProductCart {
+  total: number;
+}
+interface ProductCartSub extends Product {
+  total: number;
+}
+
 export const CardPost: NextPage<CardProps> = ({
   title,
   image,
@@ -76,9 +84,7 @@ export const CardProduct: NextPage<Product> = ({
         </div>
 
         <div className={classnames(styles["info"], customClass)}>
-          <span>
-            <p className={styles["title"]}>{title}</p>
-          </span>
+          <span className={styles["title"]}>{title}</span>
 
           <p className={styles["price"]}>
             {price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} vnd
@@ -112,11 +118,14 @@ export const CardProductItem: NextPage<Product> = ({
         <div className={classnames(styles["info"], customClass)}>
           <p className={styles["title"]}>{title}</p>
 
-          <span
-            className={styles["color"]}
-            style={{ backgroundColor: `${colorItem}` }}
-          ></span>
-          <p className={styles["size"]}>{sizeItem}</p>
+          {colorItem && (
+            <span
+              className={styles["color"]}
+              style={{ backgroundColor: `${colorItem}` }}
+            ></span>
+          )}
+          {sizeItem && <p className={styles["size"]}>{sizeItem}</p>}
+
           <p className={styles["price"]}>
             {price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} VND
           </p>
@@ -169,7 +178,7 @@ export const CardProductCart: NextPage<Product> = ({
   );
 };
 
-export const CardProductCartSub: NextPage<Product> = ({
+export const CardProductCartSub: NextPage<ProductCartSub> = ({
   title,
   image,
   author,
@@ -181,6 +190,7 @@ export const CardProductCartSub: NextPage<Product> = ({
   qualityItem,
   customClass,
   classThumb,
+  total,
   onClick,
   ...props
 }) => {
@@ -203,7 +213,7 @@ export const CardProductCartSub: NextPage<Product> = ({
         </Link>
         <div className={styles["container"]}>
           <p className={styles["price"]}>
-            {price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} VND
+            {total?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} VND
           </p>
         </div>
         <span
@@ -216,7 +226,7 @@ export const CardProductCartSub: NextPage<Product> = ({
     </div>
   );
 };
-export const CardProductCartQuantity: NextPage<ProductCart> = ({
+export const CardProductCartQuantity: NextPage<ProductCartQuantity> = ({
   title,
   image,
   author,
@@ -229,6 +239,7 @@ export const CardProductCartQuantity: NextPage<ProductCart> = ({
   customClass,
   classThumb,
   idItem,
+  total,
   onClick,
   ...props
 }) => {
@@ -278,7 +289,7 @@ export const CardProductCartQuantity: NextPage<ProductCart> = ({
       <div className={styles["col"]}>
         <div className={styles["container"]}>
           <p className={styles["price"]}>
-            {price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} VND
+            {total?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} VND
           </p>
         </div>
       </div>

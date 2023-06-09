@@ -1,18 +1,17 @@
-import React, { MouseEventHandler } from "react";
-import styles from "./index.module.scss";
-import { StyledIcon } from "@styled-icons/styled-icon";
+import { ChevronDown } from 'components/ui/icons';
+import React, { MouseEventHandler } from 'react';
+import styles from './index.module.scss';
 
 interface FilterProps {
   title?: string;
-  iconFilter?: StyledIcon | any;
   onClick?: MouseEventHandler;
 }
 
-const Filter: React.FC<FilterProps> = ({ title, iconFilter, onClick }) => {
+const Filter: React.FC<FilterProps> = ({ title, onClick }) => {
   return (
     <div className={styles["root"]} onClick={onClick}>
       <p>{title}</p>
-      {iconFilter}
+      <ChevronDown customClass={styles["arrow"]} />
     </div>
   );
 };

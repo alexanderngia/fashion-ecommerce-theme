@@ -45,13 +45,11 @@ export const CartBar: NextPage<CartBarProps> = ({ onClick }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    setTotalPrice(
-      cart &&
-        cart.reduce(
-          (total: any, item: Products) => total + item.priceItem * item.amount,
-          0
-        )
+    const totalCart = cart.reduce(
+      (total: any, item: Products) => total + item.priceItem * item.amount,
+      0
     );
+    setTotalPrice(totalCart);
   }, [cart]);
 
   return (
@@ -74,6 +72,7 @@ export const CartBar: NextPage<CartBarProps> = ({ onClick }) => {
                   urlItem,
                   sizeSelected,
                   colorSelected,
+                  categoryItem,
                   amount,
                 }: Products,
                 index: number
@@ -86,7 +85,7 @@ export const CartBar: NextPage<CartBarProps> = ({ onClick }) => {
                       )
                     }
                     key={imgItem + nameItem + index}
-                    href={`store/${urlItem}`}
+                    href={`/store/${categoryItem}/${urlItem}`}
                     title={nameItem}
                     image={imgItem}
                     sizeItem={sizeSelected}
@@ -100,23 +99,14 @@ export const CartBar: NextPage<CartBarProps> = ({ onClick }) => {
         </div>
         <div className={styles["note"]}>
           <p>
-            <strong>Đã bao gồm thuế 10%</strong>
-            <strong>
-              {(totalPrice * 0.1)
-                ?.toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
-              VND
-            </strong>
+            <strong>Chưa bao gồm thuế VAT</strong>
           </p>
           <p>Phí ship sẽ được tính khi thanh toán</p>
         </div>
         <div className={styles["total"]}>
           <h3>Total</h3>
           <p className={styles["price"]}>
-            {(totalPrice * 1.1)
-              ?.toString()
-              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
-            VND
+            {totalPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} VND
           </p>
         </div>
         <div className={styles["checkout"]}>

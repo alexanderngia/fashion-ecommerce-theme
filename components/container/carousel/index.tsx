@@ -79,7 +79,10 @@ export const CarouselProduct: NextPage<CarouselProductProps> = ({
         <Slider {...settings}>
           {data &&
             data?.map(
-              ({ nameItem, urlItem, imgItem, priceItem }, index: number) => {
+              (
+                { nameItem, urlItem, imgItem, priceItem, categoryItem },
+                index: number
+              ) => {
                 return (
                   <CardProduct
                     customClass={customClass}
@@ -88,7 +91,7 @@ export const CarouselProduct: NextPage<CarouselProductProps> = ({
                       customCardProduct
                     )}
                     key={imgItem + nameItem + index}
-                    href={`/store/${urlItem}`}
+                    href={`/store/${categoryItem}/${urlItem}`}
                     title={nameItem}
                     image={imgItem}
                     price={priceItem}

@@ -7,7 +7,8 @@ import { Country } from "data/country";
 import { data } from "data/store";
 import { getProducts } from "lib/productService";
 import { GetStaticProps, NextPage } from "next";
-import { ChangeEvent, ChangeEventHandler, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { ChangeEvent, useEffect, useState } from "react";
 import { removeFromCart, selectCartList, updateCart } from "redux/action/cart";
 import { useAppDispatch, useAppSelector } from "redux/hook";
 import { CountryData, DistrictData, StateData, WardData } from "types/country";
@@ -43,10 +44,10 @@ interface ShippingForm {
 }
 const Shipping: NextPage<ShippingProps> = () => {
   const layout = "store";
+  const router = useRouter();
   const HeaderLayout = headerLayouts[layout] || headerLayouts.default;
   const cart = useAppSelector(selectCartList);
   const dispatch = useAppDispatch();
-  const [shippingPrice, setShippingPrice] = useState<number>(0);
   const [note, setNote] = useState<string>("");
   const [selectedCountry, setSelectedCountry] = useState<CountryData | null>(
     null
@@ -117,10 +118,6 @@ const Shipping: NextPage<ShippingProps> = () => {
         });
   }, [cart, formValues.shippingFee]);
 
-  useEffect(() => {
-    console.log(formValues, "form");
-  }, [formValues]);
-
   const onHandleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const countryName = e.target.value;
     const selectedCountry = Country.find(
@@ -184,13 +181,11 @@ const Shipping: NextPage<ShippingProps> = () => {
     formValues.country &&
     formValues.state &&
     formValues.district &&
-    formValues.ward ;
+    formValues.ward;
   const submit = (cart: Products[], formValue: ShippingForm, note: string) => {
     const order = { cart, formValue, note };
     localStorage.setItem("ORDER", JSON.stringify(order));
-    // if (formValue.payment !== "COD") {
-    // }
-    console.log("submit");
+    router.push("/thankyou");
   };
 
   return (
@@ -345,6 +340,7 @@ const Shipping: NextPage<ShippingProps> = () => {
                             sizeSelected,
                             colorSelected,
                             amount,
+                            categoryItem,
                           }: Products,
                           index: number
                         ) => {
@@ -360,13 +356,14 @@ const Shipping: NextPage<ShippingProps> = () => {
                                 )
                               }
                               key={imgItem + nameItem + index}
-                              href={`store/${urlItem}`}
+                              href={`/store/${categoryItem}/${urlItem}`}
                               title={nameItem}
                               image={imgItem}
                               sizeItem={sizeSelected}
                               colorItem={colorSelected}
                               price={priceItem}
                               qualityItem={amount}
+                              total={amount * priceItem}
                             />
                           );
                         }
@@ -385,7 +382,7 @@ const Shipping: NextPage<ShippingProps> = () => {
                     setFormValues({ ...formValues, discount: e.target.value });
                   }}
                 />
-                <ButtonMain className={styles["button"]}>Áp Dụng</ButtonMain>
+                <ButtonMain classname={styles["button"]}>Áp Dụng</ButtonMain>
               </div>
               <div className={classnames(styles["note"], styles["sub-row"])}>
                 <h4>Ghi Chú</h4>
@@ -445,7 +442,7 @@ const Shipping: NextPage<ShippingProps> = () => {
               </div>
 
               <ButtonMain
-                className={styles["submit"]}
+                classname={styles["submit"]}
                 onClick={() => submit(cart, formValues, note)}
                 disabled={!isFormValid}
               >
