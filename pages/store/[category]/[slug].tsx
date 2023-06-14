@@ -37,10 +37,7 @@ const SingleProduct: NextPage<SingleProductProps> = ({
   const layout = "store";
   const HeaderLayout = headerLayouts[layout] || headerLayouts.default;
   const dispatch = useAppDispatch();
-  const productCategory = productList.filter(
-    ({ categoryItem, idItem }: Products) =>
-      categoryItem === product.categoryItem && idItem !== product.idItem
-  );
+
   const handleAddToCart = (
     product: Products,
     colorSelected: string,
@@ -124,20 +121,21 @@ const SingleProduct: NextPage<SingleProductProps> = ({
             <h2>Detail</h2>
             <span dangerouslySetInnerHTML={{ __html: product.bodyHtmlItem }} />
           </div>
-          <Divider />
+          {/* <Divider />
           <div className={styles["row"]}>
             <h2>Ingredient</h2>
           </div>
           <Divider />
           <div className={styles["row"]}>
             <h2>Good To Know</h2>
-          </div>
+          </div> */}
           <Divider />
-          {productCategory && (
+          {productList && (
             <div className={styles["row"]}>
               <h2>Similar</h2>
               <CarouselProduct
-                data={productCategory}
+                customCont={styles["carousel"]}
+                data={productList}
                 customArrow={styles["pagination"]}
               />
             </div>

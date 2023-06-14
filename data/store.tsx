@@ -7,19 +7,19 @@ export const data: Data = {
   nav: [
     {
       title: "DRESS",
-      url: "dress",
+      url: "/store/dress",
     },
     {
       title: "Lingerie",
-      url: "lingerie",
+      url: "/store/lingerie",
     },
     {
       title: "Bikini",
-      url: "bikini",
+      url: "/store/bikini",
     },
     {
       title: "Accessories",
-      url: "accessories",
+      url: "/store/accessories",
     },
   ],
   title: "STORE",

@@ -37,6 +37,9 @@
 @mixin boxShadow() {
   box-shadow: 0px 16px 40px rgba($black-divider, 0.7);
 }
+@mixin boxShadowLight() {
+  box-shadow: 0px 16px 40px rgba($black-divider, 0.2);
+}
 @mixin shadowColor() {
   box-shadow: 0px 0px 5px rgb(#000000, 0.2);
 }
@@ -86,3 +89,10 @@
     margin-top: 10px;
   }
 }
+@mixin scaleUpHover() {
+  transition: all 0.3s linear;
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+

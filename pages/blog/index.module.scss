@@ -20,8 +20,16 @@
     width: 30%;
   }
   p {
+    padding: 3%;
+    cursor: pointer;
     font-weight: 700;
     text-transform: uppercase;
+    background-color: $gray;
+    transition: all 0.2s linear;
+    &:hover {
+      color: $white;
+      background-color: $black;
+    }
   }
 }
 .container {
@@ -29,8 +37,6 @@
   @include flex();
   flex-wrap: wrap;
   justify-content: flex-start;
-  a {
-    width: 25%;
-    height: 450px;
-  }
+  row-gap: 10px;
+  column-gap: 1%;
 }

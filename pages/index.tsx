@@ -15,6 +15,7 @@ import styles from "./index.module.scss";
 import { getProducts } from "lib/productService";
 import { data } from "data/home";
 import { Products } from "types/product";
+import { ArrowRight } from "@/components/ui/icons";
 
 interface HomeProps {
   products: Products[];
@@ -48,9 +49,9 @@ const Home: NextPage<HomeProps> = ({ products }) => {
                 dangerouslySetInnerHTML={{ __html: data.blog.title }}
               ></span>
             </h3>
-            <Link href={data.blog.link} passHref>
+            <Link href={data.blog.link}>
               {data.blog.subTitle} <br />
-              <div className={styles["right-arrow"]}></div>
+              <ArrowRight customClass={styles["icon"]} />
             </Link>
           </div>
         </div>

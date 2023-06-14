@@ -1,7 +1,6 @@
 import LayoutDefault from "components/container/layout/default";
 import { CardPost } from "components/ui/card";
 import { getPosts } from "lib/postService";
-import Link from "next/link";
 import { Post } from "types/post";
 
 import { headerLayouts } from "@/components/container/header";
@@ -9,7 +8,8 @@ import { headerLayouts } from "@/components/container/header";
 import styles from "./index.module.scss";
 
 import type { GetStaticProps, NextPage } from "next";
-import { data } from "data/default";
+import { data } from "data/blog";
+import { useState } from "react";
 
 export interface BlogProps {
   posts: Post;
@@ -18,41 +18,48 @@ export interface BlogProps {
 const Blog: NextPage<BlogProps> = ({ posts }) => {
   const layout = "store";
   const HeaderLayout = headerLayouts[layout] || headerLayouts.default;
+  const [filteredPost, setFfilteredPost] = useState(posts);
+
+  const filterByCate = (selectedCate: string) => {
+    const filtered = posts.filter((post: Post) => {
+      return post.category === selectedCate;
+    });
+    setFfilteredPost(filtered);
+  };
+
   return (
     <>
       <HeaderLayout data={data.nav} layout={layout}></HeaderLayout>
       <LayoutDefault>
-        <h1 className={styles["heading"]}>
-          LINGERIA/LIFESTYLE/ACCESSORIES DRESS/OIL/PERFURM
-        </h1>
+        <h1 className={styles["heading"]}>{data.heading}</h1>
         <div className={styles["category"]}>
-          <Link href="/">
-            <p>Dress</p>
-          </Link>
-          <Link href="/">
-            <p>Lingerie</p>
-          </Link>
-          <Link href="/">
-            <p>Bikini</p>
-          </Link>
-          <Link href="/">
-            <p>Accessories</p>
-          </Link>
+          {data.category.map(({ title }, index: number) => {
+            return (
+              <p
+                key={`${title}-category-${index}`}
+                onClick={() => filterByCate(title)}
+              >
+                {title}
+              </p>
+            );
+          })}
         </div>
         <div className={styles["container"]}>
-          {posts &&
-            posts.map(({ id, title, featureImg, url, author }: Post) => {
-              return (
-                <CardPost
-                  className={styles["item"]}
-                  key={title + featureImg + id}
-                  href={`/blog/${url}`}
-                  title={title}
-                  image={featureImg}
-                  author={author}
-                />
-              );
-            })}
+          {filteredPost &&
+            filteredPost.map(
+              ({ id, title, featureImg, url, author }: Post, index: number) => {
+                return (
+                  <CardPost
+                    className={styles["item"]}
+                    key={`${title + featureImg + index + id}`}
+                    href={`/blog/${url}`}
+                    title={title}
+                    image={featureImg}
+                    author={author}
+                  />
+                );
+              }
+            )}
         </div>
       </LayoutDefault>
     </>

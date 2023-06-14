@@ -1,12 +1,17 @@
 @import "styles/mixin";
 @import "styles/variables";
+@import "styles/responsive";
+.header {
+  border-bottom: 0;
+}
 .root {
   @include flex();
   flex-direction: column;
   width: 100%;
-  .cate {
+  .subDecor {
     @include flex();
     width: 100px;
+    padding-top: 30px;
     p {
       color: $black-sub;
       font-family: $font-head;
@@ -16,6 +21,7 @@
     }
   }
   .author {
+    text-transform: capitalize;
     color: $black-sub;
     font-size: 0.8rem;
     font-weight: 700;
@@ -27,6 +33,7 @@
     text-align: center;
     width: 70%;
     padding: 3% 0;
+    font-size: 4rem;
     text-transform: capitalize;
   }
 
@@ -45,18 +52,15 @@
     }
   }
   .similar {
-    @include padding-2-5();
     width: 100%;
     h2 {
-      letter-spacing: 1px;
-      margin-bottom: 20px;
+      padding: 5% 5% 0 5%;
     }
     .container {
-      overflow-x: hidden;
       width: 100%;
-      .similarCard {
-        width: 100%;
-      }
+      @include flex();
+      flex-wrap: wrap;
+      justify-content: flex-start;
     }
   }
 }

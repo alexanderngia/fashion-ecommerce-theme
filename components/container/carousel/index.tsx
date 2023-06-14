@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import { CardProduct } from "components/ui/card";
+import { CardPost, CardProduct } from "components/ui/card";
 import Img from "components/ui/img";
 import { NextPage } from "next";
 import React from "react";
@@ -7,6 +7,8 @@ import Slider from "react-slick";
 import { CarouselData } from "types/carousel";
 import styles from "./index.module.scss";
 import { Products } from "types/product";
+import { Post } from "types/post";
+import { ArrowRight } from "@/components/ui/icons";
 interface CarouselProps {
   data: CarouselData[];
 }
@@ -16,6 +18,11 @@ interface CarouselProductProps {
   customCont?: string;
   customCardProduct?: string;
   customArrow?: string;
+}
+interface CarouselPostProps {
+  data: Post[];
+  customClass?: string;
+  customCont?: string;
 }
 
 export const CarouselImg: NextPage<CarouselProps> = ({ data }) => {
@@ -100,10 +107,72 @@ export const CarouselProduct: NextPage<CarouselProductProps> = ({
               }
             )}
         </Slider>
-        <div className={(classnames(styles["decord-arrow"]), customArrow)}>
+        <div className={classnames(styles["decord-arrow"], customArrow)}>
           <p>Vuốt sang trái</p>
-          <div className={styles["right-arrow-white"]}></div>
+          <div className={styles["right-arrow-white"]}>
+            <ArrowRight />
+          </div>
         </div>
+      </div>
+    </div>
+  );
+};
+export const CarouselPost: NextPage<CarouselPostProps> = ({
+  data,
+  customCont,
+}) => {
+  var settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          className: "center",
+          centerMode: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+    ],
+  };
+  return (
+    <div className={styles["root-post"]}>
+      <div className={classnames(styles["container"], customCont)}>
+        <Slider {...settings}>
+          {data &&
+            data.map(({ id, title, featureImg, url, author }: Post) => {
+              return (
+                <CardPost
+                  customPost={styles["item"]}
+                  key={title + featureImg + id}
+                  href={`/blog/${url}`}
+                  title={title}
+                  image={featureImg}
+                  author={author}
+                />
+              );
+            })}
+        </Slider>
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import { NextPage } from "next";
 import { CategoryData } from "types/category";
 import Link from "next/link";
 import Img from "@/components/ui/img";
+import { ArrowRight } from "@/components/ui/icons";
 
 interface CategoryProps {
   data: CategoryData;
@@ -30,7 +31,7 @@ const Category: NextPage<CategoryProps> = ({ data }) => {
                   <Img src={img} alt={img} />
                   <div className={styles["title"]}>
                     <h3>{title}</h3>
-                    <div className={styles["right-arrow-white"]}></div>
+                    <ArrowRight customClass={styles["icon"]} />
                   </div>
                 </div>
               </Link>

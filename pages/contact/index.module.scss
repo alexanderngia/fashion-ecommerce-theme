@@ -1,0 +1,95 @@
+@import "styles/mixin";
+@import "styles/variables";
+.subDecor {
+  @include flex();
+  width: 100px;
+  padding-top: 50px;
+
+  p {
+    color: $black-sub;
+    font-family: $font-head;
+    font-size: 1rem;
+    font-weight: 700;
+    font-style: italic;
+  }
+}
+.title {
+  font-size: 4rem;
+  padding: 3%;
+}
+.subDescript {
+  width: 400px;
+  p {
+    font-family: $font-p;
+    font-style: italic;
+    font-weight: 700;
+    text-align: center;
+  }
+}
+.container {
+  width: 100%;
+  @include padding-2-5;
+  @include flex();
+  padding-top: 90px;
+
+  h2 {
+    font-size: 1rem;
+  }
+  .main {
+    width: 55%;
+    @include flexCol();
+    row-gap: 20px;
+
+    .row {
+      width: 100%;
+      @include flex();
+      flex-wrap: wrap;
+      justify-content: space-between;
+      row-gap: 15px;
+      &:nth-of-type(3) {
+        justify-content: flex-end;
+      }
+      &:last-of-type {
+        padding-top: 50px;
+        p {
+          padding: 0;
+        }
+      }
+    }
+    h4 {
+      width: 100%;
+      color: $black;
+      letter-spacing: 0;
+    }
+    .col-4 {
+      width: 48%;
+    }
+    .note {
+      outline: none;
+      appearance: none;
+      font-family: $font-p;
+      width: 100%;
+      height: 120px;
+      @include padding-2;
+      box-sizing: border-box;
+      font-weight: bold;
+      color: $black-p;
+      font-size: 1rem;
+      border: 1px solid $black-divider;
+      &::placeholder {
+        font-size: 0.8rem;
+
+        color: $gray-hard;
+      }
+      &:focus,
+      &:active {
+        border: 1px solid $black-sub;
+        background-color: $white;
+      }
+    }
+    .submit {
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+}

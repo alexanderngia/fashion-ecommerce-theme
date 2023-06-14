@@ -18,16 +18,6 @@ export const getPostPath = async () => {
     console.log(error);
   }
 };
-
-// export const getPostById = async (id: string | number) => {
-//   try {
-//     const { data } = await axios.get(`${process.env.HOST}/api/post?id=${id}`);
-
-//     return data;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
 export const getPostBySlug = async (urlPath: string) => {
   try {
     const posts = await getPosts();
@@ -37,10 +27,13 @@ export const getPostBySlug = async (urlPath: string) => {
   }
 };
 
-export const getPostByCategory = async (cat: string) => {
+export const getPostByCategory = async (cat: Post) => {
   try {
     const posts = await getPosts();
-    if (posts) return posts.filter(({ category }: Post) => category === cat);
+    if (posts)
+      return posts.filter(
+        ({ category, id }: Post) => category === cat.category && id !== cat.id
+      );
   } catch (error) {
     console.log(error);
   }

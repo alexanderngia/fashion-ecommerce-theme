@@ -40,13 +40,15 @@
       z-index: 2;
       font-size: 1rem;
       color: $gray-light;
+      &:hover {
+        .icon {
+          width: 250px;
+          transform: scale(1);
+        }
+      }
     }
-    .right-arrow {
-      margin-top: 10px;
-      @include rightArrow();
-      width: 15rem;
-      position: relative;
-      z-index: 2;
+    .icon {
+      stroke: $white;
     }
   }
 }

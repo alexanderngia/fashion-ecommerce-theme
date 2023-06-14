@@ -113,13 +113,9 @@
       .right-arrow-white {
         display: block;
         @include rightArrow;
-        border-top: 2px solid rgba(18, 18, 18, 0.75) !important;
         width: 30% !important;
         bottom: 4px;
-        &::before {
-          border-right: 2px solid rgba(18, 18, 18, 0.75) !important;
-          border-bottom: 2px solid rgba(18, 18, 18, 0.75) !important;
-        }
+
         &::after {
           right: -14px;
           top: -17px;
@@ -129,13 +125,35 @@
           height: 30px;
           border-radius: 50px;
           border: 1px solid rgba(18, 18, 18, 0.75) !important;
+          animation: scaleUp 1s infinite;
+
           @include desktop {
-            right: -18px;
-            top: -22px;
+            right: -90px;
+            top: -14px;
             width: 40px;
             height: 40px;
           }
+          @keyframes scaleUp {
+            0% {
+              transform: scale(1);
+            }
+            50% {
+              transform: scale(1.2);
+            }
+            100% {
+              transform: scale(1);
+            }
+          }
         }
+      }
+    }
+  }
+  &-post {
+    @include padding-2-5();
+    width: 100%;
+    .container {
+      .item {
+        width: 315px;
       }
     }
   }

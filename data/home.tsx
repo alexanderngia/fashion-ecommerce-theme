@@ -76,12 +76,12 @@ export const data: Data = {
       {
         img: "/images/product1.jpg",
         title: "Lingerie",
-        link: "#",
+        link: "/store/lingerie",
       },
       {
         img: "/images/goods3.jpg",
         title: "Accessories",
-        link: "#",
+        link: "/store/accessories",
       },
       {
         img: "/images/goods2.jpg",
@@ -91,7 +91,7 @@ export const data: Data = {
       {
         img: "/images/goods4.jpg",
         title: "Dress",
-        link: "#",
+        link: "/store/dress",
       },
     ],
   },

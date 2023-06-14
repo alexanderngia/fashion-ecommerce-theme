@@ -18,6 +18,7 @@ interface CardProps {
   customClass?: string;
   classThumb?: string;
   onClick?: MouseEventHandler;
+  customPost?: string;
 }
 
 interface Product extends CardProps {
@@ -46,12 +47,12 @@ export const CardPost: NextPage<CardProps> = ({
   title,
   image,
   author,
-  className,
+  customPost,
   href,
 }) => {
   return (
-    <Link href={href}>
-      <div className={`${styles["root"]} ${className}`}>
+    <Link className={classnames(styles["cardPost"], customPost)} href={href}>
+      <div>
         <div className={styles["img"]}>
           <Img alt={title} src={image} />
         </div>
@@ -78,8 +79,8 @@ export const CardProduct: NextPage<Product> = ({
 }) => {
   return (
     <Link href={href}>
-      <div className={`${styles["cardProduct"]} ${className}`} {...props}>
-        <div className={`${styles["thumb"]} ${classThumb}`}>
+      <div className={classnames(styles["cardProduct"], className)} {...props}>
+        <div className={classnames(styles["thumb"], classThumb)}>
           <Img alt={title} src={image} />
         </div>
 
@@ -110,8 +111,11 @@ export const CardProductItem: NextPage<Product> = ({
 }) => {
   return (
     <Link href={href}>
-      <div className={`${styles["cardProductItem"]} ${className}`} {...props}>
-        <div className={`${styles["thumb"]} ${classThumb}`}>
+      <div
+        className={classnames(styles["cardProductItem"], className)}
+        {...props}
+      >
+        <div className={classnames(styles["thumb"], classThumb)}>
           <Img alt={title} src={image} />
         </div>
 
@@ -151,8 +155,11 @@ export const CardProductCart: NextPage<Product> = ({
   ...props
 }) => {
   return (
-    <div className={`${styles["cardProductItem"]} ${className}`} {...props}>
-      <div className={`${styles["thumb"]} ${classThumb}`}>
+    <div
+      className={classnames(styles["cardProductItem"], className)}
+      {...props}
+    >
+      <div className={classnames(styles["thumb"], classThumb)}>
         <Img alt={title} src={image} />
       </div>
 

@@ -123,13 +123,12 @@
   height: 100vh;
   top: 0;
   right: 0;
-  position: fixed;
+  position: absolute;
   z-index: 10;
   .filterBg {
     width: 100%;
     height: 100vh;
     position: relative;
-    background-color: $black-hover;
     z-index: 3;
   }
   .filterModal {
@@ -141,11 +140,11 @@
     background-color: $white;
     position: absolute;
     width: 292px;
-
     right: 20px;
-    top: 130px;
-
+    top: 220px;
+    right: 90px;
     border-radius: 10px;
+    @include boxShadowLight();
     h3,
     h4 {
       width: 100%;

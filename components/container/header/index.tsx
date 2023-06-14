@@ -12,12 +12,20 @@ import { Search, Cart, CustomerService } from "components/ui/icons";
 import { useAppDispatch, useAppSelector } from "redux/hook";
 import { handleCartToggle, selectCartToggle } from "redux/action/cart";
 import { useRouter } from "next/router";
+import classnames from "classnames";
 interface HeaderProps {
   layout: "home" | "store" | "cate" | "default";
   data: IText[];
+  customHome?: string;
+  customHeader?: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ layout, data }) => {
+const Header: React.FC<HeaderProps> = ({
+  layout,
+  data,
+  customHome,
+  customHeader,
+}) => {
   const [searchToggle, setSearchToggle] = useState<boolean>(false);
   const cartToggle = useAppSelector(selectCartToggle);
   const dispatch = useAppDispatch();
@@ -32,7 +40,7 @@ const Header: React.FC<HeaderProps> = ({ layout, data }) => {
     case "home":
       return (
         <>
-          <div className={styles["header"]}>
+          <div className={classnames(styles["header"], customHome)}>
             <div className={styles["menu"]}>
               {data &&
                 data.map(({ title, url }) => {
@@ -68,7 +76,7 @@ const Header: React.FC<HeaderProps> = ({ layout, data }) => {
               {data &&
                 data.map(({ title, url }) => {
                   return (
-                    <Link key={title} href={`/store/${url}`}>
+                    <Link key={title} href={url}>
                       {title}
                     </Link>
                   );
@@ -100,7 +108,7 @@ const Header: React.FC<HeaderProps> = ({ layout, data }) => {
     default:
       return (
         <>
-          <div className={styles["header-store"]}>
+          <div className={classnames(styles["header-store"], customHeader)}>
             <div className={styles["menu"]}>
               {data &&
                 data.map(({ title, url }) => {

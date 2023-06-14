@@ -100,7 +100,10 @@
         width: 100%;
         height: 100%;
         position: relative;
-
+        transition: all 0.3s linear;
+        &:hover {
+          transform: scale(0.9);
+        }
         .title {
           position: absolute;
           bottom: 15px;
@@ -122,19 +125,18 @@
               font-size: 1.5rem;
             }
           }
-          .right-arrow-white {
-            @include rightArrow();
+          .icon {
+            stroke: $white;
           }
         }
         &:hover {
           .title {
             h3 {
               transition: all 0.3s linear;
-              font-weight: 700;
             }
-            .right-arrow-white {
-              transition: width 0.3s ease-out;
+            .icon {
               width: 70%;
+              transform: scale(1);
             }
           }
         }

@@ -116,7 +116,7 @@ const Store: NextPage<StoreProps> = ({ product }) => {
                     classThumb={styles["cardThumb"]}
                     className={styles["card"]}
                     key={nameItem + urlItem + index}
-                    href={`${categoryItem}/${urlItem}`}
+                    href={`/store/${categoryItem}/${urlItem}`}
                     title={nameItem}
                     image={imgItem}
                     price={priceItem}

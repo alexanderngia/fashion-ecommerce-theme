@@ -9,6 +9,8 @@ import {
 import { Tiktok } from "@styled-icons/boxicons-logos/Tiktok";
 import Divider from "components/ui/divider";
 import { ButtonSub } from "components/ui/button";
+import classNames from "classnames";
+import { useRouter } from "next/router";
 
 interface FooterProps {
   script?: HTMLScriptElement;
@@ -16,8 +18,10 @@ interface FooterProps {
   classSocial?: string;
 }
 const Footer: NextPage<FooterProps> = ({ script, className, classSocial }) => {
+  const router = useRouter();
+
   return (
-    <div className={`${styles["root"]} ${className}`}>
+    <div className={classNames(styles["root"], className)}>
       <>
         <div className={styles["cta"]}>
           <div className={styles["box"]}>
@@ -25,7 +29,11 @@ const Footer: NextPage<FooterProps> = ({ script, className, classSocial }) => {
             <p>
               Bạn gặp khó khăn trong việc mua hàng, thanh toán, giao nhận...
             </p>
-            <ButtonSub className={`${styles["btn"]} `} type="button">
+            <ButtonSub
+              onClick={() => router.push("/contact")}
+              classname={styles["btn"]}
+              type="button"
+            >
               Contact Us
             </ButtonSub>
           </div>
@@ -35,11 +43,7 @@ const Footer: NextPage<FooterProps> = ({ script, className, classSocial }) => {
         <div className={styles["container"]}>
           <div className={styles["logo"]}>
             <div className={styles["img"]}>
-              <Img
-    
-                src="/images/transBlack.png"
-                alt="logo footer"
-              />
+              <Img src="/images/transBlack.png" alt="logo footer" />
             </div>
             <div className={styles["info"]}>
               <p>

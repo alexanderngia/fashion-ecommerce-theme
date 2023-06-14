@@ -54,7 +54,13 @@ export const SearchBar: NextPage<SearchBarProps> = (
           <div className={styles["list"]}>
             {search(data)?.map(
               (
-                { nameItem, imgItem, priceItem, urlItem }: Products,
+                {
+                  nameItem,
+                  imgItem,
+                  priceItem,
+                  urlItem,
+                  categoryItem,
+                }: Products,
                 index: number
               ) => {
                 return (
@@ -62,7 +68,7 @@ export const SearchBar: NextPage<SearchBarProps> = (
                     className={styles["card"]}
                     classThumb={styles["thumb"]}
                     key={imgItem + nameItem + index}
-                    href={`store/${urlItem}`}
+                    href={`/store/${categoryItem}/${urlItem}`}
                     title={nameItem}
                     image={imgItem}
                     price={priceItem}
