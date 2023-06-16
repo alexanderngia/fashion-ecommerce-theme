@@ -250,3 +250,62 @@ export const ArrowRight: React.FC<IconsProps> = ({ onClick, customClass }) => {
     </svg>
   );
 };
+
+export const Facebook: React.FC<IconsProps> = ({ onClick, customClass }) => {
+  return (
+    <svg
+      onClick={onClick}
+      className={classnames(styles["root"], customClass)}
+      width="36"
+      height="37"
+      viewBox="0 0 36 37"
+      xmlns="http://www.w3.org/2000/svg"
+      stroke="currentColor"
+    >
+      <path
+        d="M21.2637 13.8572V18.7543H25.6542C25.9919 18.7543 26.1608 19.092 26.1608 19.4297L25.4853 22.6381C25.4853 22.807 25.1476 22.9759 24.9787 22.9759H21.2637V35.3029H16.1978V23.1447H13.3271C12.9894 23.1447 12.8205 22.9759 12.8205 22.6381V19.4297C12.8205 19.092 12.9894 18.9231 13.3271 18.9231H16.1978V13.3506C16.1978 10.4799 18.393 8.28467 21.2637 8.28467H25.823C26.1608 8.28467 26.3296 8.45353 26.3296 8.79126V12.844C26.3296 13.1817 26.1608 13.3506 25.823 13.3506H21.7703C21.4326 13.3506 21.2637 13.5195 21.2637 13.8572Z"
+        strokeWidth="2"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+      />
+      <path
+        d="M22.9524 35.3031H12.8205C4.37729 35.3031 1 31.9258 1 23.4826V13.3508C1 4.90756 4.37729 1.53027 12.8205 1.53027H22.9524C31.3956 1.53027 34.7729 4.90756 34.7729 13.3508V23.4826C34.7729 31.9258 31.3956 35.3031 22.9524 35.3031Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+export const Instagram: React.FC<IconsProps> = ({ onClick, customClass }) => {
+  return (
+    <svg
+      onClick={onClick}
+      className={classnames(styles["root"], customClass)}
+      width="36"
+      height="37"
+      viewBox="0 0 36 37"
+      stroke="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M13.0477 35.3031H23.1795C31.6227 35.3031 35 31.9258 35 23.4826V13.3508C35 4.90756 31.6227 1.53027 23.1795 1.53027H13.0477C4.60446 1.53027 1.22717 4.90756 1.22717 13.3508V23.4826C1.22717 31.9258 4.60446 35.3031 13.0477 35.3031Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M18.1136 24.3268C21.3777 24.3268 24.0238 21.6807 24.0238 18.4166C24.0238 15.1525 21.3777 12.5063 18.1136 12.5063C14.8494 12.5063 12.2033 15.1525 12.2033 18.4166C12.2033 21.6807 14.8494 24.3268 18.1136 24.3268Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M27.6309 9.97363H27.6512"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};

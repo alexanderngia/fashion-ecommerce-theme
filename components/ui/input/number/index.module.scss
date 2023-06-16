@@ -32,7 +32,7 @@
     text-align: center;
     visibility: hidden;
     opacity: 0;
-    transition: opacity 100ms ease-in;
+    @include Transition3();
   }
   .num {
     font-size: 1rem;
@@ -47,7 +47,7 @@
     padding: 3px 0;
     visibility: visible;
     opacity: 1;
-    transition: opacity 1000ms ease-in;
+    @include Transition3();
     cursor: default;
   }
 }
@@ -65,7 +65,7 @@
   &:hover {
     background-color: $black;
     color: $gray-light;
-    transition: all 100ms ease-in;
+    @include Transition3();
     .icon {
       color: $gray-light;
     }
@@ -74,6 +74,6 @@
     color: $gray-light;
 
     background-color: $black;
-    transition: all 100ms ease-in;
+    @include Transition3();
   }
 }

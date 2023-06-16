@@ -2,7 +2,7 @@
 @import "styles/variables";
 .root {
   cursor: pointer;
-  transition: all 0.2s ease-in;
+  @include Transition3();
   &:hover {
     transform: scale(1.2);
   }

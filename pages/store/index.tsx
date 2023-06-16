@@ -45,16 +45,16 @@ const Store: NextPage<StoreProps> = ({ product }) => {
     setFilteredProducts(filtered);
   };
 
-  const filterByPrice = (selectedPrice: number) => {
-    const filtered = product.filter(
-      (product) => product.price <= selectedPrice
-    );
-    setFilteredProducts(filtered);
-  };
+  // const filterByPrice = (selectedPrice: number) => {
+  //   const filtered = product.filter(
+  //     (product) => product.price <= selectedPrice
+  //   );
+  //   setFilteredProducts(filtered);
+  // };
 
   return (
     <>
-      <HeaderLayout data={data.nav} layout={layout}></HeaderLayout>
+      <HeaderLayout layout={layout}></HeaderLayout>
       <LayoutStore>
         {toggle && (
           <div className={styles["containerFilter"]}>
@@ -74,7 +74,6 @@ const Store: NextPage<StoreProps> = ({ product }) => {
                   listSize={variantFilter.size}
                 />
               </div>
-              <Divider classname={styles["divider"]} />
               <div className={styles["row"]}>
                 <h4>Color</h4>
                 <InputColor

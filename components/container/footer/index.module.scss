@@ -71,15 +71,17 @@
       }
       .social {
         a {
-          transition: all 0.3s ease-in;
+          color: unset;
+          @include Transition3();
           &:hover {
             svg {
               transform: scale(1.2);
             }
           }
-          svg {
-            color: $black;
+          .icon {
             margin-right: 10px;
+            color: $black;
+            fill: none;
           }
         }
       }
@@ -96,13 +98,15 @@
         width: 50%;
       }
       .column {
-        width: 35%;
-        @include flex();
-        flex-direction: column;
-        align-items: flex-start;
+        width: 60%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         row-gap: 3rem;
-
+        @include tablet {
+          width: 45%;
+        }
         a {
+          width: fit-content;
           font-weight: 700;
         }
       }

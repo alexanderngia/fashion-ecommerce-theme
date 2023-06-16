@@ -116,9 +116,15 @@
         width: 30% !important;
         bottom: 4px;
 
+        svg {
+          width: 100px;
+          @include desktop {
+            width: auto;
+          }
+        }
         &::after {
-          right: -14px;
-          top: -17px;
+          right: -82px;
+          top: -11px;
           content: "";
           position: absolute;
           width: 30px;

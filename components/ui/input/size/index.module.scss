@@ -35,7 +35,7 @@
       border-radius: 100%;
       border: 1px solid $black-divider;
       z-index: 1;
-      transition: all 100ms ease-in-out;
+      @include Transition2();
     }
   }
   .input {

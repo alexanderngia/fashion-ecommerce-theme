@@ -7,17 +7,23 @@
   font-style: italic;
   text-transform: capitalize;
   text-align: center;
+  font-size: 1.6rem;
   @include desktop {
     font-size: 4rem;
   }
 }
 .category {
   padding: 3% 0;
-  width: 55%;
+  width: 100%;
   @include flex();
-  justify-content: space-between;
+  justify-content: space-around;
+  button {
+    margin-right: 0;
+  }
   @include desktop {
-    width: 30%;
+    justify-content: space-between;
+
+    width: 40%;
   }
   p {
     padding: 3%;
@@ -25,7 +31,7 @@
     font-weight: 700;
     text-transform: uppercase;
     background-color: $gray;
-    transition: all 0.2s linear;
+    @include Transition3();
     &:hover {
       color: $white;
       background-color: $black;

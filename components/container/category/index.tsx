@@ -20,7 +20,7 @@ const Category: NextPage<CategoryProps> = ({ data }) => {
     <div className={styles["root"]}>
       <div className={styles["heading"]}>
         <h2>{data.title}</h2>
-        <p>{data.descript}</p>
+        <p dangerouslySetInnerHTML={{ __html: data.descript }} />
       </div>
       <div className={styles["card"]}>
         {data &&

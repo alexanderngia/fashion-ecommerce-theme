@@ -4,7 +4,6 @@ import { IText } from "types/layout";
 import { QuoteData } from "types/quote";
 import { SliderData } from "types/slider";
 export interface Data {
-  nav: IText[];
   slider: SliderData[];
   cat: CategoryData;
   blog: {
@@ -18,20 +17,6 @@ export interface Data {
   carousel: CarouselData[];
 }
 export const data: Data = {
-  nav: [
-    {
-      title: "STORE",
-      url: "/store",
-    },
-    {
-      title: "BLOG",
-      url: "/blog",
-    },
-    {
-      title: "CONTACT",
-      url: "/contact",
-    },
-  ],
 
   slider: [
     {
@@ -69,9 +54,8 @@ export const data: Data = {
   ],
 
   cat: {
-    title: "Lingerie & Accessories",
-    descript:
-      "primis in faucibus orci luctus et ultrices posuere cubilia Curae Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet l",
+    title: "Gợi Cảm & Tinh Tế",
+    descript: `Chào mừng bạn đến với Trine, nơi giúp bạn trở nên gợi cảm và quyến rũ hơn bao giờ hết. Trine tự hào mang đến những sản phẩm độc đáo và tinh tế, được thiết kế đặc biệt để nâng cao sự tự tin và khẳng định vẻ quyến rũ của riêng bạn.`,
     card: [
       {
         img: "/images/product1.jpg",

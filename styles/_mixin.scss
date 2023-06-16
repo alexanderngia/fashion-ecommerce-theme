@@ -90,9 +90,14 @@
   }
 }
 @mixin scaleUpHover() {
-  transition: all 0.3s linear;
+  @include Transition3();
   &:hover {
     transform: scale(1.2);
   }
 }
-
+@mixin Transition3() {
+  transition: all 0.3s linear;
+}
+@mixin Transition2() {
+  transition: all 0.2s linear;
+}

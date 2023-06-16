@@ -10,6 +10,7 @@ import styles from "./index.module.scss";
 import type { GetStaticProps, NextPage } from "next";
 import { data } from "data/blog";
 import { useState } from "react";
+import { ButtonMain, ButtonSub } from "@/components/ui/button";
 
 export interface BlogProps {
   posts: Post;
@@ -29,18 +30,18 @@ const Blog: NextPage<BlogProps> = ({ posts }) => {
 
   return (
     <>
-      <HeaderLayout data={data.nav} layout={layout}></HeaderLayout>
+      <HeaderLayout layout={layout}></HeaderLayout>
       <LayoutDefault>
         <h1 className={styles["heading"]}>{data.heading}</h1>
         <div className={styles["category"]}>
           {data.category.map(({ title }, index: number) => {
             return (
-              <p
+              <ButtonSub
                 key={`${title}-category-${index}`}
                 onClick={() => filterByCate(title)}
               >
                 {title}
-              </p>
+              </ButtonSub>
             );
           })}
         </div>

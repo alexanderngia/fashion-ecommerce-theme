@@ -16,7 +16,7 @@
       margin-right: 2rem;
       font-family: $font-head;
       text-transform: uppercase;
-      transition: all 0.2s ease-in;
+      @include Transition3();
       letter-spacing: 1px;
       font-weight: 700;
 
@@ -41,7 +41,7 @@
       margin-left: 20px;
       width: 15px;
       color: $gray-light;
-      transition: all 0.2s ease-in;
+      @include Transition3();
       @include tablet {
         margin-left: 30px;
       }
@@ -121,7 +121,7 @@
         color: $black;
         font-family: $font-head;
         text-transform: uppercase;
-        transition: all 0.2s ease-in;
+        @include Transition3();
         letter-spacing: 1px;
         font-weight: 700;
         &:hover {

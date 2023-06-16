@@ -18,8 +18,7 @@
     top: 23px;
     right: 20px;
     z-index: 9;
-    transition: all 0.1s;
-
+    @include Transition3();
     transform: rotate(-90deg);
   }
   select {

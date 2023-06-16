@@ -3,7 +3,7 @@ import LayoutDefault from "components/container/layout/default";
 import Divider from "components/ui/divider";
 import { getPostByCategory, getPostBySlug, getPostPath } from "lib/postService";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { data } from "data/default";
+import { header } from "data/header";
 import { Post } from "types/post";
 import styles from "./[slug].module.scss";
 import { CarouselPost } from "@/components/container/carousel";
@@ -13,12 +13,15 @@ export interface SinglePostProps {
   postCategory: Post[];
 }
 const SinglePost: NextPage<SinglePostProps> = ({ post, postCategory }) => {
-  const layout = "default";
+  const layout = "store";
   const HeaderLayout = headerLayouts[layout] || headerLayouts.default;
 
   return (
     <>
-      <HeaderLayout customHeader={styles["header"]} data={data.nav} layout={layout}></HeaderLayout>
+      <HeaderLayout
+        customHeader={styles["header"]}
+        layout={layout}
+      ></HeaderLayout>
       <LayoutDefault>
         <div className={styles["root"]}>
           <span className={styles["subDecor"]}>
@@ -51,10 +54,8 @@ export default SinglePost;
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug }: any = params;
   const post = await getPostBySlug(slug);
-  console.log(post, "post");
   if (post) {
     var postCategory = await getPostByCategory(post);
-    console.log(postCategory, "postCategory");
   }
   return {
     props: {

@@ -34,7 +34,7 @@ const Home: NextPage<HomeProps> = ({ products }) => {
         <meta name="description" content="Trang chủ Trine Closet" />
         <title>Trine Closet - Sexy Make A Woman</title>
       </Head>
-      <HeaderLayout data={data.nav} layout={layout}></HeaderLayout>
+      <HeaderLayout layout={layout}></HeaderLayout>
       <LayoutHome>
         <Slider list={data.slider} />
         <Banner />

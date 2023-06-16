@@ -100,7 +100,19 @@
         width: 100%;
         height: 100%;
         position: relative;
-        transition: all 0.3s linear;
+        @include Transition3();
+        position: relative;
+        z-index: 0;
+        &::before {
+          content: "";
+          width: 100%;
+          height: 20%;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          background: $black-gradient;
+          z-index: 1;
+        }
         &:hover {
           transform: scale(0.9);
         }
@@ -121,18 +133,21 @@
             color: $gray-light;
             letter-spacing: 0.1rem;
             @include desktop {
-              margin-bottom: 1rem;
               font-size: 1.5rem;
             }
           }
           .icon {
             stroke: $white;
+            width: 6rem;
+            @include tablet {
+              width: unset;
+            }
           }
         }
         &:hover {
           .title {
             h3 {
-              transition: all 0.3s linear;
+              @include Transition3();
             }
             .icon {
               width: 70%;

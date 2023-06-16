@@ -58,7 +58,7 @@ const Category: NextPage<CategoryProps> = ({ product }) => {
 
   return (
     <>
-      <HeaderLayout data={data.nav} layout={layout}></HeaderLayout>
+      <HeaderLayout layout={layout}></HeaderLayout>
       <LayoutStore>
         {toggle && (
           <div className={styles["containerFilter"]}>

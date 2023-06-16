@@ -76,7 +76,7 @@ a {
   font-weight: 600;
   color: $black;
   &:hover {
-    transition: 0.3s all ease-in-out;
+    @include Transition3();
     color: $black-hover;
   }
 }

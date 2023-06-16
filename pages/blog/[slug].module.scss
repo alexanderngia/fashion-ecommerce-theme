@@ -11,7 +11,10 @@
   .subDecor {
     @include flex();
     width: 100px;
-    padding-top: 30px;
+    padding-top: 10px;
+    @include desktop {
+      padding-top: 30px;
+    }
     p {
       color: $black-sub;
       font-family: $font-head;
@@ -33,12 +36,18 @@
     text-align: center;
     width: 70%;
     padding: 3% 0;
-    font-size: 4rem;
+    font-size: 3rem;
     text-transform: capitalize;
+    @include desktop {
+      font-size: 4rem;
+    }
   }
 
   .body {
-    width: 50%;
+    width: 90%;
+    @include desktop {
+      width: 50%;
+    }
     span {
       p {
         margin-bottom: 20px;

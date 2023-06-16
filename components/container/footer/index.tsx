@@ -2,15 +2,13 @@ import React from "react";
 import styles from "./index.module.scss";
 import Img from "@/components/ui/img";
 import { NextPage } from "next";
-import {
-  FacebookWithCircle,
-  InstagramWithCircle,
-} from "@styled-icons/entypo-social";
-import { Tiktok } from "@styled-icons/boxicons-logos/Tiktok";
 import Divider from "components/ui/divider";
 import { ButtonSub } from "components/ui/button";
 import classNames from "classnames";
 import { useRouter } from "next/router";
+import { Facebook, Instagram } from "@/components/ui/icons";
+import { footer } from "data/footer";
+import Link from "next/link";
 
 interface FooterProps {
   script?: HTMLScriptElement;
@@ -43,7 +41,7 @@ const Footer: NextPage<FooterProps> = ({ script, className, classSocial }) => {
         <div className={styles["container"]}>
           <div className={styles["logo"]}>
             <div className={styles["img"]}>
-              <Img src="/images/transBlack.png" alt="logo footer" />
+              <Img src={footer.logo} alt="logo footer" />
             </div>
             <div className={styles["info"]}>
               <p>
@@ -51,41 +49,47 @@ const Footer: NextPage<FooterProps> = ({ script, className, classSocial }) => {
                 Vietnam
               </p>
               <p>
-                <span>Phone</span> +84 944-606-333 (Mr.Alex) +84
-                969-278-061(Mrs.Trinh)
+                <span>Phone</span> <a href="tel:84944606333">+84 944-606-333</a>
+                (Mr.Alex)
+                <a
+                  href="tel:84
+                969278061"
+                >
+                  +84 969-278-061
+                </a>
+                (Mrs.Trinh)
               </p>
               <p>
-                <span>Email</span> trine.closet@gmail.com
+                <span>Email</span>{" "}
+                <a href="mailto:trine.closet@gmail.com">
+                  trine.closet@gmail.com
+                </a>
               </p>
             </div>
-            <div className={`${styles["social"]} ${classSocial}`}>
-              <a href="#">
-                <FacebookWithCircle size={25} />
+            <div className={classNames(styles["social"], classSocial)}>
+              <a href="https://www.facebook.com/trinecloset">
+                <Facebook customClass={styles["icon"]} />
               </a>
-              <a href="#">
-                <InstagramWithCircle size={25} />
-              </a>
-              <a href="#">
-                <Tiktok size={25} />
+              <a href="">
+                <Instagram customClass={styles["icon"]} />
               </a>
             </div>
           </div>
           <div className={styles["navigation"]}>
             <div className={styles["column"]}>
-              <a href="#">About</a>
-              <a href="#">Contact</a>
-              <a href="#">Privacy Policy</a>
-            </div>
-            <div className={styles["column"]}>
-              <a href="#">Blog</a>
-              <a href="#">FAQ</a>
-              <a href="#">Terms & Conditions</a>
+              {footer.nav.map(({ title, url }) => {
+                return (
+                  <Link key={title} href={url}>
+                    {title}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>
         <p className={styles["copyright"]}>
           All Right Reserve | Copyright @2022 Trine Closet Made By&nbsp;
-          <a href="#">Oroka Studio</a>
+          <a href="https//:oroka-studio.com/">Oroka Studio</a>
         </p>
         {script}
       </>

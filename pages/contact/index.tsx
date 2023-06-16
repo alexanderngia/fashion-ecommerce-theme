@@ -1,24 +1,14 @@
-import classnames from "classnames";
 import LayoutStore from "components/container/layout/store";
 import { ButtonMain } from "components/ui/button";
-import { CardProductCartSub } from "components/ui/card";
 import InputText from "components/ui/input";
-import { Country } from "data/country";
-import { data } from "data/default";
-import { getProducts } from "lib/productService";
-import { GetStaticProps, NextPage } from "next";
-import { useRouter } from "next/router";
+import { NextPage } from "next";
 import { ChangeEvent, useEffect, useState } from "react";
-import { removeFromCart, selectCartList, updateCart } from "redux/action/cart";
-import { useAppDispatch, useAppSelector } from "redux/hook";
-import { CountryData, DistrictData, StateData, WardData } from "types/country";
+import { updateCart } from "redux/action/cart";
+import { useAppDispatch } from "redux/hook";
 import { Products } from "types/product";
 
 import { headerLayouts } from "@/components/container/header";
 import Divider from "@/components/ui/divider";
-import { CreditCard, Dollar, Right, Tablet } from "@/components/ui/icons";
-import InputPayment from "@/components/ui/input/payment";
-import InputSelectAdress from "@/components/ui/input/selectAdress";
 
 import styles from "./index.module.scss";
 
@@ -33,7 +23,7 @@ interface ContactForm {
   note: string;
 }
 const Contact: NextPage<ContactProps> = () => {
-  const layout = "default";
+  const layout = "store";
   const HeaderLayout = headerLayouts[layout] || headerLayouts.default;
   const dispatch = useAppDispatch();
 
@@ -73,7 +63,7 @@ const Contact: NextPage<ContactProps> = () => {
 
   return (
     <>
-      <HeaderLayout data={data.nav} layout={layout}></HeaderLayout>
+      <HeaderLayout layout={layout}></HeaderLayout>
       <LayoutStore>
         <span className={styles["subDecor"]}>
           <Divider />

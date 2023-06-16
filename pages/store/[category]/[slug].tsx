@@ -47,7 +47,7 @@ const SingleProduct: NextPage<SingleProductProps> = ({
   };
   return (
     <>
-      <HeaderLayout data={data.nav} layout={layout}></HeaderLayout>
+      <HeaderLayout layout={layout}></HeaderLayout>
       <LayoutProduct>
         <div className={styles["root"]}>
           <div className={styles["product"]}>

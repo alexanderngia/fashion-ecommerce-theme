@@ -10,7 +10,7 @@
   padding: 13px;
   appearance: none;
   cursor: pointer;
-  transition: 0.2s all ease-in-out;
+  @include Transition3();
   margin-right: 15px;
   border: 1px solid transparent;
   font-size: 1.3rem;
@@ -24,7 +24,7 @@
     background-color: transparent;
     border: 1px solid $black-head;
     color: $black-head;
-    transition: all 0.2s ease-in;
+    @include Transition3();
     &:hover {
       background-color: $black;
       color: $gray-light;

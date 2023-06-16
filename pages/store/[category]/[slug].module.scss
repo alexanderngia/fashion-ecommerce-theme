@@ -40,7 +40,7 @@
           top: 2%;
           left: 0%;
           cursor: pointer;
-          transition: all 0.1s ease-in;
+          @include Transition3();
           &:hover {
             transform: scale(1.2);
           }

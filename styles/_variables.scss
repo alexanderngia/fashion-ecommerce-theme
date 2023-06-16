@@ -8,7 +8,12 @@ $font-p: "Mulish";
 $black-head: rgba(#121212, 0.75);
 $black-p: #444444;
 $black-hover: rgba(#444444, 0.5);
-
+$black-gradient: linear-gradient(
+  0deg,
+  rgba(18, 18, 18, 1) 0%,
+  rgba(18, 18, 18, 0.40948879551820727) 65%,
+  rgba(18, 18, 18, 0) 100%
+);
 $black: #121212;
 $black-sub: #4d4d4d;
 $black-divider: rgba(#4d4d4d, 0.3);
