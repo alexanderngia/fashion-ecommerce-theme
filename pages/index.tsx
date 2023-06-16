@@ -22,7 +22,7 @@ interface HomeProps {
 }
 
 const Home: NextPage<HomeProps> = ({ products }) => {
-  const layout = "home";
+  const layout = "default";
   const HeaderLayout = headerLayouts[layout] || headerLayouts.default;
   return (
     <div className={styles.container}>
