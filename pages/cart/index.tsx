@@ -73,7 +73,7 @@ const Cart: NextPage<CartProps> = () => {
   };
   return (
     <>
-      <HeaderLayout data={data.nav} layout={layout}></HeaderLayout>
+      <HeaderLayout layout={layout}></HeaderLayout>
       <LayoutStore>
         <h1 className={styles["title"]}>Giỏ Hàng</h1>
         <div className={styles["container"]}>

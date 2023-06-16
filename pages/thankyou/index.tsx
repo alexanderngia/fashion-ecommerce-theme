@@ -28,7 +28,7 @@ const Thankyou: NextPage<ThankyouProps> = () => {
   };
   return (
     <>
-      <HeaderLayout data={data.nav} layout={layout}></HeaderLayout>
+      <HeaderLayout layout={layout}></HeaderLayout>
       <LayoutStore>
         <h1 className={styles["title"]}>TRÂN TRỌNG VÀ CẢM ƠN QUÝ KHÁCH !</h1>
         <div className={styles["subtitle"]}>

@@ -190,7 +190,7 @@ const Shipping: NextPage<ShippingProps> = () => {
 
   return (
     <>
-      <HeaderLayout data={data.nav} layout={layout}></HeaderLayout>
+      <HeaderLayout layout={layout}></HeaderLayout>
       <LayoutStore>
         <h1 className={styles["title"]}>VẬN CHUYỂN</h1>
         <div className={styles["container"]}>
