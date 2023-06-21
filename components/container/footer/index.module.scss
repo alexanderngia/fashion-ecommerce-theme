@@ -82,6 +82,10 @@
             margin-right: 10px;
             color: $black;
             fill: none;
+            &:hover {
+              color: $white;
+              fill: $black;
+            }
           }
         }
       }

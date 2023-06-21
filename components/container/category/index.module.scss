@@ -103,6 +103,9 @@
         @include Transition3();
         position: relative;
         z-index: 0;
+        &:hover {
+          transform: scale(0.9);
+        }
         &::before {
           content: "";
           width: 100%;
@@ -113,9 +116,7 @@
           background: $black-gradient;
           z-index: 1;
         }
-        &:hover {
-          transform: scale(0.9);
-        }
+
         .title {
           position: absolute;
           bottom: 15px;
@@ -142,17 +143,7 @@
             @include tablet {
               width: unset;
             }
-          }
-        }
-        &:hover {
-          .title {
-            h3 {
-              @include Transition3();
-            }
-            .icon {
-              width: 70%;
-              transform: scale(1);
-            }
+   
           }
         }
       }
